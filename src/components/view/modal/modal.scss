@@ -1,0 +1,124 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  &__content {
+    padding: 0.5rem 1rem 2rem;
+    border-radius: 3%;
+    background: #fff;
+    z-index: 200;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+  }
+
+  &__close {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__input {
+    width: 20rem;
+    height: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  &__btn {
+    width: 5rem;
+    height: 2rem;
+    padding: 0.5rem;
+    margin: 1.5rem auto 1rem;
+    cursor: pointer;
+  }
+}
+
+.select-category {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.request-radio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__inputs-label {
+    display: flex;
+    gap: 0.2rem;
+  }
+}
+
+.request-checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__inputs-label {
+    display: flex;
+    gap: 0.2rem;
+  }
+}
+
+.request-location {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.request-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal--hidden {
+  display: none;
+}
+
+.modal--active {
+  display: flex;
+}
