@@ -21,7 +21,7 @@ function showRequest(): void {
 
 function hideModal(): void {
   const registerModal: NodeListOf<Element> = document.querySelectorAll('.modal');
-  
+
   [...registerModal].map(item => {
     item.classList.remove('modal--active');
     item.classList.add('modal--hidden');
@@ -50,5 +50,12 @@ export function openRequestWindowListener(): void {
   const requestBtn = document.getElementById('request') as HTMLButtonElement;
 
   requestBtn.addEventListener('click', showRequest);
+}
+
+export function addListeners(): void {
+  openRegisterWindowListener();
+  openLoginWindowListener();
+  openRequestWindowListener();
+  closeModalWindowListener();
 }
 
