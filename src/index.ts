@@ -1,2 +1,6 @@
-import './global';
-console.log('ghbdtn')
+import App from './components/app/app';
+import './global.css';
+
+const app = new App();
+
+app.init();
