@@ -30,8 +30,10 @@ function hideModal(): void {
 
 export function openRegisterWindowListener(): void {
   const registerBtn = document.getElementById('register') as HTMLButtonElement;
+  const registerSpan = document.getElementById('registerSpan') as HTMLSpanElement;
 
   registerBtn.addEventListener('click', showRegister);
+  registerSpan.addEventListener('click', showRegister);
 }
 
 export function closeModalWindowListener(): void {
@@ -47,15 +49,22 @@ export function openLoginWindowListener(): void {
 }
 
 export function openRequestWindowListener(): void {
-  const requestBtn = document.getElementById('request') as HTMLButtonElement;
+  const requestBtn = document.getElementById('requestSpan') as HTMLButtonElement;
 
   requestBtn.addEventListener('click', showRequest);
+}
+
+export function openHelpWindowListener(): void {
+  const requestBtn = document.getElementById('helpSpan') as HTMLButtonElement;
+
+  requestBtn.addEventListener('click', showRegister);
 }
 
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
   openRequestWindowListener();
+  openHelpWindowListener();
   closeModalWindowListener();
 }
 

@@ -1,0 +1,16 @@
+.footer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  text-align: center;
+  background: url(./components/assets/img/BG33.png) 50%/cover no-repeat;
+
+  &__link {
+    width: 170px;
+    margin: 5px;
+  }
+}
