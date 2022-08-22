@@ -12,10 +12,16 @@ export default class Modal {
                   <span class="modal__title modal-register__title">Регистрация</span>
                   <span class="modal__close modal-register__close">&times;</span>
                 </div> 
-                <form action="" class="modal__form modal-register__form">
-                  <input type="text" class="modal__input register__email" placeholder="Введите ваш email">
-                  <input type="text" class="modal__input register__username" placeholder="Выберите Имя Пользователя">
-                  <input type="password" class="modal__input register__password" placeholder="Выберите Пароль">
+                <form action="#"
+                 class="modal__form modal-register__form">
+                  <input type="email" name="email" class="modal__input register__email"
+                   placeholder="Введите ваш email" required>
+                  <input type="text" name="login" class="modal__input register__username" 
+                  placeholder="Выберите ваш логин" required>
+                  <input type="text" name="name" class="modal__input register__name" 
+                  placeholder="Введите ваше имя" required>
+                  <input type="password" name="pwd" class="modal__input register__password"
+                   placeholder="Выберите Пароль" minlength="6" required>
                   <button class="btn modal__btn register__btn">Зарегистрироваться</button>
                 </form>
               </div>
