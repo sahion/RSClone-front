@@ -1,3 +1,5 @@
+import pen from '../../../assets/img/pen.png';
+
 export default class Main {
   wrapper: HTMLElement;
 
@@ -26,7 +28,7 @@ export default class Main {
                   </div>
                   <div class="card__btn">
                     <button class="btn circle-btn">
-                      <img src="./img/pen.png" alt="">
+                      <img src=${pen} alt="">
                     </button>                
                     <button class="btn circle-btn">                  
                       <span class="modal__close">&times;</span>

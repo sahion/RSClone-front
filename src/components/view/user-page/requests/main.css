@@ -1,6 +1,6 @@
 .filters-section{
   position: relative;
-  background: url(./img/BG4.png) 50%/cover no-repeat;
+  background: url(../../../../components/assets/img/BG4.png) 50%/cover no-repeat;
 }
 .format,
 .country,
@@ -33,7 +33,7 @@
   position: absolute;
   width: 100%;
   height: 150px;
-  background: url(./img/Frame8.png) 50%/contain no-repeat;  
+  background: url(../../../../components/assets/img/Frame8.png) 50%/contain no-repeat;  
 }
 /*requests-cards*/
 .requests-cards{
