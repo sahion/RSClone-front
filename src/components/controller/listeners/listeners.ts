@@ -1,3 +1,5 @@
+import getRequestFormData from '../dataHandlers/getRequestFormData';
+
 function showRegister(): void {
   const registerModal = document.querySelector('.modal-register') as HTMLElement;
 
@@ -60,11 +62,18 @@ export function openHelpWindowListener(): void {
   requestBtn.addEventListener('click', showRegister);
 }
 
+export function createRequestListener(): void {
+  const requestForm = document.getElementById('requestForm') as HTMLFormElement;
+
+  requestForm.addEventListener('submit', getRequestFormData);
+}
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
   openRequestWindowListener();
   openHelpWindowListener();
+  createRequestListener();
   closeModalWindowListener();
 }
 
