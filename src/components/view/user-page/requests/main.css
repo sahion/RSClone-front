@@ -1,0 +1,118 @@
+.filters-section{
+  position: relative;
+  background: url(./img/BG4.png) 50%/cover no-repeat;
+}
+.format,
+.country,
+.category{
+  width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  border-bottom: dotted 1px #793CFB;
+  flex-wrap: wrap;
+}
+.btn:hover,
+.requests-section__btn:hover{
+  background-color: #9a6bff;
+  border: 3px solid #9a6bff;
+  color: white;
+}
+.requests-section__btn{  
+  min-width: 50px;
+  height: 30px;
+  padding: 0 15px;
+  margin: 15px 5px;
+  border: 2px solid #793CFB;
+  border-radius: 50px;
+  font-size: 15px;  
+  background-color: white;
+  cursor: pointer
+}
+.frame8{
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  background: url(./img/Frame8.png) 50%/contain no-repeat;  
+}
+/*requests-cards*/
+.requests-cards{
+  margin: 120px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;  
+}
+.card {
+  width: 250px;
+  height: 350px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #FAFAFA;
+  border-radius: 15px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.card__header{
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ABC264;
+}
+.card__title,
+.card__info {
+  font-size: 16px;
+  padding: 5px;
+  text-align: center;
+}
+.card__span {
+  font-weight: 600;
+  color: #793CFB;
+}
+.card__btn {
+  display: flex;
+  justify-content: space-around;
+}
+/*buttons-section*/
+.btn{
+  width: 130px;
+  height: 40px;
+  margin: 15px 5px;
+  border: 2px solid #793CFB;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: white;
+  cursor: pointer;
+}
+.buttons-section{
+  height: 180px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.circle-btn{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  align-self: flex-end;
+}
+.color-btn{
+  background-color: #793CFB;
+  color: white;
+}
+.buttons-section__btn{
+  width: 200px;
+}
+.buttons-section__navigation{
+  width: 340px;
+  height: 52px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}

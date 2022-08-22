@@ -1,6 +1,6 @@
-import vladimirAva from '../../assets/img/Владимир.png';
-import elenaAva from '../../assets/img/Елена.png';
-import svetlanaAva from '../../assets/img/Светлана.png';
+import vladimirAva from '../../../assets/img/Владимир.png';
+import elenaAva from '../../../assets/img/Елена.png';
+import svetlanaAva from '../../../assets/img/Светлана.png';
 
 export default class Main {
   wrapper: HTMLElement;

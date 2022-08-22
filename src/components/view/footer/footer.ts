@@ -1,4 +1,4 @@
-import logo from '../../assets/img/logo.svg';
+import logo from '../../assets/svg/logo.svg';
 
 export default class Footer {
   wrapper: HTMLElement;

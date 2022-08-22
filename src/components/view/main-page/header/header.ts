@@ -1,4 +1,4 @@
-import logo from '../../assets/img/Logo.png';
+import logo from '../../../assets/img/Logo.png';
 
 export default class Header {
   wrapper: HTMLElement;
@@ -18,7 +18,7 @@ export default class Header {
                   <ul class="header__nav-list">
                     <li class="header__nav-item"><a href="#requests">Успей помочь</a></li>
                     <li class="header__nav-item"><a href="#thanks">Копилка добрых дел</a></li>
-                    <li class="header__nav-item"><a href="#info">Как это рабоатет?</a></li>
+                    <li class="header__nav-item"><a href="#info">Как это работает?</a></li>
                   </ul>
                 </nav>
                 <div class="header__btns">
