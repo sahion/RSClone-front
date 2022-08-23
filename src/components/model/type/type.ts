@@ -4,6 +4,7 @@ export interface Apply {
   contact: (string | null)[],
   country: string,
   location: string, 
+  time: string,
   description: string, 
   open: boolean,
 } 

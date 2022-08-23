@@ -55,6 +55,10 @@
     background-color: white;
   }
 
+  &__btns {
+    display: flex;
+  }
+
   &__btn {
     margin: 1.5rem auto 1rem;
   }

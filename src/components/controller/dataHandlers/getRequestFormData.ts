@@ -8,6 +8,7 @@ export default function getRequestFormData(event: Event): Apply {
   const format = data.get('format') as string;
   const country = data.get('location') as string;
   const address = data.get('address') as string;
+  const time = data.get('time') as string;
   const text = data.get('textarea') as string;
 
   function getContacts(): (string | null)[] {
@@ -35,6 +36,7 @@ export default function getRequestFormData(event: Event): Apply {
     contact: getContacts(),
     country: country,
     location: address,
+    time: time,
     description: text,
     open: true,
   };

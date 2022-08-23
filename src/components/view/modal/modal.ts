@@ -13,10 +13,16 @@ export default class Modal {
                   <span class="modal__close modal-register__close">&times;</span>
                 </div> 
                 <form action="" class="modal__form modal-register__form">
-                  <input type="text" class="modal__input register__email" placeholder="Введите ваш email">
-                  <input type="text" class="modal__input register__username" placeholder="Выберите Имя Пользователя">
+                  <input type="text" class="modal__input register__email"
+                    placeholder="Введите ваш email" autocomplete="off">
+                  <input type="text" class="modal__input register__username"
+                    placeholder="Выберите Имя Пользователя" autocomplete="off">
                   <input type="password" class="modal__input register__password" placeholder="Выберите Пароль">
-                  <button class="btn modal__btn register__btn">Зарегистрироваться</button>
+                  <input type="password" class="modal__input register__password-ok" placeholder="Подтвердите Пароль">
+                  <div class="modal-register__btns">
+                    <button class="btn modal__btn register__btn" type="submit">Зарегистрироваться</button>
+                    <button class="btn modal__btn register__btn-to-login">Войти</button>
+                  </div>
                 </form>
               </div>
             </div>`;
@@ -30,9 +36,13 @@ export default class Modal {
                   <span class="modal__close modal-login__close">&times;</span>
                 </div> 
                 <form action="" class="modal__form modal-login__form">
-                  <input type="text" class="modal__input login__email" placeholder="Введите ваш email">
+                  <input type="text" class="modal__input login__email"
+                    placeholder="Введите ваш email" autocomplete="off">
                   <input type="password" class="modal__input login__password" placeholder="Введите ваш Пароль">
-                  <button class="btn modal__btn login__btn">Войти</button>
+                  <div class="modal__btns">
+                    <button class="btn modal__btn login__btn" type="submit">Войти</button>
+                    <button class="btn modal__btn login__btn-to-register">Зарегистрироваться</button>
+                  </div>
                 </form>
               </div>
             </div>`;
@@ -89,7 +99,7 @@ export default class Modal {
             </div>
           </div>
           <div class="request-location">
-            <h4 class="request-location__title">Локация оказания помощи:</h4>
+            <h4 class="request-location__title">Локация и дата оказания помощи:</h4>
             <select class="request-location__select" name="location" id="location">
               <option value="country" selected>Страна</option>
               <option value="belarus">Республика Беларусь</option>
@@ -97,7 +107,9 @@ export default class Modal {
               <option value="ukraine">Украина</option>
             </select>
             <input class="request-location__select-input" name="address"
-              type="text" placeholder="Адрес" id="address">
+              type="text" placeholder="Адрес" autocomplete="off" id="address">
+            <input class="request-location__select-input" name="time"
+              type="text" placeholder="Дата и время" autocomplete="off" id="time">
           </div>
           <div class="request-textarea">
             <h4 class="request-textarea__title">Суть проблемы и необходимая помощь:</h4>
