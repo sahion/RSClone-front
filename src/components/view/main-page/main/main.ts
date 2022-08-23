@@ -1,6 +1,7 @@
 import vladimirAva from '../../../assets/img/Владимир.png';
-import elenaAva from '../../../assets/img/Елена.png';
+// import elenaAva from '../../../assets/img/Елена.png';
 import svetlanaAva from '../../../assets/img/Светлана.png';
+import { userRequests } from '../../../model/fakeDatabase/userRequests';
 
 export default class Main {
   wrapper: HTMLElement;
@@ -21,7 +22,29 @@ export default class Main {
     </section>`;
   }
 
-  getRequestSection() {
+  renderRequestCard(name: string, avatar: string, body: string, category: string, address: string): string {
+    return `
+      <div class="card">
+        <div class="card__header">
+          <div class="card__name">${name}</div>
+          <div class="card__avatar">
+            <img src=${avatar} alt="Avatar">
+          </div>
+        </div>
+        <div class="card__title">${body}</div>
+        <div class="card__info">
+          <ul>
+            <li><span class="card__span">Категория:</span> ${category}</li>
+            <li><span class="card__span">Адрес:</span> ${address}</li>
+          </ul>
+        </div>
+        <div class="card__btn">
+          <button class="btn card__login-btn">Помочь</button>
+        </div>                
+      </div>`;
+  } 
+
+  getRequestSection(): string {
     return `
     <section class="requests-section" id="requests">
       <div class="container">
@@ -31,68 +54,8 @@ export default class Main {
             <div class="slider__items">
               <div class="slider__item-left"></div>
               <div class="slider__item-active">
-                <div class="card">
-                  <div class="card__header">
-                    <div class="card__name">Владимир</div>
-                    <div class="card__avatar">
-                      <img src=${vladimirAva} alt="Avatar">
-                    </div>
-                  </div>
-                  <div class="card__title">
-                    Прошу, может кто сможет передать продукты в 1 больницу. 
-                    Все расходы готов оплатить. Буду очень благодарен.
-                  </div>
-                  <div class="card__info">
-                    <ul>
-                      <li><span class="card__span">Категория</span>: другое</li>
-                      <li><span class="card__span">Адрес:</span> г.Минск, пр. Независимости, д.64</li>
-                    </ul>
-                  </div>
-                  <div class="card__btn">
-                    <button class="btn card__login-btn">Помочь</button>
-                  </div>                
-                </div>
-                <div class="card">
-                  <div class="card__header">
-                    <div class="card__name">Елена</div>
-                    <div class="card__avatar">
-                      <img src=${elenaAva} alt="Avatar">
-                    </div>
-                  </div>
-                  <div class="card__title">
-                    Ребята, мужчины, каждое воскресенье еду с дачи с полными сумками. 
-                    Может кто может помочь их поднести хотябы до метро...
-                  </div>
-                  <div class="card__info">
-                    <ul>
-                      <li><span class="card__span">Категория</span>: пожелые люди</li>
-                      <li><span class="card__span">Адрес:</span> Ж/д вокзал Минск</li>
-                    </ul>
-                  </div>
-                  <div class="card__btn">
-                    <button class="btn card__login-btn">Помочь</button>
-                  </div>                
-                </div>
-                <div class="card">
-                  <div class="card__header">
-                    <div class="card__name">Светлана</div>
-                    <div class="card__avatar">
-                      <img src=${svetlanaAva} alt="Avatar">
-                    </div>
-                  </div>
-                  <div class="card__title">
-                    Вторые сутки жутко зависает комп, аж бесит...Нужна помощь в переустановке винды.
-                  </div>
-                  <div class="card__info">
-                    <ul>
-                      <li><span class="card__span">Категория:</span> наука</li>
-                      <li><span class="card__span">Адрес:</span> онлайн</li>
-                    </ul>
-                  </div>
-                  <div class="card__btn">
-                    <button class="btn card__login-btn">Помочь</button>
-                  </div>                
-                </div>
+                ${userRequests.map(item => 
+    this.renderRequestCard(item.name, item.avatar, item.body, item.category, item.address)).join('')}
               </div>
               <div class="slider__item-right"></div>
             </div>
