@@ -16,3 +16,11 @@ export type UserRequest = {
   category: string, 
   address: string,
 }[];
+
+export type UserThanks = {
+  name: string, 
+  avatar: string,
+  body: string,
+  target: string, 
+  targetAvatar: string,
+}[];

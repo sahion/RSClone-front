@@ -1,7 +1,5 @@
-import vladimirAva from '../../../assets/img/Владимир.png';
-// import elenaAva from '../../../assets/img/Елена.png';
-import svetlanaAva from '../../../assets/img/Светлана.png';
 import { userRequests } from '../../../model/fakeDatabase/userRequests';
+import { userThanks } from '../../../model/fakeDatabase/userThanks';
 
 export default class Main {
   wrapper: HTMLElement;
@@ -24,24 +22,24 @@ export default class Main {
 
   renderRequestCard(name: string, avatar: string, body: string, category: string, address: string): string {
     return `
-      <div class="card">
-        <div class="card__header">
-          <div class="card__name">${name}</div>
-          <div class="card__avatar">
-            <img src=${avatar} alt="Avatar">
-          </div>
+    <div class="card">
+      <div class="card__header">
+        <div class="card__name">${name}</div>
+        <div class="card__avatar">
+          <img src=${avatar} alt="Avatar">
         </div>
-        <div class="card__title">${body}</div>
-        <div class="card__info">
-          <ul>
-            <li><span class="card__span">Категория:</span> ${category}</li>
-            <li><span class="card__span">Адрес:</span> ${address}</li>
-          </ul>
-        </div>
-        <div class="card__btn">
-          <button class="btn card__login-btn">Помочь</button>
-        </div>                
-      </div>`;
+      </div>
+      <div class="card__title">${body}</div>
+      <div class="card__info">
+        <ul>
+          <li><span class="card__span">Категория:</span> ${category}</li>
+          <li><span class="card__span">Адрес:</span> ${address}</li>
+        </ul>
+      </div>
+      <div class="card__btn">
+        <button class="btn card__login-btn">Помочь</button>
+      </div>                
+    </div>`;
   } 
 
   getRequestSection(): string {
@@ -68,108 +66,33 @@ export default class Main {
     <section>`;
   }
 
+  renderThanksCard(name: string, avatar: string, body: string, target: string, targetAvatar: string): string {
+    return `
+    <div class="card thanks-card">
+      <div class="card__header thanks-card__header">              
+        <div class="card__avatar thanks-card-to__avatar">
+          <img src=${targetAvatar} alt="Avatar">
+        </div>
+        <p><span class="card__name thanks-card-to__name">${target}, </span>спасибо за</p>
+      </div>
+      <div class="card__title thanks-card__title">${body}</div>
+      <div class="card__footer thanks-card__footer">
+        <div class="thanks-card-from__name">${name}</div>
+        <div class="thanks-card-from__avatar">
+          <img src=${avatar} alt="Avatar">
+        </div>
+      </div>        
+    </div>`;
+  }
+
   getThanksSection(): string {
     return `
     <section class="thanks-section" id="thanks">
       <h2 class="thanks-section__title">Копилка добрых дел </h2>
       <button class="btn thanks-section__btn">Лучшие вoлoнтеры</button>
       <div class="thanks-section__cards">
-        <div class="card thanks-card">
-          <div class="card__header thanks-card__header">              
-            <div class="card__avatar thanks-card-to__avatar">
-              <img src=${svetlanaAva} alt="Avatar">
-            </div>
-            <p><span class="card__name thanks-card-to__name">Зоя, </span>спасибо за</p>
-          </div>
-          <div class="card__title thanks-card__title">Спасибо ребятом из БГУИР общаги за покраску забора. 
-          Ваша помощь была очень нужна.</div>
-          <div class="card__footer thanks-card__footer">
-            <div class="thanks-card-from__name">Владимир</div>
-            <div class="thanks-card-from__avatar">
-              <img src=${vladimirAva} alt="Avatar">
-            </div>
-          </div>        
-        </div>
-        <div class="card thanks-card">
-          <div class="card__header thanks-card__header">              
-            <div class="card__avatar thanks-card-to__avatar">
-              <img src=${svetlanaAva} alt="Avatar">
-            </div>
-            <p><span class="card__name thanks-card-to__name">Зоя, </span>спасибо за</p>
-          </div>
-          <div class="card__title thanks-card__title">Спасибо ребятом из БГУИР общаги за покраску забора. 
-          Ваша помощь была очень нужна.</div>
-          <div class="card__footer thanks-card__footer">
-            <div class="thanks-card-from__name">Владимир</div>
-            <div class="thanks-card-from__avatar">
-              <img src=${vladimirAva} alt="Avatar">
-            </div>
-          </div>        
-        </div>
-        <div class="card thanks-card">
-          <div class="card__header thanks-card__header">              
-            <div class="card__avatar thanks-card-to__avatar">
-              <img src=${svetlanaAva} alt="Avatar">
-            </div>
-            <p><span class="card__name thanks-card-to__name">Зоя, </span>спасибо за</p>
-          </div>
-          <div class="card__title thanks-card__title">Спасибо ребятом из БГУИР общаги за покраску забора. 
-          Ваша помощь была очень нужна.</div>
-          <div class="card__footer thanks-card__footer">
-            <div class="thanks-card-from__name">Владимир</div>
-            <div class="thanks-card-from__avatar">
-              <img src=${vladimirAva} alt="Avatar">
-            </div>
-          </div>        
-        </div>
-        <div class="card thanks-card">
-          <div class="card__header thanks-card__header">              
-            <div class="card__avatar thanks-card-to__avatar">
-              <img src=${svetlanaAva} alt="Avatar">
-            </div>
-            <p><span class="card__name thanks-card-to__name">Зоя, </span>спасибо за</p>
-          </div>
-          <div class="card__title thanks-card__title">Спасибо ребятом из БГУИР общаги за покраску забора. 
-          Ваша помощь была очень нужна.</div>
-          <div class="card__footer thanks-card__footer">
-            <div class="thanks-card-from__name">Владимир</div>
-            <div class="tthanks-card-from__avatar">
-              <img src=${vladimirAva} alt="Avatar">
-            </div>
-          </div>        
-        </div>
-        <div class="card thanks-card">
-          <div class="card__header thanks-card__header">              
-            <div class="card__avatar thanks-card-to__avatar">
-              <img src=${svetlanaAva} alt="Avatar">
-            </div>
-            <p><span class="card__name thanks-card-to__name">Зоя, </span>спасибо за</p>
-          </div>
-          <div class="card__title thanks-card__title">Спасибо ребятом из БГУИР общаги за покраску забора. 
-          Ваша помощь была очень нужна.</div>
-          <div class="card__footer thanks-card__footer">
-            <div class="thanks-card-from__name">Владимир</div>
-            <div class="tthanks-card-from__avatar">
-              <img src=${vladimirAva} alt="Avatar">
-            </div>
-          </div>        
-        </div>
-        <div class="card thanks-card">
-          <div class="card__header thanks-card__header">              
-            <div class="card__avatar thanks-card-to__avatar">
-              <img src=${svetlanaAva} alt="Avatar">
-            </div>
-            <p><span class="card__name thanks-card-to__name">Зоя, </span>спасибо за</p>
-          </div>
-          <div class="card__title thanks-card__title">Спасибо ребятом из БГУИР общаги за покраску забора. 
-          Ваша помощь была очень нужна.</div>
-          <div class="card__footer thanks-card__footer">
-            <div class="thanks-card-from__name">Владимир</div>
-            <div class="tthanks-card-from__avatar">
-              <img src=${vladimirAva} alt="Avatar">
-            </div>
-          </div>       
-        </div>          
+        ${userThanks.map(item =>
+    this.renderThanksCard(item.name, item.avatar, item.body, item.target, item.targetAvatar)).join('')}      
       </div>        
       <div class="thanks-section__frame4"></div>        
       </section>
