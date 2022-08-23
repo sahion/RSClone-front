@@ -1,0 +1,114 @@
+/*my-requests*/
+.my-requests{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;  
+  text-align: center;
+  background: url(../../../assets/img/BG4.png) 50%/cover no-repeat;
+}
+.my-requests__frame6{
+  position: absolute;
+  top: 20px;
+  left: 10%;
+  width: 197px;
+  height: 148px;
+  background: url(../../../assets/img/Frame6.png) 50%/contain no-repeat;
+}
+.my-requests__title{
+  font-family: "Roboto Flex";
+  letter-spacing: 1px;
+  font-size: 50px;
+  margin: 40px;
+  font-weight: 900;
+}
+.card-requests{
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.card {
+  width: 250px;
+  height: 350px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #FAFAFA;
+  border-radius: 15px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.card__header{
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ABC264;
+}
+.card__title,
+.card__info {
+  font-size: 16px;
+  padding: 5px;
+}
+.card__span {
+  font-weight: 600;
+  color: #793CFB;
+}
+.card__btn {
+  display: flex;
+  justify-content: space-around;
+}
+.btn{
+  min-width: 130px;
+  min-height: 40px;
+  margin: 15px 5px;
+  border: 3px solid #793CFB;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: white;
+  cursor: pointer;
+}
+.btn:hover{
+  background-color: #9a6bff;
+  border: 3px solid #9a6bff;
+  color: white;
+}
+.circle-btn{
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: 50%;
+  align-self: flex-end;
+}
+.modal__close{
+  font-size: 18px;
+}
+
+/*buttons-section*/
+.buttons-section{
+  height: 180px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.my-requests__frame7{
+  position: absolute;
+  top: 0; 
+  right: 10%;
+  width: 197px;
+  height: 148px;
+  background: url(../../../assets/img/Frame7.png) 50%/contain no-repeat;
+}
+.color-btn{
+  background-color: #793CFB;
+  color: white;
+}
+.long{
+  width: 200px;
+}

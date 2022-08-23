@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+// const CopyPlugin = require('copy-webpack-plugin');
 
 let mode = 'development';
 let target = 'web';
@@ -20,6 +21,12 @@ const plugins = [
   }),
   new CleanWebpackPlugin(),
   new ESLintWebpackPlugin({ extensions: 'ts' }),
+  // new CopyPlugin({
+  //   patterns: [{
+  //     from: './src/components/assets/img',
+  //     to: '../dist/assets',
+  //   }]
+  // })
 ];
 
 module.exports = {
@@ -33,7 +40,7 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.js', '.ts',],
   },
   devtool: 'source-map',
   devServer: {

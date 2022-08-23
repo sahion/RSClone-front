@@ -9,14 +9,20 @@ export default class Modal {
     return `<div class="modal modal-register modal--hidden">  
               <div class="modal__content modal-register__content">
                 <div class="modal__header modal-register__header">
-                  <span class="modal__title modal-register__title">Register</span>
+                  <span class="modal__title modal-register__title">Регистрация</span>
                   <span class="modal__close modal-register__close">&times;</span>
                 </div> 
                 <form action="" class="modal__form modal-register__form">
-                  <input type="text" class="modal__input register__email" placeholder="Enter your email">
-                  <input type="text" class="modal__input register__username" placeholder="Choose a Username">
-                  <input type="password" class="modal__input register__password" placeholder="Choose a Password">
-                  <button class="modal__btn register__btn">Register</button>
+                  <input type="text" class="modal__input register__email"
+                    placeholder="Введите ваш email" autocomplete="off">
+                  <input type="text" class="modal__input register__username"
+                    placeholder="Выберите Имя Пользователя" autocomplete="off">
+                  <input type="password" class="modal__input register__password" placeholder="Выберите Пароль">
+                  <input type="password" class="modal__input register__password-ok" placeholder="Подтвердите Пароль">
+                  <div class="modal-register__btns">
+                    <button class="btn modal__btn register__btn" type="submit">Зарегистрироваться</button>
+                    <button class="btn modal__btn register__btn-to-login">Войти</button>
+                  </div>
                 </form>
               </div>
             </div>`;
@@ -26,85 +32,93 @@ export default class Modal {
     return `<div class="modal modal-login modal--hidden">
               <div class="modal__content modal-login__content">
                 <div class="modal__header modal-login__header">
-                  <span class="modal__title modal-login__title">Log In</span>
+                  <span class="modal__title modal-login__title">Вход</span>
                   <span class="modal__close modal-login__close">&times;</span>
                 </div> 
                 <form action="" class="modal__form modal-login__form">
-                  <input type="text" class="modal__input login__email" placeholder="Enter your email">
-                  <input type="password" class="modal__input login__password" placeholder="Enter your Password">
-                  <button class="modal__btn login__btn">Log In</button>
+                  <input type="text" class="modal__input login__email"
+                    placeholder="Введите ваш email" autocomplete="off">
+                  <input type="password" class="modal__input login__password" placeholder="Введите ваш Пароль">
+                  <div class="modal__btns">
+                    <button class="btn modal__btn login__btn" type="submit">Войти</button>
+                    <button class="btn modal__btn login__btn-to-register">Зарегистрироваться</button>
+                  </div>
                 </form>
               </div>
             </div>`;
   }
 
   getRequest(): string {
-    return `<div class="modal modal-request modal--hidden">
-              <div class="modal__content modal-request__content">
-                <div class="modal__header modal-request__header">
-                  <span class="modal__title modal-request__title">Request Form</span>
-                  <span class="modal__close modal-request__close">&times;</span>
-                </div>
-                <form action="" class="modal__form modal-request__form">
-                  <div class="select-category">
-                    <h4 class="select-category__title">Category:</h4>
-                    <select class="select" name="category" id="category">
-                      <option value="" selected>Choose a category</option>
-                      <option value="healthcare">Healthcare</option>
-                      <option value="emergency">Emergency</option>
-                      <option value="veterans">Veterans and historical memory</option>
-                      <option value="people">People with limited abilities</option>
-                      <option value="children">Children and young people</option>
-                      <option value="animals">Animals</option>
-                      <option value="nature">Nature</option>
-                      <option value="science">Science</option>
-                      <option value="education">Education</option>
-                      <option value="else">Else</option>
-                    </select>
-                  </div>
-                  <div class="request-radio">
-                    <h4 class="request-radio__title">Preferred Format:</h4>
-                    <div class="request-radio__inputs">   
-                      <label class="request-radio__inputs-label" for="online">
-                        <input type="radio" name="format" id="online">Online
-                      </label>        
-                      <label class="request-radio__inputs-label" for="offline">
-                        <input type="radio" name="format" id="offline">Offline
-                      </label>
-                    </div>
-                  </div>
-                  <div class="request-checkbox">
-                    <h4 class="request-checkbox__title">Preferred Contact method:</h4>       
-                    <div class="request-checkbox__inputs">
-                      <label class="request-checkbox__inputs-label" for="phone">
-                        <input type="checkbox" id="phone">Phone
-                      </label>         
-                      <label class="request-checkbox__inputs-label" for="email">
-                        <input type="checkbox" id="email">Email
-                      </label>        
-                      <label class="request-checkbox__inputs-label" for="messenger">
-                        <input type="checkbox" id="messenger">Messenger
-                      </label>
-                    </div>
-                  </div>
-                  <div class="request-location">
-                    <h4 class="request-location__title">Location:</h4>
-                    <select class="request-location__select" name="location" id="location">
-                      <option value="" selected>Location</option>
-                      <option value="belarus">Belarus</option>
-                      <option value="russia">Russia</option>
-                      <option value="ukraine">Ukraine</option>
-                    </select>
-                  </div>
-                  <div class="request-textarea">
-                    <h4 class="request-textarea__title">Write about your problem and what kind of help do you need</h4>
-                    <textarea name="textarea" cols="80" rows="10" class="request-textarea__textarea" id="textarea">
-                    </textarea>
-                  </div>
-                  <button class="modal__btn modal-request__btn">Create</button>
-                </form>
-              </div>
-            </div>`;   
+    return `
+    <div class="modal modal-request modal--hidden">
+      <div class="modal__content modal-request__content">
+        <div class="modal__header modal-request__header">
+          <span class="modal__title modal-request__title">Заявка</span>
+          <span class="modal__close modal-request__close">&times;</span>
+        </div>
+        <form action="" class="modal__form modal-request__form" id="requestForm">
+          <div class="select-category">
+            <h4 class="select-category__title">Категория:</h4>
+            <select class="select" name="category" id="category">
+              <option value="" selected>Выберите категорию</option>
+              <option value="healthcare">Здравоохранение</option>
+              <option value="emergency">ЧС</option>
+              <option value="veterans">Ветераны и историческая память</option>
+              <option value="people">Люди с ОВС</option>
+              <option value="children">Дети и подростки</option>
+              <option value="animals">Животные</option>
+              <option value="nature">Природа</option>
+              <option value="science">Наука</option>
+              <option value="education">Образование</option>
+              <option value="else">Другое</option>
+            </select>
+          </div>
+          <div class="request-radio">
+            <h4 class="request-radio__title">Формат проведения:</h4>
+            <div class="request-radio__inputs">   
+              <label class="request-radio__inputs-label" for="online">
+                <input type="radio" name="format" id="online" value="онлайн">Онлайн
+              </label>        
+              <label class="request-radio__inputs-label" for="offline">
+                <input type="radio" name="format" id="offline" value="офлайн">Офлайн
+              </label>
+            </div>
+          </div>
+          <div class="request-checkbox">
+            <h4 class="request-checkbox__title">Предпочитаемый способ связи:</h4>       
+            <div class="request-checkbox__inputs">
+              <label class="request-checkbox__inputs-label" for="phone">
+                <input type="checkbox" id="phone" name="phone">Телефон
+              </label>         
+              <label class="request-checkbox__inputs-label" for="email">
+                <input type="checkbox" id="email" name="email">Электронная почта
+              </label>        
+              <label class="request-checkbox__inputs-label" for="messenger">
+                <input type="checkbox" id="messenger" name="messenger">Мессенджер
+              </label>
+            </div>
+          </div>
+          <div class="request-location">
+            <h4 class="request-location__title">Локация и дата оказания помощи:</h4>
+            <select class="request-location__select" name="location" id="location">
+              <option value="country" selected>Страна</option>
+              <option value="belarus">Республика Беларусь</option>
+              <option value="russia">Российская Федерация</option>
+              <option value="ukraine">Украина</option>
+            </select>
+            <input class="request-location__select-input" name="address"
+              type="text" placeholder="Адрес" autocomplete="off" id="address">
+            <input class="request-location__select-input" name="time"
+              type="text" placeholder="Дата и время" autocomplete="off" id="time">
+          </div>
+          <div class="request-textarea">
+            <h4 class="request-textarea__title">Суть проблемы и необходимая помощь:</h4>
+            <textarea name="textarea" cols="80" rows="10" class="request-textarea__textarea" id="textarea"></textarea>
+          </div>
+          <button class="btn modal__btn modal-request__btn" type="submit" id="createRequest">Создать</button>
+        </form>
+      </div>
+    </div>`;   
   }
 
   render(): HTMLDivElement {

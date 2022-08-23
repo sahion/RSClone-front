@@ -46,16 +46,21 @@
 
   &__input {
     width: 20rem;
-    height: 1.5rem;
-    padding: 0.5rem;
+    height: 2rem;
+    padding: 1rem;
+    border: 3px solid #793CFB;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: white;
+  }
+
+  &__btns {
+    display: flex;
   }
 
   &__btn {
-    width: 5rem;
-    height: 2rem;
-    padding: 0.5rem;
     margin: 1.5rem auto 1rem;
-    cursor: pointer;
   }
 }
 
