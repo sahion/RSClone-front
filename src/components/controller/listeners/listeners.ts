@@ -45,8 +45,8 @@ function hideModal(): void {
 function userPageRequests(): void {
   const main = document.querySelector('main') as HTMLElement;
   main.innerHTML = '';
-  const app = new AppUser();
-  app.renderRequests();
+  const appUser = new AppUser();
+  appUser.renderRequests();
 }
 
 export function openRegisterWindowListener(): void {
@@ -106,9 +106,9 @@ export function openLoginWindowFromRegister(): void {
 }
 
 export function renderUserPageRequests(): void {
-  const RequestsBtn = document.querySelector('.buttons-section__btn-requests') as HTMLButtonElement;
-  console.log(RequestsBtn);
-  RequestsBtn.addEventListener('click', userPageRequests);
+  const requestsBtn = document.querySelector('.buttons-section__btn-requests') as HTMLButtonElement;
+  console.log(requestsBtn);
+  requestsBtn.addEventListener('click', userPageRequests);
 }
 
 export function addListeners(): void {
