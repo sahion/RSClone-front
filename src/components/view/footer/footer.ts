@@ -10,11 +10,15 @@ export default class Footer {
   getFooter(): string {
     return `
     <footer class="footer">
-      <a class="footer__link" href="https://rs.school/js/">
-        <img src=${logo} width="140" alt="logo">
+      <a class="footer__logo" href="https://rs.school/js/" target="_blank">
+        <img class="footer__logo-img" src=${logo} alt="logo">
       </a>
-      <a class="footer__link" href="#">Авторы</a>      
-      <p>2022</p>
+      <div class="footer__links">      
+        <a class="footer__link" href="https://github.com/HartanovichEV" target="_blank">HartanovichEV</a>   
+        <a class="footer__link" href="https://github.com/sahion" target="_blank">Sahion</a>   
+        <a class="footer__link" href="https://github.com/Jazzzrabbit" target="_blank">Jazzzrabbit</a>   
+      </div>   
+      <p class="footer__year">2022 &copy</p>
     </footer>`;
   }
 
