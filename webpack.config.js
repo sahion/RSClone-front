@@ -1,89 +1,87 @@
 const path = require('path');
+const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ESLintWebpackPlugin = require('eslint-webpack-plugin');
-// const CopyPlugin = require('copy-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-let mode = 'development';
-let target = 'web';
-if (process.env.MODE_ENV === 'production') {
-  mode = 'production';
-  target = 'browserslist';
-}
-
-const plugins = [
-  new HtmlWebpackPlugin({
-    template: 'src/index.html',
-  }),
-  new MiniCssExtractPlugin({
-    filename: '[name].css',
-  }),
-  new CleanWebpackPlugin(),
-  new ESLintWebpackPlugin({ extensions: 'ts' }),
-  // new CopyPlugin({
-  //   patterns: [{
-  //     from: './src/components/assets/img',
-  //     to: '../dist/assets',
-  //   }]
-  // })
-];
-
-module.exports = {
-  mode,
-  plugins,
-  target,
-  entry: './src/index',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'assets/[hash][ext][query]',
-    clean: true,
-  },
-  resolve: {
-    extensions: ['.js', '.ts',],
-  },
-  devtool: 'source-map',
-  devServer: {
-    hot: true,
-  },
-  module: {
-    rules: [
-      { test: /\.(html)$/, use: ['html-loader'] },
-      {
-        test: /\.(s[ac]|c)ss$/i, 
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
+const baseConfig = {
+    entry: {
+      main: './src/main.ts',
+      user: './src/user.ts', 
+    },    
+    mode: 'development',
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+              test: /\.ts$/i, 
+              use: 'ts-loader'
+            },
+            {
+              test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
+              type: 'asset/resource',
+              generator: {
+                filename: 'assets/[name][ext]',
+              }
+            },
+            {
+              test: /\.(s[ac]|c)ss$/i, 
+              use: [
+                MiniCssExtractPlugin.loader,
+                'css-loader',
+                'postcss-loader',
+                'sass-loader',
+              ],
+            },
         ],
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
-        type: mode === 'production' ? 'asset' : 'asset/resource',
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf|)$/i,
-        type: 'asset/inline',
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-          },
-        },
-      },
-      {
-        test: /\.ts$/i,
-        use: 'ts-loader',
-      },
+    },
+    resolve: {
+      extensions: ['.ts', '.js'],
+    },
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist'),
+        assetModuleFilename: 'assets/[hash][ext][query]',
+        clean: true,
+    },
+    devtool: 'source-map',
+    devServer: {
+      hot: true,
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+          template: './src/main.html',
+          inject: true,
+          chunks: ['main'],
+          filename: 'main.html'
+        }),
+        new HtmlWebpackPlugin({
+          template: './src/user.html',
+          inject: true,
+          chunks: ['user'],
+          filename: 'user.html'
+      }),
+        new MiniCssExtractPlugin({
+          filename: '[name].css',
+        }),
+        new CleanWebpackPlugin(),
+        new ESLintPlugin({ extensions: ['ts'] }),
+        new CopyPlugin({
+          patterns: [
+            { from: "src/components/assets/", to: "assets" },            
+          ],
+        }),
     ],
-  },
-  experiments: {
-    topLevelAwait: true,
-  },
 };
 
+module.exports = ({ mode }) => {
+    const isProductionMode = mode === 'prod';
+    const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
+
+    return merge(baseConfig, envConfig);
+};
