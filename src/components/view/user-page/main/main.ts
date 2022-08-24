@@ -30,9 +30,7 @@ export default class Main {
                     <button class="btn circle-btn">
                       <img src=${pen} alt="">
                     </button>                
-                    <button class="btn circle-btn">                  
-                      <span class="modal__close">&times;</span>
-                    </button>
+                    <button class="btn circle-btn">Закрыть</button>
                   </div>                
                 </div>
                 <div class="card">
@@ -49,11 +47,9 @@ export default class Main {
                   </div>
                   <div class="card__btn">
                     <button class="btn circle-btn">
-                      <img src="./img/pen.png" alt="">
+                      <img src=${pen} alt="">
                     </button>                
-                    <button class="btn circle-btn">                  
-                      <span class="modal__close">&times;</span>
-                    </button>
+                    <button class="btn circle-btn">Закрыть</button>
                   </div>                
                 </div>
               </div>
@@ -65,7 +61,7 @@ export default class Main {
     return `
             <section class="buttons-section">
               <div class="my-requests__frame7"></div>
-              <button class="btn buttons-section__btn-apply color-btn long">Оставить заявку</button>
+              <button class="btn buttons-section__btn-apply">Оставить заявку</button>
               <button class="btn buttons-section__btn-requests">Помочь</button>
             </section>`;
   }

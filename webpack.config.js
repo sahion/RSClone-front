@@ -15,7 +15,16 @@ if (process.env.MODE_ENV === 'production') {
 const plugins = [
   new HtmlWebpackPlugin({
     template: 'src/index.html',
-  }),
+    inject: true,
+    chunks: ['main'],
+    filename: 'index.html'
+}),
+  new HtmlWebpackPlugin({
+    template: 'src/user.html',
+    inject: true,
+    chunks: ['user'],
+    filename: 'user.html'
+}),
   new MiniCssExtractPlugin({
     filename: '[name].css',
   }),
@@ -33,8 +42,12 @@ module.exports = {
   mode,
   plugins,
   target,
-  entry: './src/index',
+  entry: {
+    main: './src/index.ts',
+    user: './src/user.ts', 
+  },
   output: {
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'assets/[hash][ext][query]',
     clean: true,
@@ -86,4 +99,3 @@ module.exports = {
     topLevelAwait: true,
   },
 };
-
