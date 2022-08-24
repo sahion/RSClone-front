@@ -16,12 +16,17 @@ export default class MainRequests {
   </a>
             <section class="container filters-section">
               <div class="filters-section">
+              <details class="format">
+                <summary>Фильтры</summary>
+                <p>
+
                 <details class="format">
                   <summary>Выбрать формат</summary>
                   <p>
                     <button class="requests-section__btn">Онлайн</button>
                     <button class="requests-section__btn">Офлайн</button>
                   </p>
+                  
                 </details>
                 <details class="country">
                   <summary>Выбрать страну</summary>
@@ -45,6 +50,8 @@ export default class MainRequests {
                     <button class="requests-section__btn">Образование</button>
                     <button class="requests-section__btn">Другое</button>
                   </p>
+                </details>
+                </p>
                 </details>
                 <div class="frame8"></div>
               </div>

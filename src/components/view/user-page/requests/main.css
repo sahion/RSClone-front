@@ -124,6 +124,7 @@ details{
   margin-bottom: 1.5rem;
 }
 summary {
+  margin: 20px;
   display:block;
   padding: .3em 1em .3em .9em;
   cursor: pointer;

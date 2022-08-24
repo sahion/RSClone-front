@@ -14,10 +14,10 @@ if (process.env.MODE_ENV === 'production') {
 
 const plugins = [
   new HtmlWebpackPlugin({
-    template: 'src/main.html',
+    template: 'src/index.html',
     inject: true,
     chunks: ['main'],
-    filename: 'main.html'
+    filename: 'index.html'
 }),
   new HtmlWebpackPlugin({
     template: 'src/user.html',
@@ -43,7 +43,7 @@ module.exports = {
   plugins,
   target,
   entry: {
-    main: './src/main.ts',
+    main: './src/index.ts',
     user: './src/user.ts', 
   },
   output: {

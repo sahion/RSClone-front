@@ -1,5 +1,3 @@
-//import App from '../../app/app';
-import AppUser from '../../app/appUser';
 import getRequestFormData from '../dataHandlers/getRequestFormData';
 
 function showRegister(event: Event): void {
@@ -40,13 +38,6 @@ function hideModal(): void {
     item.classList.remove('modal--active');
     item.classList.add('modal--hidden');
   });
-}
-
-function userPageRequests(): void {
-  const main = document.querySelector('main') as HTMLElement;
-  main.innerHTML = '';
-  const appUser = new AppUser();
-  appUser.renderRequests();
 }
 
 export function openRegisterWindowListener(): void {
@@ -105,12 +96,6 @@ export function openLoginWindowFromRegister(): void {
   registerBtn.addEventListener('click', showLogin);
 }
 
-export function renderUserPageRequests(): void {
-  const requestsBtn = document.querySelector('.buttons-section__btn-requests') as HTMLButtonElement;
-  console.log(requestsBtn);
-  requestsBtn.addEventListener('click', userPageRequests);
-}
-
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
@@ -121,6 +106,5 @@ export function addListeners(): void {
   openLoginWindowFromRegister();
   createRequestListener();
   closeModalWindowListener();
-  renderUserPageRequests();
 }
 
