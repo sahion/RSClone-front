@@ -1,4 +1,4 @@
-import { addListeners } from '../controller/listeners/listeners';
+//import { addListeners } from '../controller/listeners/listeners';
 import Footer from '../view/footer/footer';
 import Header from '../view/user-page/header/header';
 import Main from '../view/user-page/main/main';
