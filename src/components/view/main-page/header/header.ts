@@ -12,7 +12,7 @@ export default class Header {
             <div class="container">
               <div class="header__wrapper">
                 <div class="header__logo">
-                  <img class="header__logo-img" src=${logo} alt="Logo">
+                  <a href="#"><img class="header__logo-img" src=${logo} alt="Logo"></a>
                 </div>
                 <nav class="header__nav">
                   <ul class="header__nav-list">
