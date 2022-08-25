@@ -11,51 +11,49 @@ export default class MainRequests {
 
   filtersSection(): string {
     return ` 
-  <a href="user.html">
-    <button class="btn">Назад</button>
-  </a>
-            <section class="container filters-section">
-              <div class="filters-section">
-              <details class="format">
-                <summary>Фильтры</summary>
-                <p>
-
-                <details class="format">
-                  <summary>Выбрать формат</summary>
-                  <p>
-                    <button class="requests-section__btn">Онлайн</button>
-                    <button class="requests-section__btn">Офлайн</button>
-                  </p>
-                  
-                </details>
-                <details class="country">
-                  <summary>Выбрать страну</summary>
-                  <p>
-                    <button class="requests-section__btn">Республика Беларусь</button>
-                    <button class="requests-section__btn">Российская Федерация</button>
-                    <button class="requests-section__btn">Украина</button>
-                  </p>
-                </details>
-                <details class="category">
-                  <summary>Выбрать категорию</summary>
-                  <p>
-                    <button class="requests-section__btn">Здравоохранение</button>
-                    <button class="requests-section__btn">ЧС</button>
-                    <button class="requests-section__btn">Ветераны и историческая память</button>
-                    <button class="requests-section__btn">Люди с ОВС</button>
-                    <button class="requests-section__btn">Дети и подростки</button>
-                    <button class="requests-section__btn">Животные</button>
-                    <button class="requests-section__btn">Природа</button>
-                    <button class="requests-section__btn">Наука</button>
-                    <button class="requests-section__btn">Образование</button>
-                    <button class="requests-section__btn">Другое</button>
-                  </p>
-                </details>
-                </p>
-                </details>
-                <div class="frame8"></div>
-              </div>
-            </section>`;
+    <a href="user.html">
+      <button class="btn">Назад</button>
+    </a>
+    <section class="container filters-section">
+      <div class="filters-section">
+      <details class="format">
+        <summary>Фильтры</summary>
+        <p>
+        <details class="format">
+          <summary>Выбрать формат</summary>
+          <p>
+            <button class="requests-section__btn">Онлайн</button>
+            <button class="requests-section__btn">Офлайн</button>
+          </p>                
+        </details>
+        <details class="country">
+          <summary>Выбрать страну</summary>
+          <p>
+            <button class="requests-section__btn">Республика Беларусь</button>
+            <button class="requests-section__btn">Российская Федерация</button>
+            <button class="requests-section__btn">Украина</button>
+          </p>
+        </details>
+        <details class="category">
+          <summary>Выбрать категорию</summary>
+          <p>
+            <button class="requests-section__btn">Здравоохранение</button>
+            <button class="requests-section__btn">ЧС</button>
+            <button class="requests-section__btn">Ветераны и историческая память</button>
+            <button class="requests-section__btn">Люди с ОВС</button>
+            <button class="requests-section__btn">Дети и подростки</button>
+            <button class="requests-section__btn">Животные</button>
+            <button class="requests-section__btn">Природа</button>
+            <button class="requests-section__btn">Наука</button>
+            <button class="requests-section__btn">Образование</button>
+            <button class="requests-section__btn">Другое</button>
+          </p>
+        </details>
+        </p>
+        </details>
+        <div class="frame8"></div>
+      </div>
+    </section>`;
   }
 
   requestsSection() {

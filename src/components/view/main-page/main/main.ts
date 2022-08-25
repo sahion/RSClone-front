@@ -1,5 +1,6 @@
 import { userRequests } from '../../../model/fakeDatabase/userRequests';
 import { userThanks } from '../../../model/fakeDatabase/userThanks';
+import pen from '../../../assets/img/pen.png';
 
 export default class Main {
   wrapper: HTMLElement;
@@ -123,11 +124,154 @@ export default class Main {
     </section>`;
   }
 
-  render(): HTMLElement {
-    this.wrapper.innerHTML += this.getWelcomeSection();
-    this.wrapper.innerHTML += this.getRequestSection();
-    this.wrapper.innerHTML += this.getThanksSection();
-    this.wrapper.innerHTML += this.getInfoSection();
+  getUserRequestsSection(): string {
+    return `
+    <section class="my-requests">
+    <div class="my-requests__frame6"></div>
+    <div class="container">
+      <h3 class="my-requests__title">Мои заявки:</h3>
+      <div class="card-requests">            
+        <div class="card">
+          <div class="card__header"></div>
+          <div class="card__title">
+            Прошу, может кто сможет передать продукты в 1 больницу. 
+            Все расходы готов оплатить. Буду очень благодарен.
+          </div>
+          <div class="card__info">
+            <ul>
+              <li><span class="card__span">Категория</span>: другое</li>
+              <li><span class="card__span">Адрес:</span> г.Минск, пр. Независимости, д.64</li>
+            </ul>
+          </div>
+          <div class="card__btn">
+            <button class="btn my-requests__btn">
+              <img src=${pen} alt="">
+            </button>                
+            <button class="btn my-requests__btn">&times;</button>
+          </div>                
+        </div>
+        <div class="card">
+          <div class="card__header"></div>
+          <div class="card__title">
+            Прошу, может кто сможет передать продукты в 1 больницу. 
+            Все расходы готов оплатить. Буду очень благодарен.
+          </div>
+          <div class="card__info">
+            <ul>
+              <li><span class="card__span">Категория</span>: другое</li>
+              <li><span class="card__span">Адрес:</span> г.Минск, пр. Независимости, д.64</li>
+            </ul>
+          </div>
+          <div class="card__btn">
+            <button class="btn my-requests__btn">
+              <img src=${pen} alt="">
+            </button>                
+            <button class="btn my-requests__btn">&times;</button>
+          </div>                
+        </div>
+      </div>
+    </div>        
+  </section>`;
+  }
+
+  getUserButtonsSection(): string {
+    return `
+    <section class="buttons-section">
+      <div class="buttons-section__frame7"></div>
+      <button class="btn buttons-section__btn-apply">Оставить заявку</button>
+      <button class="btn buttons-section__btn-requests">Помочь</button>
+    </section>`;
+  }
+
+  getUserFiltersSection(): string {
+    return ` 
+    <a href="user.html">
+      <button class="btn">Назад</button>
+    </a>
+    <section class="filters-section">
+      <div class="container">
+        <details class="filters-section__details format">
+          <summary>Фильтры</summary>
+          <p>
+            <details class="filters-section__details format">
+              <summary>Выбрать формат</summary>
+              <p>
+                <button class="filters-section__btn">Онлайн</button>
+                <button class="filters-section__btn">Офлайн</button>
+              </p>                
+            </details>
+            <details class="filters-section__details country">
+              <summary>Выбрать страну</summary>
+              <p>
+                <button class="filters-section__btn">Республика Беларусь</button>
+                <button class="filters-section__btn">Российская Федерация</button>
+                <button class="filters-section__btn">Украина</button>
+              </p>
+            </details>
+            <details class="filters-section__details category">
+              <summary>Выбрать категорию</summary>
+              <p>
+                <button class="filters-section__btn">Здравоохранение</button>
+                <button class="filters-section__btn">ЧС</button>
+                <button class="filters-section__btn">Ветераны и историческая память</button>
+                <button class="filters-section__btn">Люди с ОВС</button>
+                <button class="filters-section__btn">Дети и подростки</button>
+                <button class="filters-section__btn">Животные</button>
+                <button class="filters-section__btn">Природа</button>
+                <button class="filters-section__btn">Наука</button>
+                <button class="filters-section__btn">Образование</button>
+                <button class="filters-section__btn">Другое</button>
+              </p>
+            </details>
+          </p>
+        </details>
+        <div class="fitlers-section__frame8"></div>
+      </div>
+    </section>`;
+  }
+
+  getUsersRequestsSection(): string {
+    return `
+    <section class="container requests-section"> 
+      <div class="requests-section__cards">
+      ${userRequests.map(item => 
+    this.renderRequestCard(item.name, item.avatar, item.body, item.category, item.address)).join('')}
+      </div>  
+    </section>`;
+  }
+
+  getUserPaginationBtnsSection(): string {
+    return `
+    <section class="pagination-btns-section">
+      <div class="pagintaion-btns-section__navigation">
+        <button class="btn pagination-btns-section__btn start-page no-active">&lt; &lt;</button>
+        <button class="btn pagination-btns-section__btn prev no-active">&lt;</button>
+        <button class="btn pagination-btns-section__btn page">1</button>
+        <button class="btn pagination-btns-section__btn next">></button>
+        <button class="btn pagination-btns-section__btn end-page">> ></button>
+      </div>
+      <a href="user.html">
+        <button class="btn">Назад</button>
+      </a> 
+    </section>`;
+  }
+
+  render(page = 'main'): HTMLElement {
+    switch (page) {
+      case ('main'): {
+        this.wrapper.innerHTML += this.getWelcomeSection();
+        this.wrapper.innerHTML += this.getRequestSection();
+        this.wrapper.innerHTML += this.getThanksSection();
+        this.wrapper.innerHTML += this.getInfoSection();
+        break;
+      }
+      case ('user'): {
+        this.wrapper.innerHTML += this.getUserRequestsSection();
+        this.wrapper.innerHTML += this.getUserButtonsSection();
+        break;
+      }
+    }
+    
     return this.wrapper;
   }
 }

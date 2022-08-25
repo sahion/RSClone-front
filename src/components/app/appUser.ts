@@ -1,8 +1,7 @@
 import { addListeners } from '../controller/listeners/listenersUser';
 import Footer from '../view/footer/footer';
-// import Header from '../view/user-page/header/header';
 import Header from '../view/main-page/header/header';
-import Main from '../view/user-page/main/main';
+import Main from '../view/main-page/main/main';
 import MainRequests from '../view/user-page/requests/main';
 import Modal from '../view/modal/modal';
 
@@ -29,7 +28,7 @@ export default class AppUser {
     const modals: HTMLDivElement = new Modal().render();
     this.body.append(modals);
     this.body.append(this.header.render('user'));
-    this.body.append(this.main.render());
+    this.body.append(this.main.render('user'));
     this.body.append(this.footer.render());
     addListeners();
     return this.body;

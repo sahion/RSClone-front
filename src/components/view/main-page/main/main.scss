@@ -126,6 +126,7 @@
   }
 
   &__btn {
+    display: flex;
     align-self: center;
   }
 }
@@ -149,7 +150,7 @@
   }
 
   &__btn {
-    margin: 0px auto;
+    margin: 0 auto;
     width: 200px;
     padding: 8px;
   }
@@ -232,4 +233,173 @@
     color: #793CFB;
     cursor: pointer;
   }
+}
+
+//user-page
+
+.my-requests {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  background: url(./components/assets/img/BG4.png) 50%/cover no-repeat;
+
+  &__title {
+    font-family: "Roboto Flex";
+    letter-spacing: 1px;
+    font-size: 50px;
+    margin: 40px;
+    font-weight: 900;
+  }
+
+  &__btn {
+    min-width: 49px;
+    min-height: 49px;
+    border-radius: 50%;
+  }
+
+  &__frame6 {
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    width: 197px;
+    height: 148px;
+    background: url(./components/assets/img/Frame6.png) 50%/contain no-repeat;
+  }
+}
+
+.card-requests {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.buttons-section {
+  // height: 180px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 90px;
+
+  &__frame7 {
+    position: absolute;
+    right: 10%;
+    width: 197px;
+    height: 148px;
+    background: url(./components/assets/img/Frame7.png) 50%/contain no-repeat;
+  }
+}
+
+//user-pagination-page 
+.filters-section {
+  position: relative;
+  background: url(./components/assets/img/BG4.png) 50%/cover no-repeat;
+
+  &__details {
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    border-bottom: dotted 1px #793CFB;
+    flex-wrap: wrap;
+  }
+
+  &__btn {
+    min-width: 50px;
+    height: 30px;
+    padding: 0 15px;
+    margin: 15px 5px;
+    border: 2px solid #793CFB;
+    border-radius: 50px;
+    font-size: 15px;
+    background-color: white;
+    cursor: pointer
+  }
+
+  &__btn:hover {
+    background-color: #9a6bff;
+    border: 3px solid #9a6bff;
+    color: white;
+  }
+
+  &__frame8 {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    background: url(./components/assets/img/Frame8.png) 50%/contain no-repeat;
+  }
+}
+
+.requests-section {
+  margin: 0 auto;
+
+  &__cards {
+    margin: 120px 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+.pagination-btns-section {
+  height: 180px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__btn {
+    min-width: 42px;
+    min-height: 42px;
+    border-radius: 50%;
+    align-self: flex-end;
+  }
+}
+
+details{
+  // display:block;
+  background: #fff;
+  overflow:hidden;
+  margin-bottom: 1.5rem;
+}
+summary {
+  margin: 20px;
+  display:block;
+  padding: .3em 1em .3em .9em;
+  cursor: pointer;
+  position: relative;  
+}
+summary:before {  
+  top: .4em;
+  right: .3em;
+  color: transparent;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTYuNTkgOC41OUwxMiAxMy4xNyA3LjQxIDguNTkgNiAxMGw2IDYgNi02eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=") no-repeat 50% 50% / 1em 1em;
+  width: 1em;
+  height: 1em;  
+  content: "";
+  position: absolute;
+  transition: transform .5s;
+}
+details[open] > summary:before {
+  transform: scale(1,-1);
+}
+summary ~ * {
+  padding: 0 1em 10px 1.4em;
+}
+details[open] summary ~ *{ 
+  animation: sweep .5s ease-in-out;
+}
+@keyframes sweep {
+  0%    {opacity: 0;}
+  100%  {opacity: 1;}
+}
+summary:focus {
+  outline:0;
 }
