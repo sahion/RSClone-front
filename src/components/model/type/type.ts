@@ -1,21 +1,17 @@
 export interface Apply { 
   category: string,
   format: string,
-  contact: (string | null)[],
+  contact?: (string | null)[],
   country: string,
-  location: string, 
-  time: string,
+  location?: string, 
+  time?: string,
   description: string, 
   open: boolean,
 } 
-
-export type UserRequest = {
-  name: string, 
+export interface ApplyWithLogin extends Apply {
+  login: string,
   avatar: string,
-  body: string,
-  category: string, 
-  address: string,
-}[];
+}
 
 export type UserThanks = {
   name: string, 
@@ -24,3 +20,25 @@ export type UserThanks = {
   target: string, 
   targetAvatar: string,
 }[];
+
+export enum Category {
+  healthcare = 'Здравоохранение',
+  emergency = 'ЧС',
+  veterans = 'Ветераны и историческая память',
+  invalid = 'Люди с ОВС',
+  сhildren = 'Дети и подростки',
+  animal = 'Животные',
+  nature = 'Природа',
+  science = 'Наука',
+  education = 'Образование',
+  other = 'Другое',
+}
+export enum Format {
+  online = 'Онлайн',
+  ofline = 'Офлайн',
+}
+export enum Country {
+  belarus = 'Республика Беларусь',
+  russia = 'Российская Федерация',
+  ukraine = 'Украина',
+}

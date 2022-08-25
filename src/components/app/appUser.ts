@@ -25,7 +25,7 @@ export default class AppUser {
     this.body.append(modals);
     this.body.append(this.header.render('user'));
     this.body.append(this.main.render('user'));
-    this.body.append(this.footer.render());
+    this.body.append(this.footer.render());    
     addListeners();
     return this.body;
   }

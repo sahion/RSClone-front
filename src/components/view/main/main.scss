@@ -53,13 +53,13 @@
   }
 
   &__wrapper {
-    /*width: 1080px;*/
+    width: 990px;
     overflow: hidden;
   }
 
   &__items {
     position: relative;
-    /*left: -1080px;*/
+    left: -990px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -84,10 +84,27 @@
   }
 }
 
+@keyframes move-right {
+  from {left: -990px;}
+  to {left: -1980px;}
+}
+.transition-right {
+  animation-name: move-right;
+  animation-duration: 2s;
+}
+@keyframes move-left {
+  from {left: -990px;}
+  to {left: 0px;}
+}
+.transition-left {
+  animation-name: move-left;
+  animation-duration: 2s;
+}
+
 .card {
   width: 250px;
   height: 400px;
-  margin: 0 20px;
+  margin: 0 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

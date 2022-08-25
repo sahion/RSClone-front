@@ -1,4 +1,3 @@
-import { userRequests } from '../../model/fakeDatabase/userRequests';
 import { userThanks } from '../../model/fakeDatabase/userThanks';
 import pen from '../../assets/img/pen.png';
 
@@ -21,28 +20,6 @@ export default class Main {
     </section>`;
   }
 
-  renderRequestCard(name: string, avatar: string, body: string, category: string, address: string): string {
-    return `
-    <div class="card">
-      <div class="card__header">
-        <div class="card__name">${name}</div>
-        <div class="card__avatar">
-          <img src=${avatar} alt="Avatar">
-        </div>
-      </div>
-      <div class="card__title">${body}</div>
-      <div class="card__info">
-        <ul>
-          <li><span class="card__span">Категория:</span> ${category}</li>
-          <li><span class="card__span">Адрес:</span> ${address}</li>
-        </ul>
-      </div>
-      <div class="card__btn">
-        <button class="btn card__login-btn">Помочь</button>
-      </div>                
-    </div>`;
-  } 
-
   getRequestSection(): string {
     return `
     <section class="requests-section" id="requests">
@@ -52,10 +29,7 @@ export default class Main {
           <div class="slider__wrapper">
             <div class="slider__items">
               <div class="slider__item-left"></div>
-              <div class="slider__item-active">
-                ${userRequests.map(item => 
-    this.renderRequestCard(item.name, item.avatar, item.body, item.category, item.address)).join('')}
-              </div>
+              <div class="slider__item-active"></div>
               <div class="slider__item-right"></div>
             </div>
           </div> 
@@ -111,6 +85,7 @@ export default class Main {
         <li class="info-list__item">
           2. Если твое сердце открыто для помощи - 
           нажимай <span class="info-list__item-span" id="helpSpan">"Помочь"</span>
+          <br> И мы мгновенно доставим письмо-предложение о помощи получателю.
         </li>
         <li class="info-list__item">
           3. Если тебе самому нужна помощь - 
@@ -235,8 +210,7 @@ export default class Main {
     return `
     <section class="container requests-section"> 
       <div class="requests-section__cards">
-      ${userRequests.map(item => 
-    this.renderRequestCard(item.name, item.avatar, item.body, item.category, item.address)).join('')}
+
       </div>  
     </section>`;
   }
@@ -268,11 +242,10 @@ export default class Main {
       }
       case ('user'): {
         this.wrapper.innerHTML += this.getUserRequestsSection();
-        this.wrapper.innerHTML += this.getUserButtonsSection();
-        break;
+        this.wrapper.innerHTML += this.getUserButtonsSection();        
+        break;        
       }
-    }
-    
-    return this.wrapper;
+    }    
+    return this.wrapper;    
   }
 }
