@@ -1,7 +1,7 @@
 import { addListeners } from '../controller/listeners/listeners';
 import Footer from '../view/footer/footer';
-import Header from '../view/main-page/header/header';
-import Main from '../view/main-page/main/main';
+import Header from '../view/header/header';
+import Main from '../view/main/main';
 import Modal from '../view/modal/modal';
 
 export default class App {

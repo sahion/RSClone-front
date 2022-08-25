@@ -1,4 +1,4 @@
-import Main from '../../view/main-page/main/main';
+import Main from '../../view/main/main';
 
 function userPageRequests(): void {
   const main = document.querySelector('main') as HTMLElement;

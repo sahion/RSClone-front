@@ -1,5 +1,5 @@
-import logo from '../../../assets/img/Logo.png';
-import vladimirAva from '../../../assets/img/Владимир.png';
+import logo from '../../assets/img/Logo.png';
+import vladimirAva from '../../assets/img/Владимир.png';
 
 export default class Header {
   wrapper: HTMLElement;

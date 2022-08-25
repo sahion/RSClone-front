@@ -1,6 +1,6 @@
-import { userRequests } from '../../../model/fakeDatabase/userRequests';
-import { userThanks } from '../../../model/fakeDatabase/userThanks';
-import pen from '../../../assets/img/pen.png';
+import { userRequests } from '../../model/fakeDatabase/userRequests';
+import { userThanks } from '../../model/fakeDatabase/userThanks';
+import pen from '../../assets/img/pen.png';
 
 export default class Main {
   wrapper: HTMLElement;
@@ -191,17 +191,17 @@ export default class Main {
     <section class="filters-section">
       <div class="container">
         <details class="filters-section__details format">
-          <summary>Фильтры</summary>
+          <summary class="filters-section__summary">Фильтры</summary>
           <p>
             <details class="filters-section__details format">
-              <summary>Выбрать формат</summary>
+              <summary class="filters-section__summary">Выбрать формат</summary>
               <p>
                 <button class="filters-section__btn">Онлайн</button>
                 <button class="filters-section__btn">Офлайн</button>
               </p>                
             </details>
             <details class="filters-section__details country">
-              <summary>Выбрать страну</summary>
+              <summary class="filters-section__summary">Выбрать страну</summary>
               <p>
                 <button class="filters-section__btn">Республика Беларусь</button>
                 <button class="filters-section__btn">Российская Федерация</button>
@@ -209,7 +209,7 @@ export default class Main {
               </p>
             </details>
             <details class="filters-section__details category">
-              <summary>Выбрать категорию</summary>
+              <summary class="filters-section__summary">Выбрать категорию</summary>
               <p>
                 <button class="filters-section__btn">Здравоохранение</button>
                 <button class="filters-section__btn">ЧС</button>
@@ -225,8 +225,8 @@ export default class Main {
             </details>
           </p>
         </details>
-        <div class="fitlers-section__frame8"></div>
-      </div>
+        </div>
+      <div class="filters-section__frame8"></div>
     </section>`;
   }
 

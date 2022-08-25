@@ -1,8 +1,7 @@
 import { addListeners } from '../controller/listeners/listenersUser';
 import Footer from '../view/footer/footer';
-import Header from '../view/main-page/header/header';
-import Main from '../view/main-page/main/main';
-import MainRequests from '../view/user-page/requests/main';
+import Header from '../view/header/header';
+import Main from '../view/main/main';
 import Modal from '../view/modal/modal';
 
 export default class AppUser {
@@ -12,15 +11,12 @@ export default class AppUser {
 
   main: Main;
 
-  mainRequests: MainRequests;
-
   footer: Footer;
 
   constructor() {
     this.body = document.body;
     this.header = new Header();
     this.main = new Main();
-    this.mainRequests = new MainRequests();
     this.footer = new Footer();
   }
 
