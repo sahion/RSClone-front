@@ -72,6 +72,6 @@ body {
 @import './components/view/footer/footer.scss';
 @import './components/view/modal/modal.scss';
 
-@import './components/view/user-page/header/header.css';
+/* @import './components/view/user-page/header/header.css'; */
 @import './components//view/user-page/main/main.css';
 @import './components/view/user-page/requests/main.css';

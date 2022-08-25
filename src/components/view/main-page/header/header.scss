@@ -32,4 +32,38 @@
     border: 3px solid #793CFB;
     color: #793CFB;
   }
+
+  //user-page
+  &__avatar {
+    position: relative;
+    width: 140px;
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__submenu {
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+    transform: scaleY(0);
+    transform-origin: 0 0;
+    transition: all .3s ease;
+  }
+
+  &__submenu-item {
+    display: block;
+    margin: 20px 0px;
+    border-bottom: dotted 1px #793CFB;
+  }
+
+  &__nav-item:hover .header__submenu {
+    transform: scaleY(1);
+  }
+
+  &__logout {
+    display: flex;
+    justify-content: space-around;
+  }
 }
+
