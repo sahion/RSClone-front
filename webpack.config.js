@@ -20,7 +20,7 @@ const plugins = [
     filename: 'index.html'
 }),
   new HtmlWebpackPlugin({
-    template: 'src/user.html',
+    template: 'src/components/pages/user.html',
     inject: true,
     chunks: ['user'],
     filename: 'user.html'
@@ -44,7 +44,7 @@ module.exports = {
   target,
   entry: {
     main: './src/index.ts',
-    user: './src/user.ts', 
+    user: './src/components/pages/user.ts', 
   },
   output: {
     filename: '[name].js',

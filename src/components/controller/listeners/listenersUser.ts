@@ -1,15 +1,17 @@
-import Main from '../../view/user-page/requests/main';
+import Main from '../../view/main/main';
 
 function userPageRequests(): void {
   const main = document.querySelector('main') as HTMLElement;
-  const newMain = new Main();
+  const newMain: Main = new Main();
   main.innerHTML = '';
-  main.append(newMain.render());
+  main.innerHTML += newMain.getUserFiltersSection();
+  main.innerHTML += newMain.getUsersRequestsSection();
+  main.innerHTML += newMain.getUserPaginationBtnsSection();
 }
 
 export function renderUserPageRequests(): void {
   const requestsBtn = document.querySelector('.buttons-section__btn-requests') as HTMLButtonElement;
-  console.log(requestsBtn);
+  
   requestsBtn.addEventListener('click', userPageRequests);
 }
 
