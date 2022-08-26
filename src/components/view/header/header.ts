@@ -23,7 +23,7 @@ export default class Header {
           </ul>
         </nav>
         <div class="header__btns">
-          <button class="btn header__login-btn" id="login">Вход</button>
+          <button class="btn header__login-btn color-btn" id="login">Вход</button>
           <button class="btn header__register-btn" id="register">Регистрация</button>
         </div>
       </div>

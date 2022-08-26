@@ -1,10 +1,10 @@
 import Main from '../../view/main/main';
 import createDivItemCard from '../../utils/renderRequestCard';
 import { dataUserApply } from '../../model/fakeDatabase/userApply';
+import getFilter from '../../utils/filters';
 
 function renderRequestCard() {
   const cards = document.querySelector('.requests-section__cards') as HTMLElement;
-  console.log(cards);
   for (let index = 0; index < dataUserApply.length; index++) {
     const div = createDivItemCard(dataUserApply, index);
     cards.appendChild(div);   
@@ -19,6 +19,10 @@ function userPageRequests(): void {
   main.innerHTML += newMain.getUsersRequestsSection();
   main.innerHTML += newMain.getUserPaginationBtnsSection();
   renderRequestCard();
+
+  const divFilters = document.querySelector('.filters') as HTMLElement; 
+  //console.log(divFilters); 
+  divFilters.addEventListener('click', getFilter);
 }
 
 export function renderUserPageRequests(): void {

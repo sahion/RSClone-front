@@ -22,7 +22,7 @@ export default function createDivItemCard(data: ApplyWithLogin[], index: number)
                         </ul>
                       </div>
                       <div class="card__btn">
-                        <button class="btn card__login-btn">Помочь</button>
+                        <button class="btn card__login-btn color-btn">Помочь</button>
                       </div>`;
   return div;
 } 

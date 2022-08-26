@@ -4,3 +4,4 @@ import '../../global.css';
 const app = new AppUser();
 
 app.init();
+

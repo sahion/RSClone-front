@@ -109,8 +109,7 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: #FAFAFA;
-  border-radius: 15px;
-  cursor: pointer;
+  border-radius: 15px;  
   overflow: hidden;
 
   &__header,
@@ -434,4 +433,9 @@
   100% {
     opacity: 1;
   }
+}
+
+.color-btn{
+  background-color: #793CFB;
+  color: white;
 }
