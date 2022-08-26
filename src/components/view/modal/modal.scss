@@ -17,10 +17,13 @@
   z-index: 100;
 
   &__content {
+    max-width: 100%;
+    max-height: 100%;
     padding: 0.5rem 1rem 2rem;
-    border-radius: 3%;
-    background: #fff;
+    border-radius: 1%;
+    background: #F5F5F5;
     z-index: 200;
+    overflow: auto;
   }
 
   &__header {
@@ -42,17 +45,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-  }
-
-  &__input {
-    width: 20rem;
-    height: 2rem;
-    padding: 1rem;
-    border: 3px solid #793CFB;
-    border-radius: 50px;
-    font-size: 15px;
-    font-weight: 600;
-    background-color: white;
+    margin-bottom: 0.5rem;
   }
 
   &__btns {
@@ -62,6 +55,14 @@
   &__btn {
     margin: 1.5rem auto 1rem;
   }
+
+  &__footer-text {
+    font-size: 0.8rem;
+  }
+
+  &__footer-span {
+    color: red;
+  }
 }
 
 .select-category {
@@ -69,6 +70,66 @@
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  position: relative;
+
+  &__title::before {
+    position: absolute;
+    content: "*";
+    width: 1rem;
+    height: 1rem;
+    left: -10px;
+    color: red;
+  }
+}
+
+.select-wrapper {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  width: 30rem;
+  height: 2rem;
+  line-height: 1rem;
+  border-radius: 2%;
+  background-color: #696969;
+  overflow: hidden;
+}
+
+.select-wrapper::after {
+  position: absolute;
+  content: '\25bc';
+  background-color: #333;
+  color: #fff;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+  pointer-events: none;
+  transition: all .3s ease;
+}
+
+.select-wrapper:hover::after {
+  color: #696969;
+}
+
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  border: 0;
+  font-size: 1.2rem;
+  box-shadow: none;
+  background-color: #696969;
+  cursor: pointer;
+  color: #fff;
+  padding: 0 0.5rem;
+  flex: 1;
+}
+
+.select::-ms-expand {
+  display: none;
 }
 
 .request-radio {
@@ -76,6 +137,16 @@
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  position: relative;
+
+  &__title::before {
+    position: absolute;
+    content: "*";
+    width: 1rem;
+    height: 1rem;
+    left: -10px;
+    color: red;
+  }
 
   &__inputs {
     display: flex;
@@ -84,8 +155,52 @@
   }
 
   &__inputs-label {
+    position: relative;
     display: flex;
     gap: 0.2rem;
+    padding-left: 2rem;
+    cursor: pointer;
+  }
+
+  &__inputs-span {
+    transition: all 0.3s ease;
+  }
+
+  &__inputs-span:hover {
+    transform: scale(1, 1.2);
+    letter-spacing: 0.1rem;
+  }
+
+  &__inputs-custom{
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid black;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+  }
+
+  &__inputs-custom::before { 
+    position: absolute;
+    content: "";
+    background-color: #793CFB;
+    border-radius: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .3s ease;
+  }
+
+  &__inputs-input {
+    display: none;
+  }
+
+  &__inputs-input:checked + .request-radio__inputs-custom::before {
+    opacity: 1;
   }
 }
 
@@ -102,8 +217,48 @@
   }
 
   &__inputs-label {
+    position: relative;
     display: flex;
     gap: 0.2rem;
+    padding-left: 2rem;
+    cursor: pointer;
+  }
+
+  &__inputs-span { 
+    transition: all 0.3s ease;
+  }
+
+  &__inputs-span:hover {
+    transform: scale(1, 1.2);
+    letter-spacing: 0.1rem;
+  }
+
+  &__inputs-custom{
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid black;
+    top: 0;
+    left: 0;
+  }
+
+  &__inputs-custom::before { 
+    position: absolute;
+    content: "\2713";
+    color: #793CFB;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .3s ease;
+  }
+
+  &__inputs-input {
+    display: none;
+  }
+
+  &__inputs-input:checked + .request-checkbox__inputs-custom::before {
+    opacity: 1;
   }
 }
 
@@ -112,12 +267,26 @@
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 1rem;
+
+  &__select-input {
+    max-width: 100%;
+    max-height: 100%;
+    width: 30rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
 }
 
 .request-textarea {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  &__textarea {
+    resize: none;
+    padding: 0.5rem;
+  }
 }
 
 .modal--hidden {

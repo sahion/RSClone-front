@@ -40,6 +40,22 @@ function hideModal(): void {
   });
 }
 
+function enableInputs(): void {
+  const locationCategory = document.getElementById('location') as HTMLSelectElement;
+  const address = document.getElementById('address') as HTMLInputElement;
+
+  locationCategory.removeAttribute('disabled');
+  address.removeAttribute('disabled');
+}
+
+function disableInputs(): void {
+  const locationCategory = document.getElementById('location') as HTMLSelectElement;
+  const address = document.getElementById('address') as HTMLInputElement;
+
+  locationCategory.disabled = true;
+  address.disabled = true;
+}
+
 export function openRegisterWindowListener(): void {
   const registerBtn = document.getElementById('register') as HTMLButtonElement;
   const registerSpan = document.getElementById('registerSpan') as HTMLSpanElement;
@@ -96,6 +112,14 @@ export function openLoginWindowFromRegister(): void {
   registerBtn.addEventListener('click', showLogin);
 }
 
+export function radioBtnListener(): void {
+  const radioOfflineBtn = document.getElementById('offline') as HTMLInputElement;
+  const radioOnlineBtn = document.getElementById('online') as HTMLInputElement;
+
+  radioOfflineBtn.addEventListener('click', enableInputs);
+  radioOnlineBtn.addEventListener('click', disableInputs);
+}
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
@@ -106,5 +130,6 @@ export function addListeners(): void {
   openLoginWindowFromRegister();
   createRequestListener();
   closeModalWindowListener();
+  radioBtnListener();
 }
 
