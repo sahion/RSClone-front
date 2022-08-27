@@ -196,7 +196,7 @@ export default class Main {
                 <button class="filters-section__btn nature">Природа</button>
                 <button class="filters-section__btn science">Наука</button>
                 <button class="filters-section__btn education">Образование</button>
-                <button class="filters-section__btn">Другое</button>
+                <button class="filters-section__btn other">Другое</button>
               </p>
             </details>
           </p>

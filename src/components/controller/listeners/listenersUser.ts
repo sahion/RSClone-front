@@ -20,9 +20,8 @@ function userPageRequests(): void {
   main.innerHTML += newMain.getUserPaginationBtnsSection();
   renderRequestCard();
 
-  const divFilters = document.querySelector('.filters') as HTMLElement; 
-  //console.log(divFilters); 
-  divFilters.addEventListener('click', getFilter);
+  const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn'); 
+  [...filtersBtns].map(item => item.addEventListener('click', getFilter));
 }
 
 export function renderUserPageRequests(): void {

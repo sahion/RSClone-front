@@ -1,8 +1,8 @@
 import { dataUserApply } from '../model/fakeDatabase/userApply';
-import { ApplyWithLogin, Format, Country } from '../model/type/type';
+import { ApplyWithLogin, Category, Format, Country } from '../model/type/type';
+import createDivItemCard from './renderRequestCard';
 
-
-const filterChosen = {
+const filterCategoryChosen = {
   healthcare: false,
   emergency: false,
   veterans: false,
@@ -13,10 +13,12 @@ const filterChosen = {
   science: false,
   education: false,
   other: false,
-
+};
+const filterFormatChosen = {
   online: false,
   ofline: false,
-
+};
+const filterCountryChosen = {
   belarus: false,
   russia: false,
   ukraine: false,
@@ -24,46 +26,50 @@ const filterChosen = {
 
 function checkFormatChosen(array: ApplyWithLogin[]) {
   let arrayWithFormatFilters: ApplyWithLogin[] = [];
-  if (filterChosen.online && filterChosen.ofline) return array;
-  if (!filterChosen.online && !filterChosen.ofline) return array;
-  if (filterChosen.online) {
+  if (filterFormatChosen.online && filterFormatChosen.ofline) return array;
+  if (!filterFormatChosen.online && !filterFormatChosen.ofline) return array;
+  if (filterFormatChosen.online) {
     arrayWithFormatFilters = arrayWithFormatFilters.concat(array.filter(el => el.format === Format.online)); 
   }
-  if (filterChosen.ofline) {
+  if (filterFormatChosen.ofline) {
     arrayWithFormatFilters = arrayWithFormatFilters.concat(array.filter(el => el.format === Format.ofline)); 
   }
   return arrayWithFormatFilters; 
 }
 
 function checkCountryChosen(array: ApplyWithLogin[]) {
-  if (!filterChosen.belarus && !filterChosen.russia && !filterChosen.ukraine) {
+  if (!filterCountryChosen.belarus && !filterCountryChosen.russia && !filterCountryChosen.ukraine) {
     return array;
   } else {
     let arrayCountryChosen: ApplyWithLogin[] = [];
-    if (filterChosen.belarus) {
+    if (filterCountryChosen.belarus) {
       arrayCountryChosen = arrayCountryChosen.concat(array.filter(el => el.country === Country.belarus)); 
     }
-    if (filterChosen.russia) {
+    if (filterCountryChosen.russia) {
       arrayCountryChosen = arrayCountryChosen.concat(array.filter(el => el.country === Country.russia)); 
     }
-    if (filterChosen.ukraine) {
+    if (filterCountryChosen.ukraine) {
       arrayCountryChosen = arrayCountryChosen.concat(array.filter(el => el.country === Country.ukraine)); 
     }
     return arrayCountryChosen;
   }
 }
-
-// function checkCategoryChosen() {
-//   
-//   if (filterChosen.healthcare) {
-//     array = array.concat(applyWithFilters.filter(elem => elem.category === Category.healthcare)); 
-//   }
-//   if (filterChosen.emergency) {
-//     array = array.concat(applyWithFilters.filter(elem => elem.category === Category.emergency)); 
-//   }
-//   return applyWithFilters = array; 
-// }
-
+function checkCategoryChosen(array: ApplyWithLogin[]) {
+  let arrayNameFilters: string[] = [];
+  for (const myProp in filterCategoryChosen) {
+    const key = myProp as keyof typeof filterCategoryChosen; 
+    if (filterCategoryChosen[key]) arrayNameFilters = arrayNameFilters.concat(key);
+  }
+  if (arrayNameFilters.length === 0) return array;
+  const arrayWithCategoryFilters = array.filter(elem => {
+    const arrayString = arrayNameFilters.map(el => {
+      const key = el as keyof typeof Category;
+      return String(Category[key]);
+    });
+    return arrayString.includes(elem.category);
+  });
+  return arrayWithCategoryFilters;
+}
 
 export default function getFilter(e: Event) {
   const healthcare = document.querySelector('.healthcare') as HTMLElement;
@@ -83,66 +89,91 @@ export default function getFilter(e: Event) {
   const belarus = document.querySelector('.belarus') as HTMLElement;
   const russia = document.querySelector('.russia') as HTMLElement;
   const ukraine = document.querySelector('.ukraine') as HTMLElement;
-  
-  //if (cardsPage) cardsPage.innerHTML = '';
+
+  const requestsCards = document.querySelector('.requests-section__cards') as HTMLElement;
+  requestsCards.innerHTML = '';
   switch (e.target) {
     case healthcare:
-      filterChosen.healthcare = filterChosen.healthcare ? false : true;
+      filterCategoryChosen.healthcare = filterCategoryChosen.healthcare ? false : true;
+      healthcare.classList.toggle('color-btn');
       break;
     case emergency:
-      filterChosen.emergency = filterChosen.emergency ? false : true;
+      filterCategoryChosen.emergency = filterCategoryChosen.emergency ? false : true;
+      emergency.classList.toggle('color-btn');
       break;
     case veterans:
-      filterChosen.veterans = filterChosen.veterans ? false : true;
+      filterCategoryChosen.veterans = filterCategoryChosen.veterans ? false : true;
+      veterans.classList.toggle('color-btn');
       break;
     case invalid:
-      filterChosen.invalid = filterChosen.invalid ? false : true;
+      filterCategoryChosen.invalid = filterCategoryChosen.invalid ? false : true;
+      invalid.classList.toggle('color-btn');
       break;
     case сhildren:
-      filterChosen.сhildren = filterChosen.сhildren ? false : true;
+      filterCategoryChosen.сhildren = filterCategoryChosen.сhildren ? false : true;
+      сhildren.classList.toggle('color-btn');
       break;
     case animal:
-      filterChosen.animal = filterChosen.animal ? false : true;
+      filterCategoryChosen.animal = filterCategoryChosen.animal ? false : true;
+      animal.classList.toggle('color-btn');
       break;    
     case nature:
-      filterChosen.nature = filterChosen.nature ? false : true;
+      filterCategoryChosen.nature = filterCategoryChosen.nature ? false : true;
+      nature.classList.toggle('color-btn');
       break;
     case science:
-      filterChosen.science = filterChosen.science ? false : true;
+      filterCategoryChosen.science = filterCategoryChosen.science ? false : true;
+      science.classList.toggle('color-btn');
       break;
     case education:
-      filterChosen.education = filterChosen.education ? false : true;
+      filterCategoryChosen.education = filterCategoryChosen.education ? false : true;
+      education.classList.toggle('color-btn');
       break;    
     case other:
-      filterChosen.other = filterChosen.other ? false : true;
+      filterCategoryChosen.other = filterCategoryChosen.other ? false : true;
+      other.classList.toggle('color-btn');
       break;
     case online:
-      filterChosen.online = filterChosen.online ? false : true;
+      filterFormatChosen.online = filterFormatChosen.online ? false : true;
+      online.classList.toggle('color-btn');
       break;
     case ofline:
-      filterChosen.ofline = filterChosen.ofline ? false : true;
+      filterFormatChosen.ofline = filterFormatChosen.ofline ? false : true;
+      ofline.classList.toggle('color-btn');
       break;
     case belarus:
-      filterChosen.belarus = filterChosen.belarus ? false : true;
+      filterCountryChosen.belarus = filterCountryChosen.belarus ? false : true;
+      belarus.classList.toggle('color-btn');
       break;    
     case russia:
-      filterChosen.russia = filterChosen.russia ? false : true;
+      filterCountryChosen.russia = filterCountryChosen.russia ? false : true;
+      russia.classList.toggle('color-btn');
       break;
     case ukraine:
-      filterChosen.ukraine = filterChosen.ukraine ? false : true;
+      filterCountryChosen.ukraine = filterCountryChosen.ukraine ? false : true;
+      ukraine.classList.toggle('color-btn');
       break;
   }
+  
   let arrayWithAllFilters: ApplyWithLogin[] = [];
+  console.log(arrayWithAllFilters);
   if (e.target === online || e.target === ofline) {
     const arrayWithFormatFilters = checkFormatChosen(dataUserApply);
+    const arrayWithCountryFilters = checkCountryChosen(arrayWithFormatFilters);
+    arrayWithAllFilters = checkCategoryChosen(arrayWithCountryFilters);
+  } else if (e.target === russia || e.target === belarus || e.target === ukraine) {
+    const arrayWithCountryFilters = checkCountryChosen(dataUserApply);
+    const arrayWithFormatFilters = checkFormatChosen(arrayWithCountryFilters);
+    arrayWithAllFilters = checkCategoryChosen(arrayWithFormatFilters);
+  } else {
+    const arrayWithCategoryFilters = checkCategoryChosen(dataUserApply);
+    const arrayWithFormatFilters = checkFormatChosen(arrayWithCategoryFilters);
     arrayWithAllFilters = checkCountryChosen(arrayWithFormatFilters);
   }
-  if (e.target === russia || e.target === belarus || e.target === ukraine) {
-    const arrayWithCountryFilters = checkCountryChosen(dataUserApply);
-    arrayWithAllFilters = checkFormatChosen(arrayWithCountryFilters);
-  }
   console.log(arrayWithAllFilters);
-  return arrayWithAllFilters;
-  //createPageWithFilters(e.target);
+  
+  for (let index = 0; index < arrayWithAllFilters.length; index++) {
+    const div = createDivItemCard(arrayWithAllFilters, index);
+    requestsCards.appendChild(div); 
+  }
 }
-
