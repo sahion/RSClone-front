@@ -2,6 +2,7 @@ import getRequestFormData from '../dataHandlers/getRequestFormData';
 import createDivItemCard from '../../utils/renderRequestCard';
 import { dataUserApply } from '../../model/fakeDatabase/userApply';
 import Main from '../../view/main/main';
+import getFilter from '../../utils/filters';
 
 function renderRequestCard(): void {
   const cards = document.querySelector('.requests-section__cards') as HTMLElement;
@@ -20,6 +21,8 @@ function userPageRequests(): void {
   main.innerHTML += newMain.getUsersRequestsSection();
   main.innerHTML += newMain.getUserPaginationBtnsSection();
   renderRequestCard();
+  const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn'); 
+  [...filtersBtns].map(item => item.addEventListener('click', getFilter));
 }
 
 function showRegister(event: Event): void {
@@ -151,7 +154,6 @@ export function openUserRequestListener(): void {
 
 export function checkboxPhoneListener(): void {
   const phoneBtn = document.getElementById('phone') as HTMLInputElement;
-
   phoneBtn.addEventListener('click', enableTelInput);
 }
 
@@ -167,6 +169,6 @@ export function addUserListeners(): void {
   renderUserPageRequests();
   openUserRequestListener();
   closeModalWindowListener();
-  checkboxPhoneListener();
+  checkboxPhoneListener();  
 }
 

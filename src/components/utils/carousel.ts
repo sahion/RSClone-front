@@ -61,9 +61,7 @@ export default function carousel() {
         cardsWhile--;
       }
     } else {
-      console.log(currentIndex);
       if (currentIndex === 0) currentIndex = cardsOnPage * 3;       
-      console.log(currentIndex);
       cards.classList.remove('transition-right');      
       ITEM_LEFT.innerHTML = ITEM_ACTIVE.innerHTML;
       ITEM_ACTIVE.innerHTML = ITEM_RIGHT.innerHTML;     
