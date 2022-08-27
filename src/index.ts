@@ -4,6 +4,6 @@ import './global.css';
 
 const app = new App();
 
-app.init();
+app.init('main');
 
 carousel();

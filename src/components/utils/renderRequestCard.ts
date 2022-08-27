@@ -1,7 +1,7 @@
 import { ApplyWithLogin } from '../model/type/type';
 
 export default function createDivItemCard(data: ApplyWithLogin[], index: number): HTMLElement {
-  const div = document.createElement('div');
+  const div: HTMLDivElement = document.createElement('div');
   const location = data[index].location ? data[index].location : '-';
   div.id = `${data[index].login}`;
   div.className = 'card';
