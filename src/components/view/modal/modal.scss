@@ -18,7 +18,7 @@
 
   &__content {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 95%;
     padding: 0.5rem 1rem 2rem;
     border-radius: 1%;
     background: #F5F5F5;
@@ -230,7 +230,7 @@
   &__inputs-label {
     position: relative;
     display: flex;
-    gap: 0.2rem;
+    gap: 2rem;
     padding-left: 2rem;
     cursor: pointer;
   }
@@ -271,6 +271,15 @@
   &__inputs-input:checked + .request-checkbox__inputs-custom::before {
     opacity: 1;
   }
+
+  &__inputs-tel {
+    max-width: 100%;
+    max-height: 100%;
+    width: 12rem;
+    height: 1.7rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
 }
 
 .request-location {
@@ -306,4 +315,9 @@
 
 .modal--active {
   display: flex;
+}
+
+.modal--open {
+  height: 100vh;
+  overflow: hidden;
 }

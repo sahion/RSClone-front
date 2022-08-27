@@ -94,9 +94,11 @@ export default class Modal {
             <h4 class="request-checkbox__title">Предпочитаемый способ связи:</h4>       
             <div class="request-checkbox__inputs">
               <label class="request-checkbox__inputs-label" for="phone">
-              <input class="request-checkbox__inputs-input" type="checkbox" id="phone" name="phone">
+                <input class="request-checkbox__inputs-input" type="checkbox" id="phone" name="phone">
                 <span class="request-checkbox__inputs-custom"></span>
                 <span class="request-checkbox__inputs-span">Телефон</span>
+                <input class="request-checkbox__inputs-tel" type="tel" id="tel" name="tel" disabled
+                  placeholder="Номер телефона" autocomplete="off">
               </label>         
               <label class="request-checkbox__inputs-label" for="email">
                 <input class="request-checkbox__inputs-input" type="checkbox" id="email" name="email">

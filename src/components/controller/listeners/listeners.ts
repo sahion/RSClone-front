@@ -1,4 +1,26 @@
 import getRequestFormData from '../dataHandlers/getRequestFormData';
+import createDivItemCard from '../../utils/renderRequestCard';
+import { dataUserApply } from '../../model/fakeDatabase/userApply';
+import Main from '../../view/main/main';
+
+function renderRequestCard(): void {
+  const cards = document.querySelector('.requests-section__cards') as HTMLElement;
+  
+  for (let index = 0; index < dataUserApply.length; index++) {
+    const div: HTMLElement = createDivItemCard(dataUserApply, index);
+    cards.appendChild(div);   
+  } 
+} 
+
+function userPageRequests(): void {
+  const main = document.querySelector('main') as HTMLElement;
+  const newMain: Main = new Main();
+  main.innerHTML = '';
+  main.innerHTML += newMain.getUserFiltersSection();
+  main.innerHTML += newMain.getUsersRequestsSection();
+  main.innerHTML += newMain.getUserPaginationBtnsSection();
+  renderRequestCard();
+}
 
 function showRegister(event: Event): void {
   const registerModal = document.querySelector('.modal-register') as HTMLElement;
@@ -10,6 +32,8 @@ function showRegister(event: Event): void {
 
   loginrModal.classList.add('modal--hidden');
   loginrModal.classList.remove('modal--active');
+
+  document.body.classList.add('modal--open');
 }
 
 function showLogin(event: Event): void {
@@ -22,11 +46,14 @@ function showLogin(event: Event): void {
 
   registerModal.classList.add('modal--hidden');
   registerModal.classList.remove('modal--active');
+
+  document.body.classList.add('modal--open');
 }
 
 function showRequest(): void {
   const requestModal = document.querySelector('.modal-request') as HTMLElement;
 
+  document.body.classList.add('modal--open');
   requestModal.classList.remove('modal--hidden');
   requestModal.classList.add('modal--active');
 }
@@ -37,6 +64,7 @@ function hideModal(): void {
   [...registerModal].map(item => {
     item.classList.remove('modal--active');
     item.classList.add('modal--hidden');
+    document.body.classList.remove('modal--open');
   });
 }
 
@@ -56,12 +84,21 @@ function disableInputs(): void {
   address.disabled = true;
 }
 
+function enableTelInput(): void {
+  const telInput = document.getElementById('tel') as HTMLInputElement;
+
+  if (telInput.disabled) telInput.disabled = false;
+  else telInput.disabled = true;
+}
+
 export function openRegisterWindowListener(): void {
   const registerBtn = document.getElementById('register') as HTMLButtonElement;
   const registerSpan = document.getElementById('registerSpan') as HTMLSpanElement;
+  const regBtn = document.querySelector('.login__btn-to-register') as HTMLButtonElement;
 
   registerBtn.addEventListener('click', showRegister);
   registerSpan.addEventListener('click', showRegister);
+  regBtn.addEventListener('click', showRegister); 
 }
 
 export function closeModalWindowListener(): void {
@@ -71,45 +108,25 @@ export function closeModalWindowListener(): void {
 }
 
 export function openLoginWindowListener(): void {
+  const loginBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
   const loginBtn = document.getElementById('login') as HTMLButtonElement;
-
-  loginBtn.addEventListener('click', showLogin);
-}
-
-export function openRequestWindowListener(): void {
+  const helpBtn = document.getElementById('helpSpan') as HTMLButtonElement;
   const requestBtn = document.getElementById('requestSpan') as HTMLButtonElement;
+  const registerBtn = document.querySelector('.register__btn-to-login') as HTMLButtonElement;
+  // const cardBtn = document.querySelector('.card__login-btn') as HTMLButtonElement;
 
-  requestBtn.addEventListener('click', showRequest);
-}
-
-export function openHelpWindowListener(): void {
-  const requestBtn = document.getElementById('helpSpan') as HTMLButtonElement;
-
+  [...loginBtns].map(btn => btn.addEventListener('click', showLogin));
+  helpBtn.addEventListener('click', showLogin);
   requestBtn.addEventListener('click', showLogin);
+  loginBtn.addEventListener('click', showLogin);
+  registerBtn.addEventListener('click', showLogin);
+  // cardBtn.addEventListener('click', showLogin);
 }
 
 export function createRequestListener(): void {
   const requestForm = document.getElementById('requestForm') as HTMLFormElement;
 
   requestForm.addEventListener('submit', getRequestFormData);
-}
-
-export function openLoginWindowFromCard(): void {
-  const loginBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
-
-  [...loginBtns].map(btn => btn.addEventListener('click', showLogin));
-}
-
-export function openRegisterWindowFromLogin(): void {
-  const registerBtn = document.querySelector('.login__btn-to-register') as HTMLButtonElement;
-
-  registerBtn.addEventListener('click', showRegister);
-}
-
-export function openLoginWindowFromRegister(): void {
-  const registerBtn = document.querySelector('.register__btn-to-login') as HTMLButtonElement;
-
-  registerBtn.addEventListener('click', showLogin);
 }
 
 export function radioBtnListener(): void {
@@ -120,16 +137,36 @@ export function radioBtnListener(): void {
   radioOnlineBtn.addEventListener('click', disableInputs);
 }
 
+export function renderUserPageRequests(): void {
+  const requestsBtn = document.querySelector('.buttons-section__btn-requests') as HTMLButtonElement;
+  
+  requestsBtn.addEventListener('click', userPageRequests);
+}
+
+export function openUserRequestListener(): void {
+  const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
+
+  openRequestBtn.addEventListener('click', showRequest);
+}
+
+export function checkboxPhoneListener(): void {
+  const phoneBtn = document.getElementById('phone') as HTMLInputElement;
+
+  phoneBtn.addEventListener('click', enableTelInput);
+}
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
-  openRequestWindowListener();
-  openHelpWindowListener();
-  openLoginWindowFromCard();
-  openRegisterWindowFromLogin();
-  openLoginWindowFromRegister();
   createRequestListener();
   closeModalWindowListener();
   radioBtnListener();
+}
+
+export function addUserListeners(): void {
+  renderUserPageRequests();
+  openUserRequestListener();
+  closeModalWindowListener();
+  checkboxPhoneListener();
 }
 
