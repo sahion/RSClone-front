@@ -6,12 +6,12 @@ import getFilter from '../../utils/filters';
 
 function renderRequestCard(): void {
   const cards = document.querySelector('.requests-section__cards') as HTMLElement;
-  
+
   for (let index = 0; index < dataUserApply.length; index++) {
     const div: HTMLElement = createDivItemCard(dataUserApply, index);
-    cards.appendChild(div);   
-  } 
-} 
+    cards.appendChild(div);
+  }
+}
 
 function userPageRequests(): void {
   const main = document.querySelector('main') as HTMLElement;
@@ -21,7 +21,7 @@ function userPageRequests(): void {
   main.innerHTML += newMain.getUsersRequestsSection();
   main.innerHTML += newMain.getUserPaginationBtnsSection();
   renderRequestCard();
-  const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn'); 
+  const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn');
   [...filtersBtns].map(item => item.addEventListener('click', getFilter));
 }
 
@@ -101,7 +101,7 @@ export function openRegisterWindowListener(): void {
 
   registerBtn.addEventListener('click', showRegister);
   registerSpan.addEventListener('click', showRegister);
-  regBtn.addEventListener('click', showRegister); 
+  regBtn.addEventListener('click', showRegister);
 }
 
 export function closeModalWindowListener(): void {
@@ -142,7 +142,7 @@ export function radioBtnListener(): void {
 
 export function renderUserPageRequests(): void {
   const requestsBtn = document.querySelector('.buttons-section__btn-requests') as HTMLButtonElement;
-  
+
   requestsBtn.addEventListener('click', userPageRequests);
 }
 
@@ -157,18 +157,37 @@ export function checkboxPhoneListener(): void {
   phoneBtn.addEventListener('click', enableTelInput);
 }
 
+export function globalCloseModal(): void {
+  let isOverlay = false;
+
+  document.addEventListener('mousedown', (event: Event) => {
+    if (!(event.target as Element).closest('.modal__content') && !(event.target as Element).closest('.btn')) {
+      isOverlay = true;
+    }
+  });
+
+  document.addEventListener('mousedown', (event: Event) => {
+    if (!(event.target as Element).closest('.modal__content') && !(event.target as Element).closest('.btn')
+      && isOverlay) {
+      hideModal();
+    }
+  });
+}
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
   createRequestListener();
   closeModalWindowListener();
   radioBtnListener();
+  globalCloseModal();
 }
 
 export function addUserListeners(): void {
   renderUserPageRequests();
   openUserRequestListener();
   closeModalWindowListener();
-  checkboxPhoneListener();  
+  checkboxPhoneListener();
+  globalCloseModal();
 }
 
