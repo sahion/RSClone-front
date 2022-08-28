@@ -1,17 +1,7 @@
 import getRequestFormData from '../dataHandlers/getRequestFormData';
-import createDivItemCard from '../../utils/renderRequestCard';
-import { dataUserApply } from '../../model/fakeDatabase/userApply';
+import createPageWithFilters from '../../utils/createPageWithFilters';
 import Main from '../../view/main/main';
 import getFilter from '../../utils/filters';
-
-function renderRequestCard(): void {
-  const cards = document.querySelector('.requests-section__cards') as HTMLElement;
-
-  for (let index = 0; index < dataUserApply.length; index++) {
-    const div: HTMLElement = createDivItemCard(dataUserApply, index);
-    cards.appendChild(div);
-  }
-}
 
 function userPageRequests(): void {
   const main = document.querySelector('main') as HTMLElement;
@@ -20,7 +10,7 @@ function userPageRequests(): void {
   main.innerHTML += newMain.getUserFiltersSection();
   main.innerHTML += newMain.getUsersRequestsSection();
   main.innerHTML += newMain.getUserPaginationBtnsSection();
-  renderRequestCard();
+  createPageWithFilters();
   const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn');
   [...filtersBtns].map(item => item.addEventListener('click', getFilter));
 }

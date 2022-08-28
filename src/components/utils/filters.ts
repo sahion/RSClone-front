@@ -1,8 +1,9 @@
 import { dataUserApply } from '../model/fakeDatabase/userApply';
 import { ApplyWithLogin, Category, Format, Country } from '../model/type/type';
 import createDivItemCard from './renderRequestCard';
+import LocalStorage from './classLocalStorage';
 
-const filterCategoryChosen = {
+export let filterCategoryChosen = {
   healthcare: false,
   emergency: false,
   veterans: false,
@@ -14,17 +15,36 @@ const filterCategoryChosen = {
   education: false,
   other: false,
 };
-const filterFormatChosen = {
+export let filterFormatChosen = {
   online: false,
   ofline: false,
 };
-const filterCountryChosen = {
+export let filterCountryChosen = {
   belarus: false,
   russia: false,
   ukraine: false,
 };
+//localStorage
+const localStorage = new LocalStorage();
 
-function checkFormatChosen(array: ApplyWithLogin[]) {
+function setLocalStorage() {  
+  localStorage.save('filterCategoryChosen', filterCategoryChosen);
+  localStorage.save('filterFormatChosen', filterFormatChosen);
+  localStorage.save('filterCountryChosen', filterCountryChosen);
+}
+window.addEventListener('beforeunload', setLocalStorage);
+
+function getLocalStorage() {
+  const fetchCategory = localStorage.fetch('filterCategoryChosen');
+  if (typeof fetchCategory === 'object') filterCategoryChosen = fetchCategory;
+  const fetchFormat = localStorage.fetch('filterFormatChosen');
+  if (typeof fetchFormat === 'object') filterFormatChosen = fetchFormat; 
+  const fetchCountry = localStorage.fetch('filterCountryChosen');
+  if (typeof fetchCountry === 'object') filterCountryChosen = fetchCountry;   
+}
+window.addEventListener('load', getLocalStorage);
+
+export function checkFormatChosen(array: ApplyWithLogin[]) {
   let arrayWithFormatFilters: ApplyWithLogin[] = [];
   if (filterFormatChosen.online && filterFormatChosen.ofline) return array;
   if (!filterFormatChosen.online && !filterFormatChosen.ofline) return array;
@@ -37,7 +57,7 @@ function checkFormatChosen(array: ApplyWithLogin[]) {
   return arrayWithFormatFilters; 
 }
 
-function checkCountryChosen(array: ApplyWithLogin[]) {
+export function checkCountryChosen(array: ApplyWithLogin[]) {
   if (!filterCountryChosen.belarus && !filterCountryChosen.russia && !filterCountryChosen.ukraine) {
     return array;
   } else {
@@ -54,11 +74,11 @@ function checkCountryChosen(array: ApplyWithLogin[]) {
     return arrayCountryChosen;
   }
 }
-function checkCategoryChosen(array: ApplyWithLogin[]) {
+export function checkCategoryChosen(array: ApplyWithLogin[]) {
   let arrayNameFilters: string[] = [];
   for (const myProp in filterCategoryChosen) {
     const key = myProp as keyof typeof filterCategoryChosen; 
-    if (filterCategoryChosen[key]) arrayNameFilters = arrayNameFilters.concat(key);
+    if (filterCategoryChosen[key]) arrayNameFilters = arrayNameFilters.concat(key);    
   }
   if (arrayNameFilters.length === 0) return array;
   const arrayWithCategoryFilters = array.filter(elem => {
@@ -156,7 +176,6 @@ export default function getFilter(e: Event) {
   }
   
   let arrayWithAllFilters: ApplyWithLogin[] = [];
-  console.log(arrayWithAllFilters);
   if (e.target === online || e.target === ofline) {
     const arrayWithFormatFilters = checkFormatChosen(dataUserApply);
     const arrayWithCountryFilters = checkCountryChosen(arrayWithFormatFilters);
@@ -170,8 +189,7 @@ export default function getFilter(e: Event) {
     const arrayWithFormatFilters = checkFormatChosen(arrayWithCategoryFilters);
     arrayWithAllFilters = checkCountryChosen(arrayWithFormatFilters);
   }
-  console.log(arrayWithAllFilters);
-  
+    
   for (let index = 0; index < arrayWithAllFilters.length; index++) {
     const div = createDivItemCard(arrayWithAllFilters, index);
     requestsCards.appendChild(div); 
