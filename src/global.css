@@ -67,11 +67,7 @@ body {
   color: white;
 }
 
-@import './components/view/main-page/header/header.scss';
-@import './components//view/main-page/main/main.scss';
+@import './components/view/header/header.scss';
+@import './components//view/main/main.scss';
 @import './components/view/footer/footer.scss';
 @import './components/view/modal/modal.scss';
-
-@import './components/view/user-page/header/header.css';
-@import './components//view/user-page/main/main.css';
-@import './components/view/user-page/requests/main.css';
