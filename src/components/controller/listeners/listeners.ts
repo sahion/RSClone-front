@@ -3,6 +3,9 @@ import { RegisterElements } from '../../interfaces/RegisterElements';
 import { User } from '../../interfaces/User';
 import { registerRequest, registerValidation } from './registration';
 import getRequestFormData from '../dataHandlers/getRequestFormData';
+import { AuthorizeElements } from '../../interfaces/AuthorizeElements';
+import { UserAuth } from '../../interfaces/UserAuth';
+import { authorizeRequest } from './authorization';
 
 function showRegister(): void {
   const registerModal = document.querySelector('.modal-register') as HTMLElement;
@@ -83,6 +86,19 @@ export function registerSubmitListener() {
   });
 }
 
+export function authSubmitListener() {
+  const form = document.querySelector('.modal-login__form') as HTMLFormElement;
+  form.addEventListener('submit', (event: Event) => {
+    event.preventDefault();
+    const elements = form.elements as AuthorizeElements;
+    const user : UserAuth = {
+      login: elements.login.value,
+      pwd: elements.pwd.value,
+    };
+    authorizeRequest(user);
+  });
+}
+
 export function createRequestListener(): void {
   const requestForm = document.getElementById('requestForm') as HTMLFormElement;
   requestForm.addEventListener('submit', getRequestFormData);
@@ -96,5 +112,6 @@ export function addListeners(): void {
   createRequestListener();
   closeModalWindowListener();
   registerSubmitListener();
+  authSubmitListener();
 }
 

@@ -21,7 +21,7 @@ export default class Modal {
                   <input type="text" name="name" class="modal__input register__name" 
                   placeholder="Введите ваше имя" required>
                   <input type="password" name="pwd" class="modal__input register__password"
-                   placeholder="Выберите Пароль" minlength="6" required>
+                   placeholder="Введите Пароль" minlength="6" required>
                   <button class="btn modal__btn register__btn">Зарегистрироваться</button>
                 </form>
               </div>
@@ -36,8 +36,9 @@ export default class Modal {
                   <span class="modal__close modal-login__close">&times;</span>
                 </div> 
                 <form action="" class="modal__form modal-login__form">
-                  <input type="text" class="modal__input login__email" placeholder="Введите ваш email">
-                  <input type="password" class="modal__input login__password" placeholder="Введите ваш Пароль">
+                  <input type="text" name="login" class="modal__input login__email" placeholder="Введите ваш логин">
+                  <input type="password" name="pwd" class="modal__input login__password"
+                   placeholder="Введите ваш Пароль">
                   <button class="btn modal__btn login__btn">Войти</button>
                 </form>
               </div>

@@ -45,6 +45,7 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "dotenv-webpack": "^8.0.1",
+    "express-respond": "^1.6.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "nouislider": "^15.6.0",
     "validator": "^13.7.0"
