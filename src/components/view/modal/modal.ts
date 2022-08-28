@@ -1,3 +1,7 @@
+import vladimirAva from '../../assets/img/Владимир.png'; 
+import elenaAva from '../../assets/img/Елена.png'; 
+import svetlanaAva from '../../assets/img/Светлана.png'; 
+
 export default class Modal {
   wrapper: HTMLDivElement;
 
@@ -13,17 +17,17 @@ export default class Modal {
                   <span class="modal__close modal-register__close">&times;</span>
                 </div> 
                 <form action="#"
-                 class="modal__form modal-register__form">
+                  class="modal__form modal-register__form">
                   <input type="email" name="email" class="modal__input register__email"
-                   placeholder="Введите ваш email" required>
+                    placeholder="Введите ваш email" required>
                   <input type="text" name="login" class="modal__input register__username" 
                   placeholder="Выберите ваш логин" required>
                   <input type="text" name="name" class="modal__input register__name" 
                   placeholder="Введите ваше имя" required>
                   <input type="password" name="pwd" class="modal__input register__password"
-                   placeholder="Введите Пароль" minlength="6" required>
+                    placeholder="Введите Пароль" minlength="6" required>
                   <div class="modal-register__btns">
-                    <button class="btn modal__btn register__btn" type="submit">Зарегистрироваться</button>
+                    <button class="btn modal__btn register__btn color-btn" type="submit">Зарегистрироваться</button>
                     <button class="btn modal__btn register__btn-to-login">Войти</button>
                   </div>
                 </form>
@@ -42,9 +46,9 @@ export default class Modal {
 
                   <input type="text" name="login" class="modal__input login__email" placeholder="Введите ваш логин">
                   <input type="password" name="pwd" class="modal__input login__password"
-                   placeholder="Введите ваш Пароль">
+                    placeholder="Введите ваш Пароль">
                   <div class="modal__btns">
-                    <button class="btn modal__btn login__btn" type="submit">Войти</button>
+                    <button class="btn modal__btn login__btn color-btn" type="submit">Войти</button>
                     <button class="btn modal__btn login__btn-to-register">Зарегистрироваться</button>
                   </div>
                 </form>
@@ -146,10 +150,72 @@ export default class Modal {
     </div>`;   
   }
 
+  getCloseRequest(): string {
+    return `<div class="modal modal-close-request modal--hidden">
+              <div class="modal__content modal-login__content">
+                <div class="modal__header modal-login__header"> 
+                  <span class="modal__close modal-login__close"></span>
+                  <span class="modal__close modal-login__close">&times;</span>
+                </div> 
+                <span class="modal__title modal-login__title">Помощь была оказана?</span>
+                <div class="modal__btns">
+                  <button class="btn modal__btn login__btn get-help-yes">Да</button>
+                  <button class="btn modal__btn login__btn get-help-no">Нет</button>
+                </div>
+              </div>
+            </div>`;
+  }
+
+  getCloseRequestWithHelp(): string {
+    return `<div class="modal modal-close-request-with-help modal--hidden">
+              <div class="modal__content modal-login__content">
+                <div class="modal__header modal-login__header"> 
+                  <span class="modal__close modal-login__close"></span>
+                  <span class="modal__close modal-login__close">&times;</span>
+                </div> 
+                <span class="modal__title modal-login__title">Выберите волонтера:</span>
+                <div class="choose-volunteers">
+                  <img src=${vladimirAva} alt="Avatar">
+                  Владимир
+                </div>
+                <div class="choose-volunteers"> 
+                  <img src=${elenaAva} alt="Avatar">
+                  Елена
+                </div>
+                <div class="choose-volunteers">
+                  <img src=${svetlanaAva} alt="Avatar">
+                  Светлана
+                </div>
+                <div class="modal__btns">                  
+                  <button class="btn modal__btn login__btn give-rating">Оценить оказанную помощь</button>
+                  <button class="btn modal__btn login__btn give-thanks">Оставить благодарность</button>
+                </div>
+              </div>
+            </div>`;
+  }
+
+  getMessageEmail(): string {
+    return `<div class="modal modal-message-email modal--hidden">
+              <div class="modal__content modal-login__content">
+                <div class="modal__header modal-login__header message-email">                  
+                  <span class="modal__title"></span>
+                  <span class="modal__close modal-login__close">&times;</span> 
+                </div>
+              <div class="modal__header modal-login__header" style="color: #793CFB;">                
+                <span class="modal__title">Письмо с предложением <br> 
+                помощи отправлено!</span>
+              </div>                                  
+              </div>
+            </div>`;
+  }
+
   render(): HTMLDivElement {
     this.wrapper.innerHTML += this.getRegister();
     this.wrapper.innerHTML += this.getLogin();
     this.wrapper.innerHTML += this.getRequest();
+    this.wrapper.innerHTML += this.getCloseRequest();
+    this.wrapper.innerHTML += this.getMessageEmail();
+    this.wrapper.innerHTML += this.getCloseRequestWithHelp();
     this.wrapper.classList.add('modal-wrapper');
     return this.wrapper;
   }

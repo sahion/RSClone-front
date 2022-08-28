@@ -2,6 +2,7 @@ import { dataUserApply } from '../model/fakeDatabase/userApply';
 import { ApplyWithLogin, Category, Format, Country } from '../model/type/type';
 import createDivItemCard from './renderRequestCard';
 import LocalStorage from './classLocalStorage';
+import { showMessageEmail } from '../controller/listeners/listeners';
 
 export let filterCategoryChosen = {
   healthcare: false,
@@ -194,4 +195,6 @@ export default function getFilter(e: Event) {
     const div = createDivItemCard(arrayWithAllFilters, index);
     requestsCards.appendChild(div); 
   }
+  const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
+  [...helpBtns].map(item => item.addEventListener('click', showMessageEmail));
 }

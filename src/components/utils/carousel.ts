@@ -1,8 +1,7 @@
 import { dataUserApply } from '../model/fakeDatabase/userApply';
 import createDivItemCard from './renderRequestCard';
-function cons() {
-  console.log('modal');
-}
+import { showLogin } from '../controller/listeners/listeners';
+
 export default function carousel() {
   const cards = document.querySelector('.slider__items') as HTMLElement;
   const ITEM_LEFT = document.querySelector('.slider__item-left') as HTMLElement;
@@ -31,7 +30,7 @@ export default function carousel() {
       ITEM_RIGHT.appendChild(divRight);       
     } 
     const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
-    [...helpBtns].map(item => item.addEventListener('click', cons));  
+    [...helpBtns].map(item => item.addEventListener('click', showLogin));  
   }
   createCards(0);
 
@@ -64,7 +63,7 @@ export default function carousel() {
         currentIndex--;
         cardsWhile--;
         const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
-        [...helpBtns].map(item => item.addEventListener('click', cons));  
+        [...helpBtns].map(item => item.addEventListener('click', showLogin));  
       }
     } else {
       if (currentIndex === 0) currentIndex = cardsOnPage * 3;       
@@ -79,7 +78,7 @@ export default function carousel() {
         currentIndex++;
         cardsWhile--;
         const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
-        [...helpBtns].map(item => item.addEventListener('click', cons));  
+        [...helpBtns].map(item => item.addEventListener('click', showLogin));  
       }
     }    
     BTN_LEFT.addEventListener('click', moveLeft);
