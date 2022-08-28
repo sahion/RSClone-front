@@ -1,6 +1,8 @@
 import { dataUserApply } from '../model/fakeDatabase/userApply';
 import createDivItemCard from './renderRequestCard';
-
+function cons() {
+  console.log('modal');
+}
 export default function carousel() {
   const cards = document.querySelector('.slider__items') as HTMLElement;
   const ITEM_LEFT = document.querySelector('.slider__item-left') as HTMLElement;
@@ -27,7 +29,9 @@ export default function carousel() {
       ITEM_ACTIVE.appendChild(divActiv);
       const divRight = createDivItemCard(dataUserApply, index + (cardsOnPage * 2));
       ITEM_RIGHT.appendChild(divRight);       
-    }  
+    } 
+    const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
+    [...helpBtns].map(item => item.addEventListener('click', cons));  
   }
   createCards(0);
 
@@ -59,6 +63,8 @@ export default function carousel() {
         ITEM_LEFT.appendChild(div);
         currentIndex--;
         cardsWhile--;
+        const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
+        [...helpBtns].map(item => item.addEventListener('click', cons));  
       }
     } else {
       if (currentIndex === 0) currentIndex = cardsOnPage * 3;       
@@ -72,10 +78,12 @@ export default function carousel() {
         ITEM_RIGHT.appendChild(div);
         currentIndex++;
         cardsWhile--;
+        const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
+        [...helpBtns].map(item => item.addEventListener('click', cons));  
       }
     }    
     BTN_LEFT.addEventListener('click', moveLeft);
-    BTN_RIGHT.addEventListener('click', moveRight);    
+    BTN_RIGHT.addEventListener('click', moveRight);   
     return currentIndex;  
   });
 }

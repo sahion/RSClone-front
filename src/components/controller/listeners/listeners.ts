@@ -13,6 +13,12 @@ function userPageRequests(): void {
   createPageWithFilters();
   const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn');
   [...filtersBtns].map(item => item.addEventListener('click', getFilter));
+
+  function con() {
+    console.log('hepl');
+  }
+  const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
+  [...helpBtns].map(item => item.addEventListener('click', con));
 }
 
 function showRegister(event: Event): void {
