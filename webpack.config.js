@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+
 // const CopyPlugin = require('copy-webpack-plugin');
 
 let mode = 'development';
@@ -15,12 +18,23 @@ if (process.env.MODE_ENV === 'production') {
 const plugins = [
   new HtmlWebpackPlugin({
     template: 'src/index.html',
-  }),
+    inject: true,
+    chunks: ['main'],
+    filename: 'index.html'
+}),
+  new HtmlWebpackPlugin({
+    template: 'src/components/pages/user.html',
+    inject: true,
+    chunks: ['user'],
+    filename: 'user.html'
+}),
   new MiniCssExtractPlugin({
     filename: '[name].css',
   }),
   new CleanWebpackPlugin(),
   new ESLintWebpackPlugin({ extensions: 'ts' }),
+  new NodePolyfillPlugin(),
+  new Dotenv()
   // new CopyPlugin({
   //   patterns: [{
   //     from: './src/components/assets/img',
@@ -33,8 +47,12 @@ module.exports = {
   mode,
   plugins,
   target,
-  entry: './src/index',
+  entry: {
+    main: './src/index.ts',
+    user: './src/components/pages/user.ts', 
+  },
   output: {
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'assets/[hash][ext][query]',
     clean: true,
@@ -86,4 +104,3 @@ module.exports = {
     topLevelAwait: true,
   },
 };
-
