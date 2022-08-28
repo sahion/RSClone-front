@@ -12,13 +12,16 @@ export default class Modal {
                   <span class="modal__title modal-register__title">Регистрация</span>
                   <span class="modal__close modal-register__close">&times;</span>
                 </div> 
-                <form action="" class="modal__form modal-register__form">
-                  <input type="text" class="modal__input register__email"
-                    placeholder="Введите ваш email" autocomplete="off">
-                  <input type="text" class="modal__input register__username"
-                    placeholder="Выберите Имя Пользователя" autocomplete="off">
-                  <input type="password" class="modal__input register__password" placeholder="Выберите Пароль">
-                  <input type="password" class="modal__input register__password-ok" placeholder="Подтвердите Пароль">
+                <form action="#"
+                 class="modal__form modal-register__form">
+                  <input type="email" name="email" class="modal__input register__email"
+                   placeholder="Введите ваш email" required>
+                  <input type="text" name="login" class="modal__input register__username" 
+                  placeholder="Выберите ваш логин" required>
+                  <input type="text" name="name" class="modal__input register__name" 
+                  placeholder="Введите ваше имя" required>
+                  <input type="password" name="pwd" class="modal__input register__password"
+                   placeholder="Введите Пароль" minlength="6" required>
                   <div class="modal-register__btns">
                     <button class="btn modal__btn register__btn" type="submit">Зарегистрироваться</button>
                     <button class="btn modal__btn register__btn-to-login">Войти</button>
@@ -36,9 +39,10 @@ export default class Modal {
                   <span class="modal__close modal-login__close">&times;</span>
                 </div> 
                 <form action="" class="modal__form modal-login__form">
-                  <input type="text" class="modal__input login__email"
-                    placeholder="Введите ваш email" autocomplete="off">
-                  <input type="password" class="modal__input login__password" placeholder="Введите ваш Пароль">
+
+                  <input type="text" name="login" class="modal__input login__email" placeholder="Введите ваш логин">
+                  <input type="password" name="pwd" class="modal__input login__password"
+                   placeholder="Введите ваш Пароль">
                   <div class="modal__btns">
                     <button class="btn modal__btn login__btn" type="submit">Войти</button>
                     <button class="btn modal__btn login__btn-to-register">Зарегистрироваться</button>

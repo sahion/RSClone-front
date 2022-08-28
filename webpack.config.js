@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+
 // const CopyPlugin = require('copy-webpack-plugin');
 
 let mode = 'development';
@@ -30,6 +33,8 @@ const plugins = [
   }),
   new CleanWebpackPlugin(),
   new ESLintWebpackPlugin({ extensions: 'ts' }),
+  new NodePolyfillPlugin(),
+  new Dotenv()
   // new CopyPlugin({
   //   patterns: [{
   //     from: './src/components/assets/img',

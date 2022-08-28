@@ -1,4 +1,13 @@
+
+import { RegisterElements } from '../../interfaces/RegisterElements';
+import { User } from '../../interfaces/User';
+import { registerRequest, registerValidation } from './registration';
 import getRequestFormData from '../dataHandlers/getRequestFormData';
+import { AuthorizeElements } from '../../interfaces/AuthorizeElements';
+import { UserAuth } from '../../interfaces/UserAuth';
+import { authorizeRequest } from './authorization';
+import createDivItemCard from '../../utils/renderRequestCard';
+import { dataUserApply } from '../../model/fakeDatabase/userApply';
 import createPageWithFilters from '../../utils/createPageWithFilters';
 import Main from '../../view/main/main';
 import getFilter from '../../utils/filters';
@@ -122,11 +131,6 @@ export function openLoginWindowListener(): void {
   // cardBtn.addEventListener('click', showLogin);
 }
 
-export function createRequestListener(): void {
-  const requestForm = document.getElementById('requestForm') as HTMLFormElement;
-
-  requestForm.addEventListener('submit', getRequestFormData);
-}
 
 export function radioBtnListener(): void {
   const radioOfflineBtn = document.getElementById('offline') as HTMLInputElement;
@@ -136,6 +140,40 @@ export function radioBtnListener(): void {
   radioOnlineBtn.addEventListener('click', disableInputs);
 }
 
+export function registerSubmitListener() {
+  const form = document.querySelector('.modal-register__form') as HTMLFormElement;
+  form.addEventListener('submit', (event: Event) => {
+    event.preventDefault();
+    const elements = form.elements as RegisterElements;
+    const user : User = {
+      login: elements.login.value,
+      pwd: elements.pwd.value,
+      name: elements.name.value,
+      email: elements.email.value,
+    };
+    const dataValidated = registerValidation(user);
+    if (dataValidated.err) return alert(dataValidated.message);
+    registerRequest(user);
+  });
+}
+
+export function authSubmitListener() {
+  const form = document.querySelector('.modal-login__form') as HTMLFormElement;
+  form.addEventListener('submit', (event: Event) => {
+    event.preventDefault();
+    const elements = form.elements as AuthorizeElements;
+    const user : UserAuth = {
+      login: elements.login.value,
+      pwd: elements.pwd.value,
+    };
+    authorizeRequest(user);
+  });
+}
+
+export function createRequestListener(): void {
+  const requestForm = document.getElementById('requestForm') as HTMLFormElement;
+  requestForm.addEventListener('submit', getRequestFormData);
+}
 export function renderUserPageRequests(): void {
   const requestsBtn = document.querySelector('.buttons-section__btn-requests') as HTMLButtonElement;
 
@@ -175,6 +213,8 @@ export function addListeners(): void {
   openLoginWindowListener();
   createRequestListener();
   closeModalWindowListener();
+  registerSubmitListener();
+  authSubmitListener();
   radioBtnListener();
   globalCloseModal();
 }
@@ -186,4 +226,3 @@ export function addUserListeners(): void {
   checkboxPhoneListener();
   globalCloseModal();
 }
-
