@@ -33,6 +33,7 @@
     justify-content: space-between;
     margin-bottom: 2rem;
     text-align: center;
+    gap: 5rem;
   }
 
   &__title {
@@ -329,3 +330,34 @@
   margin: 5px 205px;
   cursor: pointer;
 }
+
+.modal-rating {
+
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  &__main:last-child {
+    margin-bottom: 0;
+  }
+
+  &__table {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &__score-subtitle {
+    cursor: pointer;
+  }
+
+  &__name-body {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
