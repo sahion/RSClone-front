@@ -22,12 +22,14 @@ function userPageRequests(): void {
   createPageWithFilters();
   const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn');
   [...filtersBtns].map(item => item.addEventListener('click', getFilter));
+}
 
-  function con() {
-    console.log('hepl');
-  }
-  const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
-  [...helpBtns].map(item => item.addEventListener('click', con));
+export function showMessageEmail(): void {
+  const requestModal = document.querySelector('.modal-message-email') as HTMLElement;
+
+  document.body.classList.add('modal--open');
+  requestModal.classList.remove('modal--hidden');
+  requestModal.classList.add('modal--active');
 }
 
 function showRegister(event: Event): void {
@@ -44,7 +46,7 @@ function showRegister(event: Event): void {
   document.body.classList.add('modal--open');
 }
 
-function showLogin(event: Event): void {
+export function showLogin(event: Event): void {
   const loginrModal = document.querySelector('.modal-login') as HTMLElement;
   const registerModal = document.querySelector('.modal-register') as HTMLElement;
   event.preventDefault();
@@ -64,6 +66,21 @@ function showRequest(): void {
   document.body.classList.add('modal--open');
   requestModal.classList.remove('modal--hidden');
   requestModal.classList.add('modal--active');
+}
+
+function showCloseRequest(): void {
+  const requestModal = document.querySelector('.modal-close-request') as HTMLElement;
+  document.body.classList.add('modal--open');
+  requestModal.classList.remove('modal--hidden');
+  requestModal.classList.add('modal--active');
+  const btnYes = document.querySelector('.get-help-yes') as HTMLElement;
+  function showCloseRequestBtns() {
+    const requestModalHelp = document.querySelector('.modal-close-request-with-help') as HTMLElement;
+    document.body.classList.add('modal--open');
+    requestModalHelp.classList.remove('modal--hidden');
+    requestModalHelp.classList.add('modal--active');
+  }
+  btnYes.addEventListener('click', showCloseRequestBtns);
 }
 
 function hideModal(): void {
@@ -207,6 +224,10 @@ export function globalCloseModal(): void {
     }
   });
 }
+export function openUserCloseRequestListener(): void {
+  const openRequestBtn: NodeListOf<Element> = document.querySelectorAll('.my-requests__close');
+  [...openRequestBtn].map(item => item.addEventListener('click', showCloseRequest));  
+}
 
 export function addListeners(): void {
   openRegisterWindowListener();
@@ -216,7 +237,7 @@ export function addListeners(): void {
   registerSubmitListener();
   authSubmitListener();
   radioBtnListener();
-  globalCloseModal();
+  globalCloseModal(); 
 }
 
 export function addUserListeners(): void {
@@ -225,4 +246,5 @@ export function addUserListeners(): void {
   closeModalWindowListener();
   checkboxPhoneListener();
   globalCloseModal();
+  openUserCloseRequestListener();
 }

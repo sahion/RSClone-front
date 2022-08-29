@@ -119,10 +119,10 @@ export default class Main {
             </ul>
           </div>
           <div class="card__btn">
-            <button class="btn my-requests__btn">
+            <button class="btn my-requests__btn my-requests__edit">
               <img src=${pen} alt="">
             </button>                
-            <button class="btn my-requests__btn">&times;</button>
+            <button class="btn my-requests__btn my-requests__close">&times;</button>
           </div>                
         </div>
         <div class="card">
@@ -138,10 +138,10 @@ export default class Main {
             </ul>
           </div>
           <div class="card__btn">
-            <button class="btn my-requests__btn">
+            <button class="btn my-requests__btn my-requests__edit">
               <img src=${pen} alt="">
             </button>                
-            <button class="btn my-requests__btn">&times;</button>
+            <button class="btn my-requests__btn my-requests__close">&times;</button>
           </div>                
         </div>
       </div>
@@ -153,9 +153,11 @@ export default class Main {
     return `
     <section class="buttons-section">
       <div class="buttons-section__frame7"></div>
-      <button class="btn buttons-section__btn-apply">Новая заявка</button>
-      <button class="btn buttons-section__btn-requests color-btn">Помочь</button>
-      <button class="btn buttons-section__btn-requests">История заявок</button>
+      <button class="btn buttons-section__btn-apply">Новая заявка</button>      
+      <button class="btn buttons-section__btn-requests-history">История заявок</button>
+      <div class="buttons-section__btn-requests__div"> 
+        <button class="btn buttons-section__btn-requests color-btn">Помочь</button>
+      </div>
     </section>`;
   }
 
