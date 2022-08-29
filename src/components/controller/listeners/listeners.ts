@@ -6,8 +6,6 @@ import getRequestFormData from '../dataHandlers/getRequestFormData';
 import { AuthorizeElements } from '../../interfaces/AuthorizeElements';
 import { UserAuth } from '../../interfaces/UserAuth';
 import { authorizeRequest } from '../../model/api/authorization';
-import createDivItemCard from '../../utils/renderRequestCard';
-import { dataUserApply } from '../../model/fakeDatabase/userApply';
 import createPageWithFilters from '../../utils/createPageWithFilters';
 import Main from '../../view/main/main';
 import getFilter from '../../utils/filters';
