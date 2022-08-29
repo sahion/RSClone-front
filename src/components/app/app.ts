@@ -1,4 +1,5 @@
 import { addListeners, addUserListeners } from '../controller/listeners/listeners';
+import { isAuthorized } from '../model/api/authorization';
 import Footer from '../view/footer/footer';
 import Header from '../view/header/header';
 import Main from '../view/main/main';
@@ -19,7 +20,10 @@ export default class App {
     this.footer = new Footer();
   }
 
-  init(page = 'main'): HTMLElement {
+  async init(page = 'main'): Promise<HTMLElement> {
+    const isAuth = await isAuthorized();
+    if (page === 'main' && isAuth) window.location.replace('http://localhost:8080/user.html');
+    else if (page === 'user' && !isAuth) window.location.replace('http://localhost:8080/');
     const modals: HTMLDivElement = new Modal().render();
     this.body.append(modals);
     this.body.append(this.header.render(page));
