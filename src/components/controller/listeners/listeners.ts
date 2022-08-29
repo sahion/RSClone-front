@@ -1,4 +1,3 @@
-
 import { RegisterElements } from '../../interfaces/RegisterElements';
 import { User } from '../../interfaces/User';
 import { registerRequest, registerValidation } from './registration';
@@ -6,9 +5,10 @@ import getRequestFormData from '../dataHandlers/getRequestFormData';
 import { AuthorizeElements } from '../../interfaces/AuthorizeElements';
 import { UserAuth } from '../../interfaces/UserAuth';
 import { authorizeRequest } from './authorization';
-import createPageWithFilters from '../../utils/createPageWithFilters';
+import { pagination } from '../../utils/pagination';
 import Main from '../../view/main/main';
 import getFilter from '../../utils/filters';
+import getArrayWithAllFilters from '../../utils/createPageWithFilters';
 
 function userPageRequests(): void {
   const main = document.querySelector('main') as HTMLElement;
@@ -17,7 +17,8 @@ function userPageRequests(): void {
   main.innerHTML += newMain.getUserFiltersSection();
   main.innerHTML += newMain.getUsersRequestsSection();
   main.innerHTML += newMain.getUserPaginationBtnsSection();
-  createPageWithFilters();
+  const arrayWithAllFilters = getArrayWithAllFilters();
+  pagination(arrayWithAllFilters);
   const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn');
   [...filtersBtns].map(item => item.addEventListener('click', getFilter));
 }

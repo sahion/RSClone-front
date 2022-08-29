@@ -23,11 +23,11 @@ export default function carousel() {
   function createCards(index: number) {    
     for (index; index < cardsOnPage; index++) {
       const divLeft = createDivItemCard(dataUserApply, index);
-      ITEM_LEFT.appendChild(divLeft); 
+      if (divLeft) ITEM_LEFT.appendChild(divLeft); 
       const divActiv = createDivItemCard(dataUserApply, index + cardsOnPage);
-      ITEM_ACTIVE.appendChild(divActiv);
+      if (divActiv) ITEM_ACTIVE.appendChild(divActiv);
       const divRight = createDivItemCard(dataUserApply, index + (cardsOnPage * 2));
-      ITEM_RIGHT.appendChild(divRight);       
+      if (divRight) ITEM_RIGHT.appendChild(divRight);       
     } 
     const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
     [...helpBtns].map(item => item.addEventListener('click', showLogin));  
@@ -59,7 +59,7 @@ export default function carousel() {
       while (cardsWhile) {
         if (currentIndex === 0) currentIndex = dataUserApply.length - 1;
         const div = createDivItemCard(dataUserApply, currentIndex);
-        ITEM_LEFT.appendChild(div);
+        if (div) ITEM_LEFT.appendChild(div);
         currentIndex--;
         cardsWhile--;
         const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
@@ -74,7 +74,7 @@ export default function carousel() {
       while (cardsWhile) {   
         if (currentIndex === dataUserApply.length) currentIndex = 0;     
         const div = createDivItemCard(dataUserApply, currentIndex);
-        ITEM_RIGHT.appendChild(div);
+        if (div) ITEM_RIGHT.appendChild(div);
         currentIndex++;
         cardsWhile--;
         const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');

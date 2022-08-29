@@ -1,6 +1,7 @@
 import { ApplyWithLogin } from '../model/type/type';
 
-export default function createDivItemCard(data: ApplyWithLogin[], index: number): HTMLElement {
+export default function createDivItemCard(data: ApplyWithLogin[], index: number) {
+  if (typeof data[index] === 'undefined') return;
   const div: HTMLDivElement = document.createElement('div');
   const location = data[index].location ? data[index].location : '-';
   div.id = `${data[index].login}`;

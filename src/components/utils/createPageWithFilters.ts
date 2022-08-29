@@ -2,12 +2,8 @@ import { dataUserApply } from '../model/fakeDatabase/userApply';
 import { filterCategoryChosen, filterFormatChosen, filterCountryChosen } from './filters';
 import { checkCategoryChosen, checkFormatChosen, checkCountryChosen } from './filters';
 import { ApplyWithLogin } from '../model/type/type';
-import createDivItemCard from './renderRequestCard';
-import { showMessageEmail } from '../controller/listeners/listeners';
 
-export default function createPageWithFilters() {
-  const requestsCards = document.querySelector('.requests-section__cards') as HTMLElement;
-  
+export default function getArrayWithAllFilters() {
   let arrayWithAllFilters: ApplyWithLogin[] = [];
 
   function getarrayNameFilters<T>(filterChosen: T) {
@@ -25,11 +21,5 @@ export default function createPageWithFilters() {
   const arrayWithCategoryFilters = checkCategoryChosen(dataUserApply);
   const arrayWithFormatFilters = checkFormatChosen(arrayWithCategoryFilters);
   arrayWithAllFilters = checkCountryChosen(arrayWithFormatFilters);
-  console.log(arrayWithAllFilters);
-  for (let index = 0; index < arrayWithAllFilters.length; index++) {
-    const div = createDivItemCard(arrayWithAllFilters, index);
-    requestsCards.appendChild(div); 
-  }
-  const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
-  [...helpBtns].map(item => item.addEventListener('click', showMessageEmail));  
+  return arrayWithAllFilters;
 }

@@ -66,6 +66,17 @@ body {
   border: 3px solid #9a6bff;
   color: white;
 }
+.no-active{
+  border: 2px solid #CDCDCD;
+  color: #CDCDCD;
+  pointer-events: none;
+}
+.no-active:hover{
+  border: 2px solid #CDCDCD;
+  color: #CDCDCD;
+  background-color: #F6F6F6;
+  cursor: auto;
+}
 
 @import './components/view/header/header.scss';
 @import './components//view/main/main.scss';
