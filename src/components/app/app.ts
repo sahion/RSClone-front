@@ -1,4 +1,5 @@
 import { addListeners, addUserListeners } from '../controller/listeners/listeners';
+import { rating } from '../model/fakeDatabase/rating';
 import Footer from '../view/footer/footer';
 import Header from '../view/header/header';
 import Main from '../view/main/main';
@@ -20,7 +21,7 @@ export default class App {
   }
 
   init(page = 'main'): HTMLElement {
-    const modals: HTMLDivElement = new Modal().render();
+    const modals: HTMLDivElement = new Modal().render(rating);
     this.body.append(modals);
     this.body.append(this.header.render(page));
     this.body.append(this.main.render(page));
@@ -35,6 +36,7 @@ export default class App {
         break;
       }
     }
+    sessionStorage.setItem('sortBy', 'asc');
     return this.body;
   }
 }

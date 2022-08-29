@@ -1,7 +1,8 @@
 import vladimirAva from '../../assets/img/Владимир.png'; 
 import elenaAva from '../../assets/img/Елена.png'; 
 import svetlanaAva from '../../assets/img/Светлана.png'; 
-import { rating } from '../../model/fakeDatabase/rating';
+// import { rating } from '../../model/fakeDatabase/rating';
+import { Rating } from '../../model/type/type';
 
 export default class Modal {
   wrapper: HTMLDivElement;
@@ -226,7 +227,7 @@ export default class Modal {
     `;
   }
 
-  getRating(): string {
+  getRating(arr: Rating): string {
     return `
     <div class="modal modal-rating modal--hidden">  
       <div class="modal__content modal-rating__content">
@@ -238,21 +239,38 @@ export default class Modal {
           <h6 class="modal-rating__name-subtitle">Имя</h6>
           <h6 class="modal-rating__score-subtitle">Дела</h6>
         </div>
-          ${rating.map(item => this.renderRatingTable(item.ava, item.name, item.score)).join('')}
+          ${arr.map(item => this.renderRatingTable(item.ava, item.name, item.score)).join('')}
         </div>
       </div>
     </div>
     `;
   }
 
-  render(): HTMLDivElement {
+  getSortedRating(arr: Rating): string {
+    return `
+      <div class="modal__content modal-rating__content">
+        <div class="modal__header modal-rating__header">
+          <span class="modal__title modal-rating__title">Таблица рейтинга волонтёров</span>
+          <span class="modal__close modal-rating__close">&times;</span>
+        </div> 
+        <div class="modal-rating__table">
+          <h6 class="modal-rating__name-subtitle">Имя</h6>
+          <h6 class="modal-rating__score-subtitle">Дела</h6>
+        </div>
+          ${arr.map(item => this.renderRatingTable(item.ava, item.name, item.score)).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  render(arr: Rating): HTMLDivElement {
     this.wrapper.innerHTML += this.getRegister();
     this.wrapper.innerHTML += this.getLogin();
     this.wrapper.innerHTML += this.getRequest();
     this.wrapper.innerHTML += this.getCloseRequest();
     this.wrapper.innerHTML += this.getMessageEmail();
     this.wrapper.innerHTML += this.getCloseRequestWithHelp();
-    this.wrapper.innerHTML += this.getRating();
+    this.wrapper.innerHTML += this.getRating(arr);
     this.wrapper.classList.add('modal-wrapper');
     return this.wrapper;
   }
