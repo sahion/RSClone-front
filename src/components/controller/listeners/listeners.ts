@@ -86,6 +86,8 @@ function showRating(): void {
 
   ratingModal.classList.remove('modal--hidden');
   ratingModal.classList.add('modal--active');
+
+  document.body.classList.add('modal--open');
 }
 
 function hideModal(): void {
@@ -143,14 +145,12 @@ export function openLoginWindowListener(): void {
   const helpBtn = document.getElementById('helpSpan') as HTMLButtonElement;
   const requestBtn = document.getElementById('requestSpan') as HTMLButtonElement;
   const registerBtn = document.querySelector('.register__btn-to-login') as HTMLButtonElement;
-  // const cardBtn = document.querySelector('.card__login-btn') as HTMLButtonElement;
 
   [...loginBtns].map(btn => btn.addEventListener('click', showLogin));
   helpBtn.addEventListener('click', showLogin);
   requestBtn.addEventListener('click', showLogin);
   loginBtn.addEventListener('click', showLogin);
   registerBtn.addEventListener('click', showLogin);
-  // cardBtn.addEventListener('click', showLogin);
 }
 
 
