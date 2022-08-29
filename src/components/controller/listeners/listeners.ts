@@ -81,6 +81,13 @@ function showCloseRequest(): void {
   btnYes.addEventListener('click', showCloseRequestBtns);
 }
 
+function showRating(): void {
+  const ratingModal = document.querySelector('.modal-rating') as HTMLElement;
+
+  ratingModal.classList.remove('modal--hidden');
+  ratingModal.classList.add('modal--active');
+}
+
 function hideModal(): void {
   const registerModal: NodeListOf<Element> = document.querySelectorAll('.modal');
 
@@ -227,9 +234,16 @@ export function openUserCloseRequestListener(): void {
   [...openRequestBtn].map(item => item.addEventListener('click', showCloseRequest));  
 }
 
+export function openRatingWindow(): void {
+  const ratingbtn = document.querySelector('.thanks-section__btn') as HTMLButtonElement;
+
+  ratingbtn.addEventListener('click', showRating);
+}
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
+  openRatingWindow();
   createRequestListener();
   closeModalWindowListener();
   registerSubmitListener();
