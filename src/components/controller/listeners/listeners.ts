@@ -11,6 +11,9 @@ import { dataUserApply } from '../../model/fakeDatabase/userApply';
 import createPageWithFilters from '../../utils/createPageWithFilters';
 import Main from '../../view/main/main';
 import getFilter from '../../utils/filters';
+import Modal from '../../view/modal/modal';
+import { rating } from '../../model/fakeDatabase/rating';
+import { Rating } from '../../model/type/type';
 
 function userPageRequests(): void {
   const main = document.querySelector('main') as HTMLElement;
@@ -83,6 +86,15 @@ function showCloseRequest(): void {
   btnYes.addEventListener('click', showCloseRequestBtns);
 }
 
+function showRating(): void {
+  const ratingModal = document.querySelector('.modal-rating') as HTMLElement;
+
+  ratingModal.classList.remove('modal--hidden');
+  ratingModal.classList.add('modal--active');
+
+  document.body.classList.add('modal--open');
+}
+
 function hideModal(): void {
   const registerModal: NodeListOf<Element> = document.querySelectorAll('.modal');
 
@@ -138,14 +150,12 @@ export function openLoginWindowListener(): void {
   const helpBtn = document.getElementById('helpSpan') as HTMLButtonElement;
   const requestBtn = document.getElementById('requestSpan') as HTMLButtonElement;
   const registerBtn = document.querySelector('.register__btn-to-login') as HTMLButtonElement;
-  // const cardBtn = document.querySelector('.card__login-btn') as HTMLButtonElement;
 
   [...loginBtns].map(btn => btn.addEventListener('click', showLogin));
   helpBtn.addEventListener('click', showLogin);
   requestBtn.addEventListener('click', showLogin);
   loginBtn.addEventListener('click', showLogin);
   registerBtn.addEventListener('click', showLogin);
-  // cardBtn.addEventListener('click', showLogin);
 }
 
 
@@ -162,7 +172,7 @@ export function registerSubmitListener() {
   form.addEventListener('submit', (event: Event) => {
     event.preventDefault();
     const elements = form.elements as RegisterElements;
-    const user : User = {
+    const user: User = {
       login: elements.login.value,
       pwd: elements.pwd.value,
       name: elements.name.value,
@@ -179,7 +189,7 @@ export function authSubmitListener() {
   form.addEventListener('submit', (event: Event) => {
     event.preventDefault();
     const elements = form.elements as AuthorizeElements;
-    const user : UserAuth = {
+    const user: UserAuth = {
       login: elements.login.value,
       pwd: elements.pwd.value,
     };
@@ -226,18 +236,51 @@ export function globalCloseModal(): void {
 }
 export function openUserCloseRequestListener(): void {
   const openRequestBtn: NodeListOf<Element> = document.querySelectorAll('.my-requests__close');
-  [...openRequestBtn].map(item => item.addEventListener('click', showCloseRequest));  
+  [...openRequestBtn].map(item => item.addEventListener('click', showCloseRequest));
+}
+
+export function openRatingWindow(): void {
+  const ratingbtn = document.querySelector('.thanks-section__btn') as HTMLButtonElement;
+
+  ratingbtn.addEventListener('click', showRating);
+}
+
+export function sortRating(): void {
+  const sortBtn = document.querySelector('.modal-rating__score-subtitle') as HTMLElement;
+  const modal: Modal = new Modal();
+
+  sortBtn.addEventListener('click', () => {
+    const ratingContent = document.querySelector('.modal-rating') as HTMLElement;
+    const sortBy = sessionStorage.getItem('sortBy') as string;
+    
+    if (sortBy === 'asc') {
+      const arr: Rating = rating.sort((a, b) => b.score - a.score);
+      ratingContent.innerHTML = '';
+      ratingContent.innerHTML = modal.getSortedRating(arr);
+      sessionStorage.setItem('sortBy', 'desc');    
+    } else {
+      const arr: Rating = rating.sort((a, b) => a.score - b.score);
+      ratingContent.innerHTML = '';
+      ratingContent.innerHTML = modal.getSortedRating(arr);
+      sessionStorage.setItem('sortBy', 'asc');
+    }
+    
+    closeModalWindowListener();
+    sortRating();
+  });
 }
 
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
+  openRatingWindow();
   createRequestListener();
   closeModalWindowListener();
   registerSubmitListener();
   authSubmitListener();
   radioBtnListener();
-  globalCloseModal(); 
+  globalCloseModal();
+  sortRating();
 }
 
 export function addUserListeners(): void {

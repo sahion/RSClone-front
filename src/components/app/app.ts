@@ -1,4 +1,5 @@
 import { addListeners, addUserListeners } from '../controller/listeners/listeners';
+import { rating } from '../model/fakeDatabase/rating';
 import { isAuthorized } from '../model/api/authorization';
 import Footer from '../view/footer/footer';
 import Header from '../view/header/header';
@@ -39,6 +40,7 @@ export default class App {
         break;
       }
     }
+    sessionStorage.setItem('sortBy', 'asc');
     return this.body;
   }
 }
