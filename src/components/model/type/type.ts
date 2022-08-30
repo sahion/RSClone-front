@@ -42,3 +42,9 @@ export enum Country {
   russia = 'Российская Федерация',
   ukraine = 'Украина',
 }
+
+export type Rating = {
+  ava: string, 
+  name: string, 
+  score: number,
+}[];

@@ -1,8 +1,8 @@
 import { dataUserApply } from '../model/fakeDatabase/userApply';
 import { ApplyWithLogin, Category, Format, Country } from '../model/type/type';
-import createDivItemCard from './renderRequestCard';
 import LocalStorage from './classLocalStorage';
 import { showMessageEmail } from '../controller/listeners/listeners';
+import { pagination } from './pagination';
 
 export let filterCategoryChosen = {
   healthcare: false,
@@ -112,6 +112,7 @@ export default function getFilter(e: Event) {
   const ukraine = document.querySelector('.ukraine') as HTMLElement;
 
   const requestsCards = document.querySelector('.requests-section__cards') as HTMLElement;
+  const pege = document.querySelector('.page') as HTMLElement;
   requestsCards.innerHTML = '';
   switch (e.target) {
     case healthcare:
@@ -181,6 +182,7 @@ export default function getFilter(e: Event) {
     const arrayWithFormatFilters = checkFormatChosen(dataUserApply);
     const arrayWithCountryFilters = checkCountryChosen(arrayWithFormatFilters);
     arrayWithAllFilters = checkCategoryChosen(arrayWithCountryFilters);
+    
   } else if (e.target === russia || e.target === belarus || e.target === ukraine) {
     const arrayWithCountryFilters = checkCountryChosen(dataUserApply);
     const arrayWithFormatFilters = checkFormatChosen(arrayWithCountryFilters);
@@ -190,11 +192,12 @@ export default function getFilter(e: Event) {
     const arrayWithFormatFilters = checkFormatChosen(arrayWithCategoryFilters);
     arrayWithAllFilters = checkCountryChosen(arrayWithFormatFilters);
   }
-    
-  for (let index = 0; index < arrayWithAllFilters.length; index++) {
-    const div = createDivItemCard(arrayWithAllFilters, index);
-    requestsCards.appendChild(div); 
-  }
+  pagination(arrayWithAllFilters);
+  pege.innerText = '1';
+  console.log(arrayWithAllFilters);
+  //+++++++++++
+
+  //++++++++++++++++
   const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
   [...helpBtns].map(item => item.addEventListener('click', showMessageEmail));
 }
