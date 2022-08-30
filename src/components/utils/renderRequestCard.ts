@@ -13,7 +13,7 @@ export default function createDivItemCard(data: ApplyWithLogin[], index: number)
                           <img src=${data[index].avatar} alt="Avatar">
                         </div>
                       </div>
-                      <div class="card__title">${data[index].description}</div>
+                      <div class="card__title" title="${data[index].description}">${data[index].description}</div>
                       <div class="card__info">
                         <ul>
                           <li><span class="card__span">Категория:</span> ${data[index].category}</li>

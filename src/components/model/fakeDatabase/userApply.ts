@@ -40,7 +40,9 @@ export const dataUserApply: ApplyWithLogin[] = [
     format: Format.ofline,
     country: Country.russia,
     location: 'г.Москва', 
-    description: 'Нужно вынести мебель', 
+    description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde voluptates quidem amet aperiam est
+      ratione, ut nulla blanditiis. Eaque consequuntur porro blanditiis doloremque. Harum eius assumenda quasi, 
+      rerum accusantium officia.`, 
     open: true,
   },
   {
