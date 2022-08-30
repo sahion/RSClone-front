@@ -4,7 +4,10 @@ import { registerRequest, registerValidation } from '../../model/api/registratio
 import getRequestFormData from '../dataHandlers/getRequestFormData';
 import { AuthorizeElements } from '../../interfaces/AuthorizeElements';
 import { UserAuth } from '../../interfaces/UserAuth';
-import { authorizeRequest } from '../../model/api/authorization';
+import { authorizeRequest, logout } from '../../model/api/authorization';
+import createDivItemCard from '../../utils/renderRequestCard';
+import { dataUserApply } from '../../model/fakeDatabase/userApply';
+import createPageWithFilters from '../../utils/createPageWithFilters';
 import { pagination } from '../../utils/pagination';
 import getArrayWithAllFilters from '../../utils/createPageWithFilters';
 import Main from '../../view/main/main';
@@ -269,6 +272,14 @@ export function sortRating(): void {
   });
 }
 
+export function logoutListener(): void {
+  const logoutBtn =  document.querySelector('.logout');
+  logoutBtn?.addEventListener('click', (event) => {
+    event.preventDefault();
+    logout();
+  });
+}
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
@@ -289,4 +300,5 @@ export function addUserListeners(): void {
   checkboxPhoneListener();
   globalCloseModal();
   openUserCloseRequestListener();
+  logoutListener();
 }
