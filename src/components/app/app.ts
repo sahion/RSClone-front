@@ -5,6 +5,8 @@ import Footer from '../view/footer/footer';
 import Header from '../view/header/header';
 import Main from '../view/main/main';
 import Modal from '../view/modal/modal';
+import { sortedArr } from '../utils/getSortedRatingArr';
+
 export default class App {
   body: HTMLElement;
 
@@ -25,7 +27,7 @@ export default class App {
     const isAuth = await isAuthorized();
     if (page === 'main' && isAuth) window.location.replace('http://localhost:8080/user.html');
     else if (page === 'user' && !isAuth) window.location.replace('http://localhost:8080/');
-    const modals: HTMLDivElement = new Modal().render(rating);
+    const modals: HTMLDivElement = new Modal().render(sortedArr(rating));
     this.body.append(modals);
     this.body.append(this.header.render(page));
     this.body.append(this.main.render(page));

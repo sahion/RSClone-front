@@ -239,6 +239,7 @@ export default class Modal {
           <h6 class="modal-rating__name-subtitle">Имя</h6>
           <h6 class="modal-rating__score-subtitle">Дела</h6>
         </div>
+        <div class="modal-rating__body">
           ${arr.map(item => this.renderRatingTable(item.ava, item.name, item.score)).join('')}
         </div>
       </div>
@@ -257,6 +258,7 @@ export default class Modal {
           <h6 class="modal-rating__name-subtitle">Имя</h6>
           <h6 class="modal-rating__score-subtitle">Дела</h6>
         </div>
+        <div class="modal-rating__body">
           ${arr.map(item => this.renderRatingTable(item.ava, item.name, item.score)).join('')}
         </div>
       </div>
