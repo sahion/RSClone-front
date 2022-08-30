@@ -14,8 +14,8 @@ export function getCardsOnPage() {
   return cardsOnPage;
 }
 
-export function pagination(array: ApplyWithLogin[]) {
-  const pege = document.querySelector('.page') as HTMLElement;
+export function pagination(array: ApplyWithLogin[]) {    
+  const page = document.querySelector('.page') as HTMLElement;
   const BTN_PREV = document.querySelector('.prev') as HTMLElement;
   const BTN_NEXT = document.querySelector('.next') as HTMLElement;
   const BTN_START = document.querySelector('.start-page') as HTMLElement;
@@ -23,7 +23,8 @@ export function pagination(array: ApplyWithLogin[]) {
   const requestsCards = document.querySelector('.requests-section__cards') as HTMLElement;
   let indexStartRender = 0;
   let pageNum = 1;
-  const cardsOnPage = getCardsOnPage();   
+  const cardsOnPage = getCardsOnPage();
+  
   function createPageWithFilters(index: number) {
     requestsCards.innerHTML = '';
     for (let i = index; i < (index + cardsOnPage); i++) {              
@@ -37,12 +38,13 @@ export function pagination(array: ApplyWithLogin[]) {
   if (!BTN_START.classList.contains('no-active')) BTN_START.classList.add('no-active');
   if (!BTN_PREV.classList.contains('no-active')) BTN_PREV.classList.add('no-active');
 
+  if (page.classList.contains('no-active')) page.classList.remove('no-active');
   if (cardsOnPage < array.length) {
     if (BTN_END.classList.contains('no-active')) BTN_END.classList.remove('no-active');
     if (BTN_NEXT.classList.contains('no-active')) BTN_NEXT.classList.remove('no-active');
     BTN_END.addEventListener('click', () => {
       pageNum = Math.ceil(array.length / cardsOnPage); 
-      pege.innerText = `${pageNum}`;
+      page.innerText = `${pageNum}`;
       BTN_END.classList.toggle('no-active');
       BTN_NEXT.classList.toggle('no-active');
       BTN_START.classList.remove('no-active');
@@ -52,7 +54,7 @@ export function pagination(array: ApplyWithLogin[]) {
     });
     BTN_START.addEventListener('click', () => {
       pageNum = 1; 
-      pege.innerText = `${pageNum}`;
+      page.innerText = `${pageNum}`;
       BTN_END.classList.remove('no-active');
       BTN_NEXT.classList.remove('no-active');
       BTN_START.classList.toggle('no-active');
@@ -67,7 +69,7 @@ export function pagination(array: ApplyWithLogin[]) {
       } 
       indexStartRender = pageNum * cardsOnPage;
       pageNum++; 
-      pege.innerText = `${pageNum}`;
+      page.innerText = `${pageNum}`;
       if (pageNum == Math.ceil(array.length / cardsOnPage)) { 
         BTN_END.classList.toggle('no-active');
         BTN_NEXT.classList.toggle('no-active');
@@ -81,7 +83,7 @@ export function pagination(array: ApplyWithLogin[]) {
       } 
       pageNum--;
       indexStartRender = (pageNum * cardsOnPage) - cardsOnPage; 
-      pege.innerText = `${pageNum}`;
+      page.innerText = `${pageNum}`;
       if (pageNum == 1) { 
         if (!BTN_START.classList.contains('no-active')) BTN_START.classList.add('no-active');
         if (!BTN_PREV.classList.contains('no-active')) BTN_PREV.classList.add('no-active');
@@ -91,5 +93,9 @@ export function pagination(array: ApplyWithLogin[]) {
   } else {
     if (!BTN_END.classList.contains('no-active')) BTN_END.classList.add('no-active');
     if (!BTN_NEXT.classList.contains('no-active')) BTN_NEXT.classList.add('no-active');
+  } 
+  if (array.length === 0) {
+    requestsCards.innerHTML = 'Таких заявок у нас к сожалению нет...';
+    page.classList.add('no-active');
   }
 }
