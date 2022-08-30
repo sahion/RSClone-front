@@ -136,6 +136,19 @@
     padding: 10px;
   }
 
+  &__title {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 45px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  &__info {
+    height: 80px;
+  }
+
   &__span {
     font-weight: 600;
     color: #793CFB;
