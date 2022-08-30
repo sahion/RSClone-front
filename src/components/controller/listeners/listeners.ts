@@ -251,16 +251,16 @@ export function sortRating(): void {
     const ratingContent = document.querySelector('.modal-rating') as HTMLElement;
     const sortBy = sessionStorage.getItem('sortBy') as string;
     
-    if (sortBy === 'asc') {
+    if (sortBy === 'desc') {
       const arr: Rating = rating.sort((a, b) => b.score - a.score);
       ratingContent.innerHTML = '';
       ratingContent.innerHTML = modal.getSortedRating(arr);
-      sessionStorage.setItem('sortBy', 'desc');    
+      sessionStorage.setItem('sortBy', 'asc');    
     } else {
       const arr: Rating = rating.sort((a, b) => a.score - b.score);
       ratingContent.innerHTML = '';
       ratingContent.innerHTML = modal.getSortedRating(arr);
-      sessionStorage.setItem('sortBy', 'asc');
+      sessionStorage.setItem('sortBy', 'desc');
     }
     
     closeModalWindowListener();
