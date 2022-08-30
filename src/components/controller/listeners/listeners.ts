@@ -1,11 +1,10 @@
-
 import { RegisterElements } from '../../interfaces/RegisterElements';
 import { User } from '../../interfaces/User';
 import { registerRequest, registerValidation } from '../../model/api/registration';
 import getRequestFormData from '../dataHandlers/getRequestFormData';
 import { AuthorizeElements } from '../../interfaces/AuthorizeElements';
 import { UserAuth } from '../../interfaces/UserAuth';
-import { authorizeRequest } from '../../model/api/authorization';
+import { authorizeRequest, logout } from '../../model/api/authorization';
 import createDivItemCard from '../../utils/renderRequestCard';
 import { dataUserApply } from '../../model/fakeDatabase/userApply';
 import createPageWithFilters from '../../utils/createPageWithFilters';
@@ -229,6 +228,14 @@ export function openUserCloseRequestListener(): void {
   [...openRequestBtn].map(item => item.addEventListener('click', showCloseRequest));  
 }
 
+export function logoutListener(): void {
+  const logoutBtn =  document.querySelector('.logout');
+  logoutBtn?.addEventListener('click', (event) => {
+    event.preventDefault();
+    logout();
+  });
+}
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
@@ -247,4 +254,5 @@ export function addUserListeners(): void {
   checkboxPhoneListener();
   globalCloseModal();
   openUserCloseRequestListener();
+  logoutListener();
 }

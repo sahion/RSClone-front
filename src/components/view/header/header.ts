@@ -46,7 +46,7 @@ export default class Header {
                 <li class="header__submenu-item"><a href="">Просмотреть</a></li>
                 <li class="header__submenu-item"><a href="">Редактировать</a></li>
                 <li class="header__submenu-item header__logout">
-                  <a href="">Выйти</a>          
+                  <a class='logout' href="">Выйти</a>          
                 </li>
               </ul>
             </li>

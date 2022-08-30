@@ -22,21 +22,23 @@ export default class App {
 
   async init(page = 'main'): Promise<HTMLElement> {
     const isAuth = await isAuthorized();
-    if (page === 'main' && isAuth) window.location.replace('http://localhost:8080/user.html');
-    else if (page === 'user' && !isAuth) window.location.replace('http://localhost:8080/');
-    const modals: HTMLDivElement = new Modal().render();
-    this.body.append(modals);
-    this.body.append(this.header.render(page));
-    this.body.append(this.main.render(page));
-    this.body.append(this.footer.render());
-    switch (page) {
-      case ('main'): {
-        addListeners();
-        break;
-      }
-      case ('user'): {
-        addUserListeners();
-        break;
+    if (page === 'main' && isAuth) window.location.href = 'http://localhost:8080/user.html';
+    else if (page === 'user' && !isAuth) window.location.href = 'http://localhost:8080/';
+    else {
+      const modals: HTMLDivElement = new Modal().render();
+      this.body.append(modals);
+      this.body.append(this.header.render(page));
+      this.body.append(this.main.render(page));
+      this.body.append(this.footer.render());
+      switch (page) {
+        case ('main'): {
+          addListeners();
+          break;
+        }
+        case ('user'): {
+          addUserListeners();
+          break;
+        }
       }
     }
     return this.body;

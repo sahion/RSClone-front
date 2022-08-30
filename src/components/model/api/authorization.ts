@@ -40,3 +40,16 @@ export async function  isAuthorized() {
       return false;
   }
 }
+
+
+export async function  logout() {
+  localStorage.removeItem('token');
+  try {
+    const response = await fetch(`${server}/logout`);
+    console.log(response.status);
+    window.location.href = 'http://localhost:8080/';
+  } catch (err) {
+    console.log(err);
+  }
+  
+}
