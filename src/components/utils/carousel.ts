@@ -1,6 +1,9 @@
 import { dataUserApply } from '../model/fakeDatabase/userApply';
 import createDivItemCard from './renderRequestCard';
 import { showLogin } from '../controller/listeners/listeners';
+import { pageState } from '../model/pageState';
+
+const mainPage: string = pageState[0];
 
 export default function carousel() {
   const cards = document.querySelector('.slider__items') as HTMLElement;
@@ -22,11 +25,11 @@ export default function carousel() {
   
   function createCards(index: number) {    
     for (index; index < cardsOnPage; index++) {
-      const divLeft = createDivItemCard(dataUserApply, index);
+      const divLeft = createDivItemCard(dataUserApply, index, mainPage);
       if (divLeft) ITEM_LEFT.appendChild(divLeft); 
-      const divActiv = createDivItemCard(dataUserApply, index + cardsOnPage);
+      const divActiv = createDivItemCard(dataUserApply, index + cardsOnPage, mainPage);
       if (divActiv) ITEM_ACTIVE.appendChild(divActiv);
-      const divRight = createDivItemCard(dataUserApply, index + (cardsOnPage * 2));
+      const divRight = createDivItemCard(dataUserApply, index + (cardsOnPage * 2), mainPage);
       if (divRight) ITEM_RIGHT.appendChild(divRight);       
     } 
     const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
@@ -58,7 +61,7 @@ export default function carousel() {
       ITEM_LEFT.innerHTML = '';
       while (cardsWhile) {
         if (currentIndex === 0) currentIndex = dataUserApply.length - 1;
-        const div = createDivItemCard(dataUserApply, currentIndex);
+        const div = createDivItemCard(dataUserApply, currentIndex, mainPage);
         if (div) ITEM_LEFT.appendChild(div);
         currentIndex--;
         cardsWhile--;
@@ -73,7 +76,7 @@ export default function carousel() {
       ITEM_RIGHT.innerHTML = '';     
       while (cardsWhile) {   
         if (currentIndex === dataUserApply.length) currentIndex = 0;     
-        const div = createDivItemCard(dataUserApply, currentIndex);
+        const div = createDivItemCard(dataUserApply, currentIndex, mainPage);
         if (div) ITEM_RIGHT.appendChild(div);
         currentIndex++;
         cardsWhile--;

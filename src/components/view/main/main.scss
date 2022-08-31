@@ -327,64 +327,22 @@
 }
 
 //user-pagination-page 
+.user-section__wrapper {
+  display: flex;
+  max-width: 1200px;
+  margin: 120px auto 40px;
+  gap: 4rem;
+}
+
 .filters-section {
+  max-width: 16rem;
   position: relative;
   background: url(./components/assets/img/BG4.png) 50%/cover no-repeat;
 
-  &__details {
-    width: 800px;
-    margin: 0 auto;
+  &__filters {
     display: flex;
-    justify-content: center;
-    border-bottom: dotted 1px #793CFB;
-    flex-wrap: wrap;
-    background: #fff;
-    overflow: hidden;
-  }
-
-  &__details:nth-child(5) {
-    border-bottom: none;
-  }
-
-  &__details[open] > .filters-section__summary::before {
-    transform: scale(1, -1);
-  }
-
-  &__details[open] .filters-section__summary ~ * {
-    animation: sweep .5s ease-in-out;
-  }
-
-  &__summary {
-    font-size: 16px;
-    margin: 5px;
-    display: block;
-    padding: .3em 1em .3em .9em;
-    cursor: pointer;
-    position: relative;
-  }
-
-  &__summary::before {
-    top: .4em;
-    right: .3em;
-    color: transparent;
-    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTYuNTkgOC41OUwxMiAxMy4xNyA3LjQxIDguNTkgNiAxMGw2IDYgNi02eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=") no-repeat 50% 50% / 1em 1em;
-    width: 1em;
-    height: 1em;
-    content: "";
-    position: absolute;
-    transition: transform .5s;
-  }
-
-  &__summary ~ * {
-    padding: 0 1em 10px 1.4em;
-  }
-
-  &__summary ~ *:last-child {
-    padding: 0 1em 0 1.4em;
-  }
-
-  &__summary:focus {
-    outline: 0;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   &__btn {
@@ -401,7 +359,7 @@
 
   &__btn:hover {
     background-color: #9a6bff;
-    border: 3px solid #9a6bff;
+    border: 1px solid #9a6bff;
     color: white;
   }
 
@@ -417,12 +375,14 @@
   margin: 0 auto;
 
   &__cards {
-    margin: 120px 20px 20px;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+  }
+
+  &__card {
+    margin: 0;
   }
 }
 
