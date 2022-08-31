@@ -1,4 +1,4 @@
-import { UserAuth } from '../../interfaces/UserAuth';
+import { UserAuth } from '../interfaces/UserAuth';
 
 const port = process.env.SERVER_PORT || 3000;
 const server = `http://localhost:${port}`;
@@ -23,7 +23,6 @@ export async function authorizeRequest(user: UserAuth) {
   }
 }
 
-
 export async function  isAuthorized() {
   const token = localStorage.getItem('token');
   if (!token) return false;
@@ -40,7 +39,6 @@ export async function  isAuthorized() {
       return false;
   }
 }
-
 
 export async function  logout() {
   localStorage.removeItem('token');

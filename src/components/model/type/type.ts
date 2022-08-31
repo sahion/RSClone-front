@@ -24,7 +24,7 @@ export type UserThanks = {
 export enum Category {
   healthcare = 'Здравоохранение',
   emergency = 'ЧС',
-  veterans = 'Ветераны и историческая память',
+  veterans = 'Пенсионеры',
   invalid = 'Люди с ОВС',
   сhildren = 'Дети и подростки',
   animal = 'Животные',
@@ -38,8 +38,8 @@ export enum Format {
   ofline = 'Офлайн',
 }
 export enum Country {
-  belarus = 'Республика Беларусь',
-  russia = 'Российская Федерация',
+  belarus = 'Беларусь',
+  russia = 'Россия',
   ukraine = 'Украина',
 }
 
@@ -48,3 +48,8 @@ export type Rating = {
   name: string, 
   score: number,
 }[];
+
+export type PageState = [
+  main: string,
+  user: string,
+];

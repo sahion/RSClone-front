@@ -1,6 +1,9 @@
 import createDivItemCard from './renderRequestCard';
 import { showMessageEmail } from '../controller/listeners/listeners';
 import { ApplyWithLogin } from '../model/type/type';
+import { pageState } from '../model/pageState';
+
+const userPage: string = pageState[1];
 
 export function getCardsOnPage() {
   let cardsOnPage: number;  
@@ -28,7 +31,7 @@ export function pagination(array: ApplyWithLogin[]) {
   function createPageWithFilters(index: number) {
     requestsCards.innerHTML = '';
     for (let i = index; i < (index + cardsOnPage); i++) {              
-      const div = createDivItemCard(array, i);
+      const div = createDivItemCard(array, i, userPage);
       if (div) requestsCards.appendChild(div); 
     }
     const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');

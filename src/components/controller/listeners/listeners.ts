@@ -1,9 +1,9 @@
-import { RegisterElements } from '../../interfaces/RegisterElements';
-import { User } from '../../interfaces/User';
+import { RegisterElements } from '../../model/interfaces/RegisterElements';
+import { User } from '../../model/interfaces/User';
 import { registerRequest, registerValidation } from '../../model/api/registration';
 import getRequestFormData from '../dataHandlers/getRequestFormData';
-import { AuthorizeElements } from '../../interfaces/AuthorizeElements';
-import { UserAuth } from '../../interfaces/UserAuth';
+import { AuthorizeElements } from '../../model/interfaces/AuthorizeElements';
+import { UserAuth } from '../../model/interfaces/UserAuth';
 import { authorizeRequest, logout } from '../../model/api/authorization';
 import { pagination } from '../../utils/pagination';
 import getArrayWithAllFilters from '../../utils/createPageWithFilters';
@@ -17,8 +17,7 @@ function userPageRequests(): void {
   const main = document.querySelector('main') as HTMLElement;
   const newMain: Main = new Main();
   main.innerHTML = '';
-  main.innerHTML += newMain.getUserFiltersSection();
-  main.innerHTML += newMain.getUsersRequestsSection();
+  main.innerHTML += newMain.getWrapper();
   main.innerHTML += newMain.getUserPaginationBtnsSection();
   const arrayWithAllFilters = getArrayWithAllFilters();
   pagination(arrayWithAllFilters);
