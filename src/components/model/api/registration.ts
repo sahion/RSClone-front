@@ -1,5 +1,5 @@
 import validator from 'validator';
-import { User } from '../../interfaces/User';
+import { User } from '../interfaces/User';
 
 
 export function registerValidation(user: User ) {

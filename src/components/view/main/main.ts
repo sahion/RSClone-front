@@ -161,48 +161,49 @@ export default class Main {
     </section>`;
   }
 
+  getWrapper(): string {
+    return `
+      <div class="user-section__wrapper">
+        ${this.getUserFiltersSection()}
+        ${this.getUsersRequestsSection()}
+      </div>
+    `;
+  }
+
   getUserFiltersSection(): string {
     return ` 
-    <a href="user.html">
-      <button class="btn">Назад</button>
-    </a>
     <section class="filters-section">
-      <div class="container">
-        <details class="filters-section__details filters">
-          <summary class="filters-section__summary">Фильтры</summary>
-          <p>
-            <details class="filters-section__details format">
-              <summary class="filters-section__summary">Выбрать формат</summary>
-              <p>
-                <button class="filters-section__btn online">Онлайн</button>
-                <button class="filters-section__btn ofline">Офлайн</button>
-              </p>                
-            </details>
-            <details class="filters-section__details country">
-              <summary class="filters-section__summary">Выбрать страну</summary>
-              <p>
-                <button class="filters-section__btn belarus">Республика Беларусь</button>
-                <button class="filters-section__btn russia">Российская Федерация</button>
-                <button class="filters-section__btn ukraine">Украина</button>
-              </p>
-            </details>
-            <details class="filters-section__details category">
-              <summary class="filters-section__summary">Выбрать категорию</summary>
-              <p>
-                <button class="filters-section__btn healthcare">Здравоохранение</button>
-                <button class="filters-section__btn emergency">ЧС</button>
-                <button class="filters-section__btn veterans">Ветераны и историческая память</button>
-                <button class="filters-section__btn invalid">Люди с ОВС</button>
-                <button class="filters-section__btn сhildren">Дети и подростки</button>
-                <button class="filters-section__btn animal">Животные</button>
-                <button class="filters-section__btn nature">Природа</button>
-                <button class="filters-section__btn science">Наука</button>
-                <button class="filters-section__btn education">Образование</button>
-                <button class="filters-section__btn other">Другое</button>
-              </p>
-            </details>
-          </p>
-        </details>
+        <div class="filters-section__filters">
+          <div class="filters-section__format">
+            <h5 class="filters-section__title format__title">Выбрать формат</h5>
+            <div class="filters-section__body">
+              <button class="filters-section__btn ofline">Офлайн</button>
+              <button class="filters-section__btn online">Онлайн</button>
+            </div>
+          </div>
+          <div class="filters-section__country">
+            <h5 class="filters-section__title country__title">Выбрать страну</h5>
+            <div class="filters-section__body">
+              <button class="filters-section__btn belarus">Беларусь</button>
+              <button class="filters-section__btn russia">Россия</button>
+              <button class="filters-section__btn ukraine">Украина</button>
+            </div>
+          </div>
+          <div class="filters-section__category">
+            <h5 class="filters-section__title category__title">Выбрать категорию</h5>
+            <div class="filters-section__body">
+              <button class="filters-section__btn healthcare">Здравоохранение</button>
+              <button class="filters-section__btn emergency">ЧС</button>
+              <button class="filters-section__btn veterans">Пенсионеры</button>
+              <button class="filters-section__btn сhildren">Дети</button>
+              <button class="filters-section__btn invalid">Люди с ОВС</button>
+              <button class="filters-section__btn science">Наука</button>
+              <button class="filters-section__btn animal">Животные</button>
+              <button class="filters-section__btn nature">Природа</button>
+              <button class="filters-section__btn education">Образование</button>
+              <button class="filters-section__btn other">Другое</button>
+            </div>
+          </div>
         </div>
       <div class="filters-section__frame8"></div>
     </section>`;

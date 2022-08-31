@@ -1,11 +1,14 @@
 import { ApplyWithLogin } from '../model/type/type';
 
-export default function createDivItemCard(data: ApplyWithLogin[], index: number) {
+export default function createDivItemCard(data: ApplyWithLogin[], index: number, page: string) {
   if (typeof data[index] === 'undefined') return;
   const div: HTMLDivElement = document.createElement('div');
   const location = data[index].location ? data[index].location : '-';
   div.id = `${data[index].login}`;
-  div.className = 'card';
+  
+  if (page === 'main') div.className = 'card';
+  else div.className = 'card requests-section__card';
+
   div.innerHTML = `                   
                       <div class="card__header">
                         <div class="card__name">${data[index].login}</div>
