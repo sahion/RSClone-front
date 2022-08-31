@@ -108,7 +108,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #FAFAFA;
+  background-color: #fdfdfd;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
   border-radius: 15px;  
   overflow: hidden;
 
@@ -332,12 +333,21 @@
   max-width: 1200px;
   margin: 120px auto 40px;
   gap: 4rem;
+  background: url(./components/assets/img/BG4.png) 50%/cover no-repeat;
+
+  &__frame8 {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 100%;
+    height: 150px;
+    background: url(./components/assets/img/Frame8.png) 50%/contain no-repeat;
+  }
 }
 
 .filters-section {
-  max-width: 16rem;
-  position: relative;
-  background: url(./components/assets/img/BG4.png) 50%/cover no-repeat;
+  max-width: 14rem;
+  position: relative;  
 
   &__filters {
     display: flex;
@@ -349,7 +359,7 @@
     min-width: 50px;
     height: 30px;
     padding: 0 15px;
-    margin: 15px 5px;
+    margin: 5px 25px;
     border: 2px solid #793CFB;
     border-radius: 50px;
     font-size: 15px;
@@ -361,13 +371,6 @@
     background-color: #9a6bff;
     border: 1px solid #9a6bff;
     color: white;
-  }
-
-  &__frame8 {
-    position: absolute;
-    width: 100%;
-    height: 150px;
-    background: url(./components/assets/img/Frame8.png) 50%/contain no-repeat;
   }
 }
 

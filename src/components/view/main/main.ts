@@ -164,6 +164,7 @@ export default class Main {
   getWrapper(): string {
     return `
       <div class="user-section__wrapper">
+      <div class="user-section__wrapper__frame8"></div>
         ${this.getUserFiltersSection()}
         ${this.getUsersRequestsSection()}
       </div>
@@ -205,7 +206,7 @@ export default class Main {
             </div>
           </div>
         </div>
-      <div class="filters-section__frame8"></div>
+
     </section>`;
   }
 
