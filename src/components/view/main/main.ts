@@ -163,9 +163,6 @@ export default class Main {
 
   getUserFiltersSection(): string {
     return ` 
-    <a href="user.html">
-      <button class="btn">Назад</button>
-    </a>
     <section class="filters-section">
       <div class="container">
         <details class="filters-section__details filters">

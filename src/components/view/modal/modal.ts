@@ -189,7 +189,6 @@ export default class Modal {
                   Светлана
                 </div>
                 <div class="modal__btns">                  
-                  <button class="btn modal__btn login__btn give-rating">Оценить оказанную помощь</button>
                   <button class="btn modal__btn login__btn give-thanks">Оставить благодарность</button>
                 </div>
               </div>
