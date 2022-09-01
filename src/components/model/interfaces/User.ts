@@ -4,3 +4,10 @@ export interface User {
   name: string,
   pwd: string
 }
+
+export interface UserVisualData {
+  email: string,
+  login: string,
+  name: string,
+  avatar: string
+}

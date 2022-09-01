@@ -14,7 +14,9 @@ export async function authorizeRequest(user: UserAuth) {
     });
     const result = await response.json();
     const token = result.accessToken;
+    const userId = result.accessToken;
     localStorage.setItem('token', token );
+    localStorage.setItem('userId', userId );
     location.reload();
     return console.log(result);
   } catch (err) {
