@@ -12,6 +12,33 @@ import getFilter from '../../utils/filters';
 import Modal from '../../view/modal/modal';
 import { rating } from '../../model/fakeDatabase/rating';
 import { Rating } from '../../model/type/type';
+import { showFiltersMenu, hideFiltersMenu, innerTextClosed } from '../../utils/filtersMenuToggle';
+
+export function sideMenuListener(): void {
+  const sideMenu = document.querySelector('.side-menu') as HTMLElement;
+  let isOverlay = false;
+
+  sideMenu.onclick = (): void => {
+    if ((sideMenu.querySelector('.side-menu__span') as HTMLElement).innerText === innerTextClosed) {
+      showFiltersMenu();
+    } else hideFiltersMenu();
+  };
+
+  document.onmousedown = (event: Event): void => {
+    if (!(event.target as HTMLElement).closest('.filters-section__filters') && 
+    !(event.target as HTMLElement).closest('.side-menu')) {
+      isOverlay = true;
+    }
+  };
+
+  document.onmouseup = (event: Event): void => {
+    if (!(event.target as HTMLElement).closest('.filters-section__filters') && 
+    !(event.target as HTMLElement).closest('.side-menu') && isOverlay) {
+      isOverlay = false;
+      hideFiltersMenu();
+    }
+  };
+}
 
 function userPageRequests(): void {
   const main = document.querySelector('main') as HTMLElement;
@@ -23,6 +50,8 @@ function userPageRequests(): void {
   pagination(arrayWithAllFilters);
   const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn');
   [...filtersBtns].map(item => item.addEventListener('click', getFilter));
+
+  sideMenuListener();
 }
 
 export function showMessageEmail(): void {
