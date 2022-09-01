@@ -1,4 +1,5 @@
 import validator from 'validator';
+import { showMessage } from '../../utils/showMessage';
 import { User } from '../interfaces/User';
 
 
@@ -27,10 +28,12 @@ export async function registerRequest(user: User) {
       },
       body: JSON.stringify(user),
     });
-    const result = await response.json();
-    return console.log(result);
+    // const result = await response.json();
+    if (response.status === 201) {
+      showMessage('Пользователь успешно зарегистрирован');
+    } else showMessage(`Ошибка ${response.status}`, true);
   } catch (err) {
     if (err instanceof Error)
-      return alert('Проблемы с подключением к серверу');
+      showMessage('Проблемы с подключением к серверу', true);
   }
 }

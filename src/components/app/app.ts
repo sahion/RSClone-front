@@ -24,6 +24,7 @@ export default class App {
   }
 
   async init(page = 'main'): Promise<HTMLElement> {
+
     const isAuth = await isAuthorized();
     if (page === 'main' && isAuth) window.location.href = 'http://localhost:8080/user.html';
     else if (page === 'user' && !isAuth) window.location.href = 'http://localhost:8080/';

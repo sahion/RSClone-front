@@ -60,3 +60,33 @@
   background-color: #793CFB;
   color: white;
 }
+
+/*message*/
+.message{
+  display: block;
+  position: fixed;
+  font-size: 20px;
+  right: -310px; 
+  bottom: 5vh;
+  max-width: 310px;
+  margin: 10px 0;
+  padding: 10px 30px;
+  border-radius: 15px;
+  animation-name: move;
+  animation-duration: 4s;
+  z-index: 300;
+  color: #270;
+  background-color: #DFF2BF;
+  &_error{
+    color: #D8000C;
+    background-color: #FFBABA;
+  }
+}
+  
+
+
+@keyframes move {
+  0% { right: -310px; }
+  50% { right: 10px; }
+  100% { right: -310px; }
+}

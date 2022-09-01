@@ -164,6 +164,7 @@ export default class Main {
   getWrapper(): string {
     return `
       <div class="user-section__wrapper">
+        <div class="user-section__wrapper__frame8"></div>
         <div class="side-menu">
           <span class="side-menu__span">Показать фильтры</span>
         </div>
@@ -208,7 +209,7 @@ export default class Main {
             </div>
           </div>
         </div>
-      <div class="filters-section__frame8"></div>
+
     </section>`;
   }
 
