@@ -63,10 +63,6 @@
 
 /*message*/
 .message{
-  display: none;
-}
-.success-msg,
-.error-msg {
   display: block;
   position: fixed;
   font-size: 20px;
@@ -78,17 +74,16 @@
   border-radius: 15px;
   animation-name: move;
   animation-duration: 4s;
-  z-index: 300;  
-}
-
-.success-msg {
+  z-index: 300;
   color: #270;
   background-color: #DFF2BF;
+  &_error{
+    color: #D8000C;
+    background-color: #FFBABA;
+  }
 }
-.error-msg {
-  color: #D8000C;
-  background-color: #FFBABA;
-}
+  
+
 
 @keyframes move {
   0% { right: -310px; }

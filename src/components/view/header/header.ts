@@ -27,7 +27,6 @@ export default class Header {
           <button class="btn header__register-btn" id="register">Регистрация</button>
         </div>
       </div>
-      <div class="message"></div>
     </div>`;
   }
 
@@ -53,7 +52,6 @@ export default class Header {
           </ul>
         </nav>          
       </div>
-      <div class="message"></div>
     </div>`;
   }
 
