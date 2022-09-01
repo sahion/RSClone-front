@@ -125,7 +125,7 @@ export default class Modal {
           <div class="request-location">
             <h4 class="request-location__title">Локация и дата оказания помощи:</h4>
             <div class="select-wrapper">
-              <select class="request-location__select select" disabled name="location" id="location">
+              <select class="request-location__select select" name="location" id="location">
                 <option value="country" selected disabled>Страна</option>
                 <option value="belarus">Республика Беларусь</option>
                 <option value="russia">Российская Федерация</option>

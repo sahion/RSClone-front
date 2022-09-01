@@ -53,3 +53,10 @@ export type PageState = [
   main: string,
   user: string,
 ];
+
+export type Vars = {
+  sideMenu: HTMLElement,
+  sideMenuSpan: HTMLElement,
+  filtersWrapper: HTMLElement,
+  filters: HTMLElement,
+};

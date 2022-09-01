@@ -9,6 +9,10 @@
 
   &__logo-img {
     width: 100px;
+
+    @media (max-width: 580px) {
+      max-width: 5rem;;
+    }
   }
 
   &__nav-list {
@@ -20,6 +24,17 @@
     margin: 20px;
     font-size: 20px;
     color: #221437;
+
+    @media (max-width: 580px) {
+      font-size: 1rem;
+      margin-right: 0.7rem;
+    }
+
+    @media (max-width: 413px) {
+      font-size: 1rem;
+      margin-right: 0.7rem;
+      max-width: 6rem;
+    }
   }
 
   //user-page
@@ -30,6 +45,10 @@
     margin: 0 auto;
     text-align: center;
     cursor: pointer;
+
+    @media (max-width: 580px) {
+      max-width: 5rem;
+    }
   }
 
   &__submenu {
@@ -84,8 +103,6 @@
   }
 }
   
-
-
 @keyframes move {
   0% { right: -310px; }
   50% { right: 10px; }

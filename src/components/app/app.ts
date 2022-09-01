@@ -30,7 +30,7 @@ export default class App {
     else if (page === 'user' && !isAuth) window.location.href = 'http://localhost:8080/';
     const modals: HTMLDivElement = new Modal().render(sortedArr(rating));
     this.body.append(modals);
-    this.body.append(await this.header.render(page));
+    this.body.append(this.header.render(page));
     this.body.append(this.main.render(page));
     this.body.append(this.footer.render());
     switch (page) {
