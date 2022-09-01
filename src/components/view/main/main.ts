@@ -164,6 +164,9 @@ export default class Main {
   getWrapper(): string {
     return `
       <div class="user-section__wrapper">
+        <div class="side-menu">
+          <span class="side-menu__span">Показать фильтры</span>
+        </div>
         ${this.getUserFiltersSection()}
         ${this.getUsersRequestsSection()}
       </div>

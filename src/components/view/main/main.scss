@@ -85,17 +85,30 @@
 }
 
 @keyframes move-right {
-  from {left: -990px;}
-  to {left: -1980px;}
+  from {
+    left: -990px;
+  }
+
+  to {
+    left: -1980px;
+  }
 }
+
 .transition-right {
   animation-name: move-right;
   animation-duration: 2s;
 }
+
 @keyframes move-left {
-  from {left: -990px;}
-  to {left: 0px;}
+  from {
+    left: -990px;
+  }
+
+  to {
+    left: 0px;
+  }
 }
+
 .transition-left {
   animation-name: move-left;
   animation-duration: 2s;
@@ -109,7 +122,7 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: #FAFAFA;
-  border-radius: 15px;  
+  border-radius: 15px;
   overflow: hidden;
 
   &__header,
@@ -343,6 +356,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    transition: all .5s ease;
   }
 
   &__btn {
@@ -411,7 +425,99 @@
   }
 }
 
-.color-btn{
+.color-btn {
   background-color: #793CFB;
   color: white;
+}
+
+.side-menu {
+  display: none;
+  background-color: #ABC264;
+  border-radius: 3%;
+  position: fixed;
+  top: 50%;
+  z-index: 2;
+  transition: all .5s ease;
+
+  &__span {
+    padding: 0.5rem;
+    writing-mode: tb-rl;
+    transform: rotate(180deg);
+    cursor: pointer;
+  }
+
+  &__span--close {
+    writing-mode: unset;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .filters-section {
+
+    &--close {
+      display: none;
+    }
+
+    &__filters {
+      display: none;
+    }
+
+    &__filters {
+      transform: scale(0);
+    }
+
+    &--overlay {
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      width: 100vw;
+      background: none;
+      background-color: rgba(0, 0, 0, 0.5);
+      max-width: 100%;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    &__filters--fadeout {
+      max-width: 16rem;
+      position: fixed;
+      top: 25%;
+      padding: 0.5rem;
+      background-color: #FAFAFA;
+      border-radius: 2%;
+      z-index: 3;
+      transform: scale(0);
+    }
+
+    &__filters--fadein {
+      max-width: 16rem;
+      position: fixed;
+      top: 25%;
+      padding: 0.5rem;
+      background-color: #FAFAFA;
+      border-radius: 2%;
+      z-index: 3;
+      transform: scale(1);
+    }
+
+    &__filters--open {
+      display: flex;
+    }
+  }
+
+  .requests-section__cards {
+    justify-content: center;
+  }
+
+  .side-menu {
+    display: block;
+
+    &--close {
+      left: 20px;
+      top: 22%;
+      z-index: 3;
+      background-color: #ABC264;
+    }
+  }
 }
