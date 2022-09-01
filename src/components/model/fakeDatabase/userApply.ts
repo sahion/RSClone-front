@@ -1,11 +1,13 @@
 import vladimirAva from '../../assets/img/Владимир.png'; 
 import elenaAva from '../../assets/img/Елена.png'; 
 import svetlanaAva from '../../assets/img/Светлана.png'; 
-import { ApplyWithLogin, Category, Format, Country } from '../type/type';
+import { ApplyWithUser, Category, Format, Country } from '../type/type';
 
-export const dataUserApply: ApplyWithLogin[] = [
+export const dataUserApply: ApplyWithUser[] = [
   {
-    login: 'Владимир',
+    name: 'Владимир',
+    userId: 1,
+    participants: [],
     avatar: vladimirAva,
     category: Category.healthcare,
     format: Format.ofline,
@@ -15,7 +17,9 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Елена',
+    name: 'Елена',
+    userId: 1,
+    participants: [],
     avatar: elenaAva,
     category: Category.emergency,
     format: Format.ofline,
@@ -25,7 +29,9 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Светлана',
+    name: 'Светлана',
+    userId: 1,
+    participants: [],
     avatar: svetlanaAva,
     category: Category.science,
     format: Format.online,
@@ -34,8 +40,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Егор',
+    name: 'Егор',
     avatar: vladimirAva,
+    userId: 1,
+    participants: [],
     category: Category.veterans,
     format: Format.ofline,
     country: Country.russia,
@@ -46,8 +54,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Ольга',
+    name: 'Ольга',
     avatar: elenaAva,
+    userId: 1,
+    participants: [],
     category: Category.invalid,
     format: Format.ofline,
     country: Country.russia,
@@ -56,8 +66,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Юля',
+    name: 'Юля',
     avatar: svetlanaAva,
+    userId: 1,
+    participants: [],
     category: Category.сhildren,
     format: Format.ofline,
     country: Country.russia,    
@@ -65,8 +77,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Денис',
+    name: 'Денис',
     avatar: vladimirAva,
+    userId: 1,
+    participants: [],
     category: Category.animal,
     format: Format.ofline,
     country: Country.ukraine,
@@ -75,8 +89,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Саша',
+    name: 'Саша',
     avatar: elenaAva,
+    userId: 1,
+    participants: [],
     category: Category.nature,
     format: Format.ofline,
     country: Country.ukraine,
@@ -85,8 +101,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Юля',
+    name: 'Юля',
     avatar: svetlanaAva,
+    userId: 1,
+    participants: [],
     category: Category.education,
     format: Format.online,
     country: Country.ukraine,    
@@ -94,8 +112,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Даша',
+    name: 'Даша',
     avatar: svetlanaAva,
+    userId: 1,
+    participants: [],
     category: Category.other,
     format: Format.ofline,
     country: Country.russia, 
@@ -104,8 +124,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Виталик',
+    name: 'Виталик',
     avatar: vladimirAva,
+    userId: 1,
+    participants: [],
     category: Category.veterans,
     format: Format.ofline,
     country: Country.belarus,
@@ -114,8 +136,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Фаина',
+    name: 'Фаина',
     avatar: elenaAva,
+    userId: 1,
+    participants: [],
     category: Category.veterans,
     format: Format.ofline,
     country: Country.ukraine,
@@ -124,8 +148,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Зоя',
+    name: 'Зоя',
     avatar: svetlanaAva,
+    userId: 1,
+    participants: [],
     category: Category.healthcare,
     format: Format.ofline,
     country: Country.ukraine,
@@ -134,8 +160,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: true,
   },
   {
-    login: 'Петя',
+    name: 'Петя',
     avatar: svetlanaAva,
+    userId: 1,
+    participants: [],
     category: Category.healthcare,
     format: Format.ofline,
     country: Country.ukraine, 
@@ -144,8 +172,10 @@ export const dataUserApply: ApplyWithLogin[] = [
     open: false,
   },
   {
-    login: 'Анатолий',
+    name: 'Анатолий',
     avatar: svetlanaAva,
+    userId: 1,
+    participants: [],
     category: Category.healthcare,
     format: Format.ofline,
     country: Country.ukraine, 

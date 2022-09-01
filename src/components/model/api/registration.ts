@@ -1,6 +1,6 @@
 import validator from 'validator';
 import { showMessage } from '../../utils/showMessage';
-import { User } from '../interfaces/User';
+import { User } from '../type/User';
 
 
 export function registerValidation(user: User ) {

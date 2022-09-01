@@ -1,17 +1,17 @@
-import { ApplyWithLogin } from '../model/type/type';
+import { ApplyWithUser } from '../model/type/type';
 
-export default function createDivItemCard(data: ApplyWithLogin[], index: number, page: string) {
+export default function createDivItemCard(data: ApplyWithUser[], index: number, page: string) {
   if (typeof data[index] === 'undefined') return;
   const div: HTMLDivElement = document.createElement('div');
   const location = data[index].location ? data[index].location : '-';
-  div.id = `${data[index].login}`;
+  div.id = `${data[index].name}`;
   
   if (page === 'main') div.className = 'card';
   else div.className = 'card requests-section__card';
 
   div.innerHTML = `                   
                       <div class="card__header">
-                        <div class="card__name">${data[index].login}</div>
+                        <div class="card__name">${data[index].name}</div>
                         <div class="card__avatar">
                           <img src=${data[index].avatar} alt="Avatar">
                         </div>

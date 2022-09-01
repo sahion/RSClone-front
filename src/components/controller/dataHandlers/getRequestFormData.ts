@@ -11,7 +11,7 @@ export default function getRequestFormData(event: Event): Apply {
   const time = data.get('time') as string;
   const text = data.get('textarea') as string;
 
-  function getContacts(): (string | null)[] {
+  /*   function getContacts(): (string | null)[] {
     const phone = document.getElementById('phone') as HTMLElement;
     const email = document.getElementById('email') as HTMLElement;
     const messenger = document.getElementById('messenger') as HTMLElement;
@@ -28,15 +28,14 @@ export default function getRequestFormData(event: Event): Apply {
     (event.target as HTMLFormElement).reset();
 
     return contact;
-  }
+  } */
   
   const formData: Apply = {
     category: category,
     format: format,
-    contact: getContacts(),
     country: country,
     location: address,
-    time: time,
+    date: time,
     description: text,
     open: true,
   };

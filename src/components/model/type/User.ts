@@ -1,4 +1,5 @@
 export interface User {
+  
   email: string,
   login: string,
   name: string,
@@ -6,8 +7,14 @@ export interface User {
 }
 
 export interface UserVisualData {
+  id?: number,
   email: string,
   login: string,
   name: string,
   avatar: string
+}
+
+export interface UserAuth {
+  login: string,
+  pwd: string
 }

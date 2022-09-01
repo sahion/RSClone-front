@@ -1,6 +1,6 @@
 import createDivItemCard from './renderRequestCard';
 import { showMessageEmail } from '../controller/listeners/listeners';
-import { ApplyWithLogin } from '../model/type/type';
+import { ApplyWithUser } from '../model/type/type';
 import { pageState } from '../model/pageState';
 
 const userPage: string = pageState[1];
@@ -17,7 +17,7 @@ export function getCardsOnPage() {
   return cardsOnPage;
 }
 
-export function pagination(array: ApplyWithLogin[]) {    
+export function pagination(array: ApplyWithUser[]) {    
   const page = document.querySelector('.page') as HTMLElement;
   const BTN_PREV = document.querySelector('.prev') as HTMLElement;
   const BTN_NEXT = document.querySelector('.next') as HTMLElement;
