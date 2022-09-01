@@ -1,5 +1,5 @@
 import logo from '../../assets/img/Logo.png';
-import vladimirAva from '../../assets/img/Владимир.png';
+import { getAuthUserData } from '../../model/api/users';
 
 export default class Header {
   wrapper: HTMLElement;
@@ -31,6 +31,8 @@ export default class Header {
   }
 
   getUserHeader(): string {
+    const user = getAuthUserData();
+    if (!user) return '</h1>you are not authorized</>';
     return `
     <div class="container">
       <div class="header__wrapper">
@@ -39,9 +41,9 @@ export default class Header {
         </div>
         <nav class="header__nav">
           <ul class="header__nav-list">
-            <li class="header__nav-item">Здравствуйте, Владимир!</li>
+            <li class="header__nav-item">Здравствуйте, ${user.name}!</li>
             <li class="header__nav-item header__avatar">
-              <img class="header__avatar-img" src=${vladimirAva} alt="Avatar">
+              <img class="header__avatar" src=${user.avatar} alt="Avatar">
               <ul class="header__submenu">
                 <li class="header__submenu-item"><a href="">Редактировать</a></li>
                 <li class="header__submenu-item header__logout">
