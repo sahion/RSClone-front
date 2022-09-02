@@ -169,30 +169,43 @@ export default class Modal {
   }
 
   getCloseRequestWithHelp(): string {
-    return `<div class="modal modal-close-request-with-help modal--hidden">
-              <div class="modal__content modal-login__content">
-                <div class="modal__header modal-login__header"> 
-                  <span class="modal__close modal-login__close"></span>
-                  <span class="modal__close modal-login__close">&times;</span>
-                </div> 
-                <span class="modal__title modal-login__title">Выберите волонтера:</span>
-                <div class="choose-volunteers">
-                  <img src=${vladimirAva} alt="Avatar">
-                  Владимир
-                </div>
-                <div class="choose-volunteers"> 
-                  <img src=${elenaAva} alt="Avatar">
-                  Елена
-                </div>
-                <div class="choose-volunteers">
-                  <img src=${svetlanaAva} alt="Avatar">
-                  Светлана
-                </div>
-                <div class="modal__btns">                  
-                  <button class="btn modal__btn login__btn give-thanks">Оставить благодарность</button>
-                </div>
+    return `
+    <div class="modal close-request modal--hidden">
+      <div class="modal__content close-request__content">
+        <div class="modal__header">
+          <span class="modal__title">Выберите волонтера:</span>
+          <span class="modal__close">&times;</span>
+        </div>
+        <form action="" class="close-request__form">
+          <div class="close-request__checkboxes">
+            <label for="vlad" class="close-request__label">
+              <input type="checkbox" class="close-request__checkbox" id="vlad">
+              <div class="close-request__volunteers">
+                <img src=${vladimirAva} alt="Avatar">
+                Владимир
               </div>
-            </div>`;
+            </label>
+            <label for="lena" class="close-request__label">
+              <input type="checkbox" class="close-request__checkbox" id="lena">
+              <div class="close-request__volunteers">
+                <img src=${elenaAva} alt="Avatar">
+                Елена
+              </div>
+            </label>
+            <label for="sveta" class="close-request__label">
+              <input type="checkbox" class="close-request__checkbox" id="sveta">
+              <div class="close-request__volunteers">
+                <img src=${svetlanaAva} alt="Avatar">
+                Светлана
+              </div>
+            </label>
+          </div>
+          <h4 class="close-request__ta-title">Оставьте благодарность:</h4>
+          <textarea name="crTa" class="close-request__textarea" id="crTa"></textarea>
+          <button class="btn close-request__form-btn" type="submit">Оставить благодарность</button>
+        </form>
+      </div>
+    </div>`;
   }
 
   getMessageEmail(): string {

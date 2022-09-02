@@ -105,7 +105,7 @@ function showCloseRequest(): void {
   requestModal.classList.add('modal--active');
   const btnYes = document.querySelector('.get-help-yes') as HTMLElement;
   function showCloseRequestBtns() {
-    const requestModalHelp = document.querySelector('.modal-close-request-with-help') as HTMLElement;
+    const requestModalHelp = document.querySelector('.close-request') as HTMLElement;
     document.body.classList.add('modal--open');
     requestModalHelp.classList.remove('modal--hidden');
     requestModalHelp.classList.add('modal--active');
