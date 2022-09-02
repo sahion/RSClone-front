@@ -89,12 +89,12 @@ export default class Modal {
             <h4 class="request-radio__title">Формат проведения:</h4>
             <div class="request-radio__inputs">   
               <label class="request-radio__inputs-label" for="online">
-                <input class="request-radio__inputs-input" type="radio" name="format" id="online" value="онлайн">
+                <input class="request-radio__inputs-input" type="radio" name="format" id="online" value="online">
                 <span class="request-radio__inputs-custom"></span>
                 <span class="request-radio__inputs-span">Онлайн</span>
               </label>        
               <label class="request-radio__inputs-label" for="offline">
-                <input class="request-radio__inputs-input" type="radio" name="format" id="offline" value="офлайн">
+                <input class="request-radio__inputs-input" type="radio" name="format" id="offline" value="offline">
                 <span class="request-radio__inputs-custom"></span>
                 <span class="request-radio__inputs-span">Офлайн</span>
               </label>

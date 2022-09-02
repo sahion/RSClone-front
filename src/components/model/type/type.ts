@@ -40,7 +40,7 @@ export enum Category {
 }
 export enum Format {
   online = 'Онлайн',
-  ofline = 'Офлайн',
+  offline = 'Офлайн',
 }
 export enum Country {
   belarus = 'Беларусь',
