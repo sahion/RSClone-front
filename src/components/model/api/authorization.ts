@@ -17,8 +17,7 @@ export async function authorizeRequest(user: UserAuth) {
     const userId = result.accessToken;
     localStorage.setItem('token', token );
     localStorage.setItem('userId', userId );
-    location.reload();
-    return console.log(result);
+    window.location.href = 'http://localhost:8080/user.html';
   } catch (err) {
     if (err instanceof Error)
       return console.log(err.message);
