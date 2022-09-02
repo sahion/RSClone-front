@@ -1,4 +1,4 @@
-import { UserAuth } from '../interfaces/UserAuth';
+import { UserAuth } from '../type/User';
 
 const port = process.env.SERVER_PORT || 3000;
 const server = `http://localhost:${port}`;

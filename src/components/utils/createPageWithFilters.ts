@@ -1,10 +1,10 @@
 import { dataUserApply } from '../model/fakeDatabase/userApply';
 import { filterCategoryChosen, filterFormatChosen, filterCountryChosen } from './filters';
 import { checkCategoryChosen, checkFormatChosen, checkCountryChosen } from './filters';
-import { ApplyWithLogin } from '../model/type/type';
+import { ApplyWithUser } from '../model/type/type';
 
 export default function getArrayWithAllFilters() {
-  let arrayWithAllFilters: ApplyWithLogin[] = [];
+  let arrayWithAllFilters: ApplyWithUser[] = [];
 
   function getarrayNameFilters<T>(filterChosen: T) {
     for (const myProp in filterChosen) {

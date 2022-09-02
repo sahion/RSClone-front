@@ -1,9 +1,9 @@
 import { RegisterElements } from '../../model/interfaces/RegisterElements';
-import { User } from '../../model/interfaces/User';
+import { User } from '../../model/type/User';
 import { registerRequest, registerValidation } from '../../model/api/registration';
 import getRequestFormData from '../dataHandlers/getRequestFormData';
 import { AuthorizeElements } from '../../model/interfaces/AuthorizeElements';
-import { UserAuth } from '../../model/interfaces/UserAuth';
+import { UserAuth } from '../../model/type/User';
 import { authorizeRequest, logout } from '../../model/api/authorization';
 import { pagination } from '../../utils/pagination';
 import getArrayWithAllFilters from '../../utils/createPageWithFilters';

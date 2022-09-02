@@ -1,15 +1,20 @@
+import { User } from './User';
+
 export interface Apply { 
+  id?: number,
+  userId?: number,
+  participants?: User[],
   category: string,
   format: string,
-  contact?: (string | null)[],
   country: string,
   location?: string, 
-  time?: string,
+  date?: string,
   description: string, 
   open: boolean,
 } 
-export interface ApplyWithLogin extends Apply {
-  login: string,
+
+export interface ApplyWithUser extends Apply {
+  name: string,
   avatar: string,
 }
 

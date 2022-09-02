@@ -1,5 +1,5 @@
 import { dataUserApply } from '../model/fakeDatabase/userApply';
-import { ApplyWithLogin, Category, Format, Country } from '../model/type/type';
+import { ApplyWithUser, Category, Format, Country } from '../model/type/type';
 import LocalStorage from './classLocalStorage';
 import { showMessageEmail } from '../controller/listeners/listeners';
 import { pagination } from './pagination';
@@ -45,8 +45,8 @@ function getLocalStorage() {
 }
 window.addEventListener('load', getLocalStorage);
 
-export function checkFormatChosen(array: ApplyWithLogin[]) {
-  let arrayWithFormatFilters: ApplyWithLogin[] = [];
+export function checkFormatChosen(array: ApplyWithUser[]) {
+  let arrayWithFormatFilters: ApplyWithUser[] = [];
   if (filterFormatChosen.online && filterFormatChosen.ofline) return array;
   if (!filterFormatChosen.online && !filterFormatChosen.ofline) return array;
   if (filterFormatChosen.online) {
@@ -58,11 +58,11 @@ export function checkFormatChosen(array: ApplyWithLogin[]) {
   return arrayWithFormatFilters; 
 }
 
-export function checkCountryChosen(array: ApplyWithLogin[]) {
+export function checkCountryChosen(array: ApplyWithUser[]) {
   if (!filterCountryChosen.belarus && !filterCountryChosen.russia && !filterCountryChosen.ukraine) {
     return array;
   } else {
-    let arrayCountryChosen: ApplyWithLogin[] = [];
+    let arrayCountryChosen: ApplyWithUser[] = [];
     if (filterCountryChosen.belarus) {
       arrayCountryChosen = arrayCountryChosen.concat(array.filter(el => el.country === Country.belarus)); 
     }
@@ -75,7 +75,7 @@ export function checkCountryChosen(array: ApplyWithLogin[]) {
     return arrayCountryChosen;
   }
 }
-export function checkCategoryChosen(array: ApplyWithLogin[]) {
+export function checkCategoryChosen(array: ApplyWithUser[]) {
   let arrayNameFilters: string[] = [];
   for (const myProp in filterCategoryChosen) {
     const key = myProp as keyof typeof filterCategoryChosen; 
@@ -177,7 +177,7 @@ export default function getFilter(e: Event) {
       break;
   }
   
-  let arrayWithAllFilters: ApplyWithLogin[] = [];
+  let arrayWithAllFilters: ApplyWithUser[] = [];
   if (e.target === online || e.target === ofline) {
     const arrayWithFormatFilters = checkFormatChosen(dataUserApply);
     const arrayWithCountryFilters = checkCountryChosen(arrayWithFormatFilters);
