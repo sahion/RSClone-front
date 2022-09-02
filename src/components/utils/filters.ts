@@ -18,7 +18,7 @@ export let filterCategoryChosen = {
 };
 export let filterFormatChosen = {
   online: false,
-  ofline: false,
+  offline: false,
 };
 export let filterCountryChosen = {
   belarus: false,
@@ -47,13 +47,13 @@ window.addEventListener('load', getLocalStorage);
 
 export function checkFormatChosen(array: ApplyWithUser[]) {
   let arrayWithFormatFilters: ApplyWithUser[] = [];
-  if (filterFormatChosen.online && filterFormatChosen.ofline) return array;
-  if (!filterFormatChosen.online && !filterFormatChosen.ofline) return array;
+  if (filterFormatChosen.online && filterFormatChosen.offline) return array;
+  if (!filterFormatChosen.online && !filterFormatChosen.offline) return array;
   if (filterFormatChosen.online) {
     arrayWithFormatFilters = arrayWithFormatFilters.concat(array.filter(el => el.format === Format.online)); 
   }
-  if (filterFormatChosen.ofline) {
-    arrayWithFormatFilters = arrayWithFormatFilters.concat(array.filter(el => el.format === Format.ofline)); 
+  if (filterFormatChosen.offline) {
+    arrayWithFormatFilters = arrayWithFormatFilters.concat(array.filter(el => el.format === Format.offline)); 
   }
   return arrayWithFormatFilters; 
 }
@@ -105,7 +105,7 @@ export default function getFilter(e: Event) {
   const other = document.querySelector('.other') as HTMLElement; 
 
   const online = document.querySelector('.online') as HTMLElement;
-  const ofline = document.querySelector('.ofline') as HTMLElement;
+  const offline = document.querySelector('.offline') as HTMLElement;
 
   const belarus = document.querySelector('.belarus') as HTMLElement;
   const russia = document.querySelector('.russia') as HTMLElement;
@@ -159,9 +159,9 @@ export default function getFilter(e: Event) {
       filterFormatChosen.online = filterFormatChosen.online ? false : true;
       online.classList.toggle('color-btn');
       break;
-    case ofline:
-      filterFormatChosen.ofline = filterFormatChosen.ofline ? false : true;
-      ofline.classList.toggle('color-btn');
+    case offline:
+      filterFormatChosen.offline = filterFormatChosen.offline ? false : true;
+      offline.classList.toggle('color-btn');
       break;
     case belarus:
       filterCountryChosen.belarus = filterCountryChosen.belarus ? false : true;
@@ -178,7 +178,7 @@ export default function getFilter(e: Event) {
   }
   
   let arrayWithAllFilters: ApplyWithUser[] = [];
-  if (e.target === online || e.target === ofline) {
+  if (e.target === online || e.target === offline) {
     const arrayWithFormatFilters = checkFormatChosen(dataUserApply);
     const arrayWithCountryFilters = checkCountryChosen(arrayWithFormatFilters);
     arrayWithAllFilters = checkCategoryChosen(arrayWithCountryFilters);

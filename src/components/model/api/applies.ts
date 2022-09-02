@@ -1,12 +1,11 @@
 import { showMessage } from '../../utils/showMessage';
 import { Apply } from '../type/type';
 
-const PORT = process.env.SERVER_PORT || 3000;
-
+const SERVER = process.env.SERVER as string;
 
 export async function  getApplies() {
   try {
-    const response = await fetch(`http://localhost:${PORT}/apply`);
+    const response = await fetch(`${SERVER}/apply`);
     const result : Apply[] = await response.json();
     return result;
   } catch (err) {
@@ -19,7 +18,7 @@ export async function  getApplies() {
 export async function  createApply(apply: Apply) {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch(`http://localhost:${PORT}/apply`, {
+    const response = await fetch(`${SERVER}/apply`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
