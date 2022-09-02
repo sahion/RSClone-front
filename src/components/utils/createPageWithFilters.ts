@@ -1,7 +1,19 @@
-import { dataUserApply } from '../model/fakeDatabase/userApply';
 import { filterCategoryChosen, filterFormatChosen, filterCountryChosen } from './filters';
 import { checkCategoryChosen, checkFormatChosen, checkCountryChosen } from './filters';
+
 import { ApplyWithUser } from '../model/type/type';
+import { getUsers } from '../model/api/users';
+import { getApplies } from '../model/api/applies';
+//import { UserVisualData } from '../model/type/User';
+import { createAppliesWithUser } from '../controller/dataHandlers/createAppliesWithUser';
+//import { Apply } from '../model/type/type';
+
+let dataUserApply: ApplyWithUser[];
+const users = await getUsers();
+const applies =  await getApplies();
+if (users instanceof Array && applies instanceof Array) {
+  dataUserApply = createAppliesWithUser(users, applies);
+}
 
 export default function getArrayWithAllFilters() {
   let arrayWithAllFilters: ApplyWithUser[] = [];
