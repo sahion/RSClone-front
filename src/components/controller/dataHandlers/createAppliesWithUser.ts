@@ -1,5 +1,7 @@
 import { UserVisualData } from '../../model/type/User';
 import { Apply, ApplyWithUser } from '../../model/type/type';
+import { getUsers } from '../../model/api/users';
+import { getApplies } from '../../model/api/applies';
 
 export function createAppliesWithUser(users: UserVisualData[], applies :Apply[]) {
   const appliesWithUser: ApplyWithUser[] = [];
@@ -12,4 +14,12 @@ export function createAppliesWithUser(users: UserVisualData[], applies :Apply[])
     });
   });
   return appliesWithUser;
+}
+
+
+export async function allAppliesWithUsers() : Promise<ApplyWithUser[]> {
+  const users = await getUsers();
+  const applies =  await getApplies();
+  const allApplies = createAppliesWithUser(users as UserVisualData[], applies as Apply[]);
+  return allApplies;
 }
