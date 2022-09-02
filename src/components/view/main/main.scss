@@ -142,6 +142,10 @@
   &__avatar {
     width: 63px;
     height: 63px;
+
+    img{
+      border-radius: 50%;
+    }
   }
 
   &__title,

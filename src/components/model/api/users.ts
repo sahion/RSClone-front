@@ -16,6 +16,7 @@ export async function  getUsers() {
     const result : UserVisualData[] = await response.json();
     return result;
   } catch (err) {
-    return err;    
+    if (err instanceof Error)
+      return err;   
   }
 }

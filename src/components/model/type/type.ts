@@ -8,7 +8,7 @@ export interface Apply {
   format: string,
   country: string,
   location?: string, 
-  date?: string,
+  date?: Date,
   description: string, 
   open: boolean,
 } 
