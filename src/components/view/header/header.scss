@@ -37,6 +37,57 @@
     }
   }
 
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    @media (max-width: 560px) {
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 414px) {
+      gap: 1rem;
+    }
+  }
+
+  &__nav-img {
+    display: none;
+
+    @media (max-width: 767px) {
+      display: block;
+      max-width: 3rem;
+      max-height: 3rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 560px) {
+      max-width: 2.4rem;
+    }
+
+    @media (max-width: 414px) {
+      max-width: 2rem;
+    }
+  }
+
+  &__register-btn {
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  &__login-btn {
+
+    @media (max-width: 560px) {
+      min-width: 5rem;
+    }
+
+    @media (max-width: 414px) {
+      min-width: 3rem;
+    }
+  }
+
   //user-page
   &__avatar {
     position: relative;
@@ -107,4 +158,10 @@
   0% { right: -310px; }
   50% { right: 10px; }
   100% { right: -310px; }
+}
+
+@media (max-width: 767px) {
+  .header-main__nav-list {
+    display: none;
+  }
 }
