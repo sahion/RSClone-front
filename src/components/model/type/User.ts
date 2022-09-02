@@ -12,7 +12,7 @@ export interface UserVisualData {
   login: string,
   name: string,
   avatar: string
-}
+}[]
 
 export interface UserAuth {
   login: string,
