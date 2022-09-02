@@ -1,11 +1,10 @@
 import { UserAuth } from '../type/User';
 
-const port = process.env.SERVER_PORT || 3000;
-const server = `http://localhost:${port}`;
+const SERVER = process.env.SERVER as string;
 
 export async function authorizeRequest(user: UserAuth) {
   try {
-    const response = await fetch(`${server}/auth`, {
+    const response = await fetch(`${SERVER}/auth`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -28,7 +27,7 @@ export async function  isAuthorized() {
   const token = localStorage.getItem('token');
   if (!token) return false;
   try {
-    const response = await fetch(server, {
+    const response = await fetch(SERVER, {
       method: 'GET',
       headers: {
         'authorization': `Bearer ${token}`,
@@ -44,7 +43,7 @@ export async function  isAuthorized() {
 export async function  logout() {
   localStorage.removeItem('token');
   try {
-    const response = await fetch(`${server}/logout`);
+    const response = await fetch(`${SERVER}/logout`);
     console.log(response.status);
     window.location.href = 'http://localhost:8080/';
   } catch (err) {

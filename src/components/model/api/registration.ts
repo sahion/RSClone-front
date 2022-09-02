@@ -2,6 +2,7 @@ import validator from 'validator';
 import { showMessage } from '../../utils/showMessage';
 import { User } from '../type/User';
 
+const SERVER = process.env.SERVER as string;
 
 export function registerValidation(user: User ) {
   if (!validator.isEmail(user.email)) return { err: true, message: 'Такой email недопустим' };
@@ -19,9 +20,8 @@ export function registerValidation(user: User ) {
 }
 
 export async function registerRequest(user: User) {
-  const port = process.env.SERVER_PORT || 3000;
   try {
-    const response = await fetch(`http://localhost:${port}/register`, {
+    const response = await fetch(`${SERVER}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
