@@ -72,7 +72,7 @@
 
   &__register-btn {
 
-    @media (max-width: 767px) {
+    @media (max-width: 1099px) {
       display: none;
     }
   }
@@ -85,6 +85,14 @@
 
     @media (max-width: 414px) {
       min-width: 3rem;
+    }
+  }
+
+  &__btns {
+
+    @media (max-width: 1200px) {
+      display: flex;
+      max-height: 2rem;
     }
   }
 
