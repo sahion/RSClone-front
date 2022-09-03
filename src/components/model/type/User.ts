@@ -3,7 +3,8 @@ export interface User {
   email: string,
   login: string,
   name: string,
-  pwd: string
+  pwd: string,
+  avatar?: File
 }
 
 export interface UserVisualData {

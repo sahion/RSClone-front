@@ -19,7 +19,7 @@ export default class Modal {
                   <span class="modal__close modal-register__close">&times;</span>
                 </div> 
                 <form action="#"
-                  class="modal__form modal-register__form">
+                  class="modal__form modal-register__form" enctype="multipart/form-data">
                   <input type="email" name="email" class="modal__input register__email"
                     placeholder="Введите ваш email" required>
                   <input type="text" name="login" class="modal__input register__username" 
@@ -28,6 +28,8 @@ export default class Modal {
                   placeholder="Введите ваше имя" required>
                   <input type="password" name="pwd" class="modal__input register__password"
                     placeholder="Введите Пароль" minlength="6" required>
+                  <label for="register__avatar">Загрузите ваш аватар (не обязательно): </label>
+                  <input type="file" class = "modal__input register__avatar" id="register__avatar" name = "avatar">
                   <div class="modal-register__btns">
                     <button class="btn modal__btn register__btn color-btn" type="submit">Зарегистрироваться</button>
                     <button class="btn modal__btn register__btn-to-login">Войти</button>

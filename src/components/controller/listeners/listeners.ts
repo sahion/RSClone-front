@@ -198,10 +198,13 @@ export function registerSubmitListener() {
       pwd: elements.pwd.value,
       name: elements.name.value,
       email: elements.email.value,
+      avatar: elements.avatar.files?.[0],
     };
+    const result = new FormData(form);
+    console.log(result.get('login'));
     const dataValidated = registerValidation(user);
     if (dataValidated.err) return alert(dataValidated.message);
-    registerRequest(user);
+    registerRequest(result);
   });
 }
 
