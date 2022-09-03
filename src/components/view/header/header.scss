@@ -29,7 +29,7 @@
       margin-right: 0.7rem;
     }
 
-    @media (max-width: 413px) {
+    @media (max-width: 414px) {
       font-size: 1rem;
       margin-right: 0.7rem;
       max-width: 6rem;
@@ -53,7 +53,7 @@
   &__nav-img {
     display: none;
 
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
       display: block;
       max-width: 3rem;
       max-height: 3rem;
@@ -71,7 +71,7 @@
 
   &__register-btn {
 
-    @media (max-width: 767px) {
+    @media (max-width: 1099px) {
       display: none;
     }
   }
@@ -84,6 +84,14 @@
 
     @media (max-width: 414px) {
       min-width: 3rem;
+    }
+  }
+
+  &__btns {
+
+    @media (max-width: 1200px) {
+      display: flex;
+      max-height: 2rem;
     }
   }
 
@@ -161,7 +169,7 @@
   100% { right: -310px; }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .header-main__nav-list {
     display: none;
   }

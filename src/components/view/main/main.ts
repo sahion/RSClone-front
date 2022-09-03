@@ -14,15 +14,17 @@ export default class Main {
       <div class="welcome-section__frame1"></div>
       <div class="welcome-section__frame2"></div>
       <div class="container">
-        <h2 class="welcome-section__title">Мы уверены - доброта <br> скрывается внутри каждого из нас</h2>
-        <p>Оказывается так просто отыскать и подарить её тому, <br> кто в ней нуждается.</p>
+        <h1 class="welcome-section__title">Мы уверены - доброта <br> скрывается внутри каждого из нас</h1>
+        <p class="welcome-section__text">
+          Оказывается так просто отыскать и подарить её тому, <br> кто в ней нуждается.
+        </p>
       </div>
     </section>`;
   }
 
   getRequestSection(): string {
     return `
-    <section class="requests-section" id="requests">
+    <section class="requests-section main-request-section" id="requests">
       <div class="container">
         <div class="slider">
           <button class="btn slider__btn prev">←</button>
