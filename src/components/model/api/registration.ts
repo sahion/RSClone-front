@@ -19,14 +19,11 @@ export function registerValidation(user: User ) {
   return { err: false };
 }
 
-export async function registerRequest(user: User) {
+export async function registerRequest(user: FormData) {
   try {
     const response = await fetch(`${SERVER}/register`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(user),
+      body: user,
     });
     if (response.status === 201) {
       showMessage('Пользователь успешно зарегистрирован');
