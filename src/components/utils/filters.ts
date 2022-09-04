@@ -1,8 +1,10 @@
-import { dataUserApply } from '../model/fakeDatabase/userApply';
 import { ApplyWithUser, Category, Format, Country } from '../model/type/type';
 import LocalStorage from './classLocalStorage';
 import { showMessageEmail } from '../controller/listeners/listeners';
 import { pagination } from './pagination';
+import { allApplies, getOpenApplies } from '../controller/dataHandlers/applyFilters';
+
+const openApplies =  getOpenApplies(allApplies);
 
 export let filterCategoryChosen = {
   healthcare: false,
@@ -179,16 +181,16 @@ export default function getFilter(e: Event) {
   
   let arrayWithAllFilters: ApplyWithUser[] = [];
   if (e.target === online || e.target === offline) {
-    const arrayWithFormatFilters = checkFormatChosen(dataUserApply);
+    const arrayWithFormatFilters = checkFormatChosen(openApplies);
     const arrayWithCountryFilters = checkCountryChosen(arrayWithFormatFilters);
     arrayWithAllFilters = checkCategoryChosen(arrayWithCountryFilters);
     
   } else if (e.target === russia || e.target === belarus || e.target === ukraine) {
-    const arrayWithCountryFilters = checkCountryChosen(dataUserApply);
+    const arrayWithCountryFilters = checkCountryChosen(openApplies);
     const arrayWithFormatFilters = checkFormatChosen(arrayWithCountryFilters);
     arrayWithAllFilters = checkCategoryChosen(arrayWithFormatFilters);
   } else {
-    const arrayWithCategoryFilters = checkCategoryChosen(dataUserApply);
+    const arrayWithCategoryFilters = checkCategoryChosen(openApplies);
     const arrayWithFormatFilters = checkFormatChosen(arrayWithCategoryFilters);
     arrayWithAllFilters = checkCountryChosen(arrayWithFormatFilters);
   }

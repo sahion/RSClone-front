@@ -57,7 +57,7 @@ export async function  closeApply(applyId: number) {
 export async function participateInApply(applyId: number ) {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch(`${SERVER}/apply/${applyId}`, {
+    const response = await fetch(`${SERVER}/participate/${applyId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -76,7 +76,7 @@ export async function participateInApply(applyId: number ) {
 export async function removeParticipation(applyId: number ) {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch(`${SERVER}/apply/${applyId}`, {
+    const response = await fetch(`${SERVER}/participate/${applyId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
