@@ -55,6 +55,14 @@ function userPageRequests(): void {
   sideMenuListener();
 }
 
+function showRequest(): void {
+  const requestModal = document.querySelector('.modal-request') as HTMLElement;
+
+  document.body.classList.add('modal--open');
+  requestModal.classList.remove('modal--hidden');
+  requestModal.classList.add('modal--active');
+}
+
 export function showMessageEmail(): void {
   const requestModal = document.querySelector('.modal-message-email') as HTMLElement;
 
@@ -89,14 +97,6 @@ export function showLogin(event: Event): void {
   registerModal.classList.remove('modal--active');
 
   document.body.classList.add('modal--open');
-}
-
-function showRequest(): void {
-  const requestModal = document.querySelector('.modal-request') as HTMLElement;
-
-  document.body.classList.add('modal--open');
-  requestModal.classList.remove('modal--hidden');
-  requestModal.classList.add('modal--active');
 }
 
 function showCloseRequest(): void {
@@ -235,13 +235,6 @@ export function renderUserPageRequests(): void {
   requestsBtn.addEventListener('click', userPageRequests);
 }
 
-export function openUserRequestListener(): void {
-  const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
-
-  openRequestBtn.addEventListener('click', showRequest);
-}
-
-
 export function globalCloseModal(): void {
   let isOverlay = false;
 
@@ -261,6 +254,26 @@ export function globalCloseModal(): void {
 export function openUserCloseRequestListener(): void {
   const openRequestBtn: NodeListOf<Element> = document.querySelectorAll('.my-requests__close');
   [...openRequestBtn].map(item => item.addEventListener('click', showCloseRequest));
+}
+
+function myPageRequests(): void {
+  const usersMainSection = document.querySelector('.users-main-section') as HTMLElement;
+  const newMain: Main = new Main();
+  usersMainSection.innerHTML = '';
+  usersMainSection.innerHTML += newMain.getMyRequests();
+  usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection();
+  // const arrayWithAllFilters = getArrayWithAllFilters();
+  // pagination(arrayWithAllFilters);
+  
+  sideMenuListener();
+  openUserCloseRequestListener();
+  const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
+  openRequestBtn.addEventListener('click', showRequest);
+}
+export function renderMyRequests(): void {
+  const myRequestsBtn = document.querySelector('.my-requests-btn') as HTMLButtonElement;
+  
+  myRequestsBtn.addEventListener('click', myPageRequests);
 }
 
 export function openRatingWindow(): void {
@@ -316,10 +329,11 @@ export function addListeners(): void {
 
 export function addUserListeners(): void {
   renderUserPageRequests();
-  openUserRequestListener();
+  //openUserRequestListener();
   closeModalWindowListener();
   globalCloseModal();
-  openUserCloseRequestListener();
+  //openUserCloseRequestListener();
   logoutListener();
   createRequestListener();
+  renderMyRequests();
 }
