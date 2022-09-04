@@ -55,7 +55,7 @@ export default class Header {
     return `
     <div class="container">
       <div class="header__wrapper">
-        <div class="users-rating">5</div>
+        <div class="users-rating">${user.goodThings}</div>
         <div class="header__logo">
           <a href="#"><img class="header__logoUser-img" src=${logoUser} alt="Logo"></a>
         </div>

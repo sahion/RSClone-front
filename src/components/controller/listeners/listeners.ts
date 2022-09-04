@@ -364,4 +364,5 @@ export function addUserListeners(): void {
   logoutListener();
   createRequestListener();
   openUserProfile();
+  renderMyRequests();
 }
