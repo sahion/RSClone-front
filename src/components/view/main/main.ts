@@ -176,6 +176,18 @@ export default class Main {
     `;
   }
 
+  getUserWrapper(): string {
+    return `
+      <div class="user-section-main__wrapper">        
+        <div class="side-menu">
+          <span class="side-menu__span">Меню</span>
+        </div>
+        ${this.getUserMenuSection()}
+        ${this.getUsersMain()}        
+      </div>
+    `;
+  }
+
   getUserFiltersSection(): string {
     return ` 
     <section class="filters-section">
@@ -215,12 +227,43 @@ export default class Main {
     </section>`;
   }
 
+  getUserMenuSection(): string {
+    return ` 
+    <section class="menu-section">
+      <div class="menu-section__filters">
+        <div class="menu-section__country">
+          <div class="menu-section__body">
+            <button class="menu-section__btn buttons-section__btn-requests">Все заявки</button>
+            <button class="menu-section__btn my-requests-btn">Мои заявки</button>
+            <button class="menu-section__btn my-thanks-btn">Благодарности</button>
+            <button class="menu-section__btn my-responds-btn">Мои отклики</button>
+            <button class="menu-section__btn thanks-section-btn">Рейтинг</button>
+          </div>
+        </div>
+      </div>
+    </section>`;
+  }
+
   getUsersRequestsSection(): string {
     return `
     <section class="container requests-section"> 
       <div class="requests-section__cards">
 
       </div>  
+    </section>`;
+  }
+
+  getUsersMain(): string {
+    return `
+    <section class="container users-main-section"> 
+      <div class="users-main-section__content">
+        <h5 class="users-main-section__title">Один-единственный добрый поступок 
+        <br>пускает корни во все стороны, 
+        <br>и из этих корней вырастают 
+        <br>новые деревья!</h5>
+      </div> 
+      <div class="users-main-section__frame9"></div>
+      <div class="users-main-section__frame10"></div> 
     </section>`;
   }
 
@@ -250,8 +293,7 @@ export default class Main {
         break;
       }
       case ('user'): {
-        this.wrapper.innerHTML += this.getUserRequestsSection();
-        this.wrapper.innerHTML += this.getUserButtonsSection();        
+        this.wrapper.innerHTML += this.getUserWrapper();             
         break;        
       }
     }    
