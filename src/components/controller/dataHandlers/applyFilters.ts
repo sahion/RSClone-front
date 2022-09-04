@@ -16,8 +16,8 @@ export const getMyCreatedApplies = (applies: ApplyWithUser[]) => {
 };
 
 export const getNotMyApplies = (applies: ApplyWithUser[]) => {
-  let user = getAuthUserData() as UserVisualData;
-  return applies.filter(apply => apply.userId !== user.id)
+  const user = getAuthUserData() as UserVisualData;
+  return applies.filter(apply => apply.userId !== user.id);
 };
 
 export const getMyParticipateApplies = (applies: ApplyWithUser[]) => {
@@ -27,6 +27,4 @@ export const getMyParticipateApplies = (applies: ApplyWithUser[]) => {
   
 };
 
-const allApplies = await allAppliesWithUsers();
-const openApplies = await getOpenApplies(allApplies);
-export const myApplies = await getMyCreatedApplies(openApplies);
+export const allApplies = await allAppliesWithUsers();
