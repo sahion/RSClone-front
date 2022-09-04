@@ -12,6 +12,13 @@ export interface Apply {
   open: boolean,
 } 
 
+
+
+export interface ApplyWithUser extends Apply {
+  name: string,
+  avatar: string,
+}
+
 export interface Thanks {
   id: number,
   applyId : number,
@@ -20,7 +27,7 @@ export interface Thanks {
   description?: string
 }
 
-export interface ApplyWithUser extends Apply {
+export interface ThanksWithUser extends Thanks {
   name: string,
   avatar: string,
 }
