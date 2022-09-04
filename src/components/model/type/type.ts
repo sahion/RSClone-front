@@ -1,9 +1,8 @@
-import { User } from './User';
 
 export interface Apply { 
   id?: number,
   userId?: number,
-  participants?: User[],
+  participants: number[],
   category: string,
   format: string,
   country: string,
@@ -12,6 +11,14 @@ export interface Apply {
   description: string, 
   open: boolean,
 } 
+
+export interface Thanks {
+  id: number,
+  applyId : number,
+  userId: number,
+  participants: number[]
+  description?: string
+}
 
 export interface ApplyWithUser extends Apply {
   name: string,

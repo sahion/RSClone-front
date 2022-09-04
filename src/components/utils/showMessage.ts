@@ -9,6 +9,8 @@ export function showMessage(textMessage: string, error = false) {
   setTimeout( function () {
     document.body.removeChild(message);
   }, 4000);
+  if (error) return true;
+  return false;
 }
 
 
