@@ -17,6 +17,7 @@ export default function getRequestFormData(): Apply {
     format: Format[format],
     country: Country[country],
     location: address,
+    participants: [],
     date: new Date(`${date}T${time}`),
     description: text,
     open: true,
