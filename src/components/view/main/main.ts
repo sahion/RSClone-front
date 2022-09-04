@@ -278,44 +278,7 @@ export default class Main {
       <h5 class="my-requests__title">Мои заявки:</h5>
       <button class="btn my-requests__btn buttons-section__btn-apply">+</button>
     </div>
-    <div class="card-requests">
-      <div class="card">
-        <div class="card__header"></div>
-        <div class="card__title">
-          Прошу, может кто сможет передать продукты в 1 больницу. 
-          Все расходы готов оплатить. Буду очень благодарен.
-        </div>
-        <div class="card__info">
-          <ul>
-            <li><span class="card__span">Категория:</span>Пенсионеры</li>
-            <li><span class="card__span">Формат:</span>Офлайн</li>
-            <li><span class="card__span">Страна:</span>Россия</li>
-            <li><span class="card__span">Адрес:</span>Жд вокзал</li>
-          </ul>
-        </div>
-        <div class="card__btn">
-          <button class="btn color-btn my-requests__close">Закрыть заявку</button>
-        </div>                
-      </div>
-      <div class="card">
-        <div class="card__header"></div>
-        <div class="card__title">
-          Прошу, может кто сможет передать продукты в 1 больницу. 
-          Все расходы готов оплатить. Буду очень благодарен.
-        </div>
-        <div class="card__info">
-          <ul>
-            <li><span class="card__span">Категория:</span>Пенсионеры</li>
-            <li><span class="card__span">Формат:</span>Офлайн</li>
-            <li><span class="card__span">Страна:</span>Россия</li>
-            <li><span class="card__span">Адрес:</span>Жд вокзал</li>
-          </ul>
-        </div>
-        <div class="card__btn">
-          <button class="btn color-btn my-requests__close">Закрыть заявку</button>
-        </div>                
-      </div>
-    </div>    
+    <div class="card-requests"></div>    
     `;
   }
 

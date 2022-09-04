@@ -14,6 +14,7 @@ import { rating } from '../../model/fakeDatabase/rating';
 import { Rating } from '../../model/type/type';
 import { showFiltersMenu, hideFiltersMenu, innerTextClosed } from '../../utils/filtersMenuToggle';
 import { createApply } from '../../model/api/applies';
+import getPageMyRaquests from '../../utils/renderMyRequestCard';
 
 export function sideMenuListener(): void {
   const sideMenu = document.querySelector('.side-menu') as HTMLElement;
@@ -261,10 +262,8 @@ function myPageRequests(): void {
   const newMain: Main = new Main();
   usersMainSection.innerHTML = '';
   usersMainSection.innerHTML += newMain.getMyRequests();
-  usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection();
-  // const arrayWithAllFilters = getArrayWithAllFilters();
-  // pagination(arrayWithAllFilters);
-  
+  //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection();
+  getPageMyRaquests();
   sideMenuListener();
   openUserCloseRequestListener();
   const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
