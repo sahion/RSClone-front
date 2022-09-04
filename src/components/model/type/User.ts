@@ -12,7 +12,8 @@ export interface UserVisualData {
   email: string,
   login: string,
   name: string,
-  avatar: string
+  avatar: string,
+  goodThings : number
 }[]
 
 export interface UserAuth {
