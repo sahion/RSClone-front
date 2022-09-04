@@ -35,3 +35,60 @@ export async function  createApply(apply: Apply) {
   }
 }
 
+export async function  closeApply(applyId: number) {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${SERVER}/apply/${applyId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'authorization': `Bearer ${token}`,
+      },
+    });
+    if (response.status === 200) {
+      showMessage('Заявка успешно закрыта');
+    } else showMessage(`Ошибка ${response.status}`, true);
+  } catch (err) {
+    if (err instanceof Error)
+      showMessage('Проблемы с подключением к серверу', true);
+  }
+}
+
+export async function participateInApply(applyId: number ) {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${SERVER}/apply/${applyId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'authorization': `Bearer ${token}`,
+      },
+    });
+    if (response.status === 200) {
+      showMessage('Заявка на помощь подана');
+    } else showMessage(`Ошибка ${response.status}`, true);
+  } catch (err) {
+    if (err instanceof Error)
+      showMessage('Проблемы с подключением к серверу', true);
+  }
+}
+
+export async function removeParticipation(applyId: number ) {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${SERVER}/apply/${applyId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'authorization': `Bearer ${token}`,
+      },
+    });
+    if (response.status === 200) {
+      showMessage('Заявка на помощь убрана');
+    } else showMessage(`Ошибка ${response.status}`, true);
+  } catch (err) {
+    if (err instanceof Error)
+      showMessage('Проблемы с подключением к серверу', true);
+  }
+}
+

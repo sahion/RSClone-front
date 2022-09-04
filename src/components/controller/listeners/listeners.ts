@@ -1,9 +1,8 @@
 import { RegisterElements } from '../../model/interfaces/RegisterElements';
-import { User } from '../../model/type/User';
+import { User, UserAuth } from '../../model/type/User';
 import { registerRequest, registerValidation } from '../../model/api/registration';
 import getRequestFormData from '../dataHandlers/getRequestFormData';
 import { AuthorizeElements } from '../../model/interfaces/AuthorizeElements';
-import { UserAuth } from '../../model/type/User';
 import { authorizeRequest, logout } from '../../model/api/authorization';
 import { pagination } from '../../utils/pagination';
 import getArrayWithAllFilters from '../../utils/createPageWithFilters';
@@ -13,8 +12,23 @@ import Modal from '../../view/modal/modal';
 import { rating } from '../../model/fakeDatabase/rating';
 import { Rating } from '../../model/type/type';
 import { showFiltersMenu, hideFiltersMenu, innerTextClosed } from '../../utils/filtersMenuToggle';
-import { createApply } from '../../model/api/applies';
-import getPageMyRaquests from '../../utils/renderMyRequestCard';
+import { closeApply, createApply } from '../../model/api/applies';
+import getPageMyRequests from '../../utils/renderMyRequestCard';
+import { allApplies, getMyCreatedApplies, getOpenApplies } from '../dataHandlers/applyFilters';
+
+const openApplies =  getOpenApplies(allApplies);
+const myApplies =  getMyCreatedApplies(openApplies);
+
+
+function hideModal(): void {
+  const registerModal: NodeListOf<Element> = document.querySelectorAll('.modal');
+
+  [...registerModal].map(item => {
+    item.classList.remove('modal--active');
+    item.classList.add('modal--hidden');
+    document.body.classList.remove('modal--open');
+  });
+}
 
 export function sideMenuListener(): void {
   const sideMenu = document.querySelector('.side-menu') as HTMLElement;
@@ -101,11 +115,22 @@ export function showLogin(event: Event): void {
 }
 
 function showCloseRequest(): void {
+  const applyId = (event?.target as HTMLElement).getAttribute('applyId');
+  if (applyId)
+    localStorage.setItem('applyId', applyId);
   const requestModal = document.querySelector('.modal-close-request') as HTMLElement;
   document.body.classList.add('modal--open');
   requestModal.classList.remove('modal--hidden');
   requestModal.classList.add('modal--active');
   const btnYes = document.querySelector('.get-help-yes') as HTMLElement;
+  const btnNo = document.querySelector('.get-help-no') as HTMLElement;
+  btnNo.addEventListener('click', () => {
+    if (applyId)
+      closeApply(+applyId);
+    hideModal();
+    location.reload();
+
+  });
   function showCloseRequestBtns() {
     const requestModalHelp = document.querySelector('.close-request') as HTMLElement;
     document.body.classList.add('modal--open');
@@ -124,15 +149,7 @@ function showRating(): void {
   document.body.classList.add('modal--open');
 }
 
-function hideModal(): void {
-  const registerModal: NodeListOf<Element> = document.querySelectorAll('.modal');
 
-  [...registerModal].map(item => {
-    item.classList.remove('modal--active');
-    item.classList.add('modal--hidden');
-    document.body.classList.remove('modal--open');
-  });
-}
 
 function enableInputs(): void {
   const locationCategory = document.getElementById('location') as HTMLSelectElement;
@@ -167,7 +184,7 @@ export function closeModalWindowListener(): void {
 }
 
 export function openLoginWindowListener(): void {
-  const loginBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
+  const loginBtns: NodeListOf<Element> = document.querySelectorAll('.my-requests__close_login-btn');
   const loginBtn = document.getElementById('login') as HTMLButtonElement;
   const helpBtn = document.getElementById('helpSpan') as HTMLButtonElement;
   const requestBtn = document.getElementById('requestSpan') as HTMLButtonElement;
@@ -247,7 +264,7 @@ export function globalCloseModal(): void {
 
   document.addEventListener('mousedown', (event: Event) => {
     if (!(event.target as Element).closest('.modal__content') && !(event.target as Element).closest('.btn')
-      && isOverlay) {
+      && isOverlay && !(event.target as Element).closest('.filters-section__filters')) {
       hideModal();
     }
   });
@@ -263,7 +280,7 @@ function myPageRequests(): void {
   usersMainSection.innerHTML = '';
   usersMainSection.innerHTML += newMain.getMyRequests();
   //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection();
-  getPageMyRaquests();
+  getPageMyRequests(myApplies);
   sideMenuListener();
   openUserCloseRequestListener();
   const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
@@ -314,6 +331,18 @@ export function logoutListener(): void {
   });
 }
 
+export function openUserProfile(): void {
+  const profileBtn = document.querySelector('.submenu-profile') as HTMLElement;
+  const profile = document.querySelector('.profile') as HTMLElement;
+
+  profileBtn.onclick = (event: Event): void => {
+    event.preventDefault();
+    document.body.classList.add('modal--open');
+    profile.classList.remove('modal--hidden');
+    profile.classList.add('modal--active');
+  };
+} 
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
@@ -328,11 +357,11 @@ export function addListeners(): void {
 
 export function addUserListeners(): void {
   renderUserPageRequests();
-  //openUserRequestListener();
+  // openUserRequestListener();
   closeModalWindowListener();
   globalCloseModal();
   //openUserCloseRequestListener();
   logoutListener();
   createRequestListener();
-  renderMyRequests();
+  openUserProfile();
 }
