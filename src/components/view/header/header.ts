@@ -1,4 +1,5 @@
 import logo from '../../assets/img/Logo.png';
+import logoUser from '../../assets/img/logoUser.png';
 import handshake from '../../assets/icons/handshake.png';
 import thanks from '../../assets/icons/thank-you.png';
 import question from '../../assets/icons/question.png';
@@ -54,8 +55,9 @@ export default class Header {
     return `
     <div class="container">
       <div class="header__wrapper">
+        <div class="users-rating">5</div>
         <div class="header__logo">
-        <a href="#"><img class="header__logo-img" src=${logo} alt="Logo"></a>
+          <a href="#"><img class="header__logoUser-img" src=${logoUser} alt="Logo"></a>
         </div>
         <nav class="header__nav">
           <ul class="header__nav-list">
