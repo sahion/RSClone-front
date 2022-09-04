@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    position: relative;
   }
 
   &__logo-img {
@@ -153,7 +154,7 @@
   padding: 10px 30px;
   border-radius: 15px;
   animation-name: move;
-  animation-duration: 4s;
+  animation-duration: 3s;
   z-index: 300;
   color: #270;
   background-color: #dff2bf;
@@ -173,4 +174,25 @@
   .header-main__nav-list {
     display: none;
   }
+}
+.header__logoUser-img{
+    width: 110px;
+    margin-left: 20px;
+
+    @media (max-width: 580px) {
+      max-width: 5rem;
+    }  
+}
+.users-rating{
+  color: white;
+  position: absolute;
+  font-weight: 700;
+  left: 78px;
+  top: 40px;
+  z-index: 200;
+  @media (max-width: 580px) {
+    font-size: 16px;
+    left: 65px;
+    top: 35px;
+  }  
 }
