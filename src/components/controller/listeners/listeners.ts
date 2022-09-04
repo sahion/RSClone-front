@@ -264,7 +264,7 @@ export function globalCloseModal(): void {
 
   document.addEventListener('mousedown', (event: Event) => {
     if (!(event.target as Element).closest('.modal__content') && !(event.target as Element).closest('.btn')
-      && isOverlay) {
+      && isOverlay && !(event.target as Element).closest('.filters-section__filters')) {
       hideModal();
     }
   });
@@ -331,6 +331,18 @@ export function logoutListener(): void {
   });
 }
 
+export function openUserProfile(): void {
+  const profileBtn = document.querySelector('.submenu-profile') as HTMLElement;
+  const profile = document.querySelector('.profile') as HTMLElement;
+
+  profileBtn.onclick = (event: Event): void => {
+    event.preventDefault();
+    document.body.classList.add('modal--open');
+    profile.classList.remove('modal--hidden');
+    profile.classList.add('modal--active');
+  };
+} 
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
@@ -345,11 +357,11 @@ export function addListeners(): void {
 
 export function addUserListeners(): void {
   renderUserPageRequests();
-  //openUserRequestListener();
+  // openUserRequestListener();
   closeModalWindowListener();
   globalCloseModal();
   //openUserCloseRequestListener();
   logoutListener();
   createRequestListener();
-  renderMyRequests();
+  openUserProfile();
 }

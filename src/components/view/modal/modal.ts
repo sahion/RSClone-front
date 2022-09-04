@@ -1,6 +1,7 @@
 import vladimirAva from '../../assets/img/Владимир.png'; 
 import elenaAva from '../../assets/img/Елена.png'; 
 import svetlanaAva from '../../assets/img/Светлана.png'; 
+import magicMan from '../../assets/img/magic-man.png';
 // import { rating } from '../../model/fakeDatabase/rating';
 import { Rating } from '../../model/type/type';
 
@@ -259,6 +260,54 @@ export default class Modal {
     `;
   }
 
+  getUserProfile(): string {
+    return `
+    <div class="modal profile modal--hidden">
+    <div class="modal__content profile__wrapper">
+      <div class="modal__header">                  
+        <span class="modal__title"></span>
+        <span class="modal__close modal-login__close">&times;</span> 
+      </div>
+      <div class="profile__content">
+        <div class="user">
+          <h6 class="user__title">Пользователь сайта</h6>
+          <div class="user__img">
+            <img class="user__ava" src="${magicMan}" alt="Avatar">
+          </div>
+          <h4 class="user__name">Волшебный Чел</h4>
+          <p class="user__location">Земли Ууу</p>
+          <p class="user__text">...О мелких людишках я быстро забываю</p>
+        </div>
+        <div class="user-info">
+          <h6 class="user-info__title">История профиля</h6>
+          <div class="user-info__content">
+            <div class="user-info__subtitles">
+              <p class="user-info__subtitle">Зарегистрирован:</p>
+              <p class="user-info__subtitle">Страна:</p>
+              <p class="user-info__subtitle">Город:</p>
+              <p class="user-info__subtitle">Пол:</p>
+              <p class="user-info__subtitle">Возраст:</p>
+              <p class="user-info__subtitle">Рейтинг:</p>
+            </div>
+            <form class="user-info__form">
+              <div class="user-info__inputs">
+                <input type="text" class="user-info__input content__registered" placeholder="04-09-2022" disabled>
+                <input type="text" class="user-info__input content__country" placeholder="Земли Ууу">
+                <input type="text" class="user-info__input content__city" placeholder="Город Чудаков">
+                <input type="text" class="user-info__input content__sex" placeholder="Мужской">
+                <input type="text" class="user-info__input content__age" placeholder="200+">
+                <input type="text" class="user-info__input content__rating" placeholder="-999999999" disabled>
+                <input type="submit" class="user-info__submit-input" id="changeProfile">
+              </div>
+            </form>
+          </div>
+          <label class="btn user-info__submit-btn" for="changeProfile">Сохранить</label>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  }
+
   render(arr: Rating): HTMLDivElement {
     this.wrapper.innerHTML += this.getRegister();
     this.wrapper.innerHTML += this.getLogin();
@@ -267,6 +316,7 @@ export default class Modal {
     this.wrapper.innerHTML += this.getMessageEmail();
     this.wrapper.innerHTML += this.getCloseRequestWithHelp();
     this.wrapper.innerHTML += this.getRating(arr);
+    this.wrapper.innerHTML += this.getUserProfile();
     this.wrapper.classList.add('modal-wrapper');
     return this.wrapper;
   }
