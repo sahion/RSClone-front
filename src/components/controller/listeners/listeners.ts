@@ -1,9 +1,8 @@
 import { RegisterElements } from '../../model/interfaces/RegisterElements';
-import { User } from '../../model/type/User';
+import { User, UserAuth } from '../../model/type/User';
 import { registerRequest, registerValidation } from '../../model/api/registration';
 import getRequestFormData from '../dataHandlers/getRequestFormData';
 import { AuthorizeElements } from '../../model/interfaces/AuthorizeElements';
-import { UserAuth } from '../../model/type/User';
 import { authorizeRequest, logout } from '../../model/api/authorization';
 import { pagination } from '../../utils/pagination';
 import getArrayWithAllFilters from '../../utils/createPageWithFilters';
@@ -316,7 +315,7 @@ export function addListeners(): void {
 
 export function addUserListeners(): void {
   renderUserPageRequests();
-  openUserRequestListener();
+  //openUserRequestListener();
   closeModalWindowListener();
   globalCloseModal();
   openUserCloseRequestListener();

@@ -5,7 +5,6 @@ import { getApplies } from '../../model/api/applies';
 
 export function createAppliesWithUser(users: UserVisualData[], applies :Apply[]) {
   const appliesWithUser: ApplyWithUser[] = [];
-  console.log(applies, users);
   applies.forEach(apply => {
     const user = users.find(u => apply.userId === u.id);
     appliesWithUser.push({

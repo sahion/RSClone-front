@@ -14,6 +14,11 @@ export const getMyCreatedApplies = (applies: ApplyWithUser[]) => {
   return applies.filter(apply => apply.userId === user.id)
 };
 
+export const getNotMyApplies = (applies: ApplyWithUser[]) => {
+  let user = getAuthUserData() as UserVisualData;
+  return applies.filter(apply => apply.userId !== user.id)
+};
+
 export const getMyParticipateApplies = (applies: ApplyWithUser[]) => {
   let user = getAuthUserData() as UserVisualData;
   if (!user) return []
