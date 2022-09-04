@@ -1,5 +1,5 @@
 import { userThanks } from '../../model/fakeDatabase/userThanks';
-import pen from '../../assets/img/pen.png';
+import pen from '../../assets/img/back.png';
 
 export default class Main {
   wrapper: HTMLElement;
@@ -192,6 +192,11 @@ export default class Main {
     return ` 
     <section class="filters-section">
         <div class="filters-section__filters">
+        <a href="user.html">
+          <button class="btn filters-section__btn-back color-btn">
+            <img src=${pen} alt="back">
+          </button>
+        </a> 
           <div class="filters-section__format">
             <h5 class="filters-section__title format__title">Выбрать формат</h5>
             <div class="filters-section__body">
@@ -267,6 +272,16 @@ export default class Main {
     </section>`;
   }
 
+  getMyRequests(): string {
+    return `
+    <div class="my-requests">
+      <h5 class="my-requests__title">Мои заявки:</h5>
+      <button class="btn my-requests__btn buttons-section__btn-apply">+</button>
+    </div>
+    <div class="card-requests"></div>    
+    `;
+  }
+
   getUserPaginationBtnsSection(): string {
     return `
     <section class="pagination-btns-section">
@@ -277,9 +292,6 @@ export default class Main {
         <button class="btn pagination-btns-section__btn next">></button>
         <button class="btn pagination-btns-section__btn end-page">> ></button>
       </div>
-      <a href="user.html">
-        <button class="btn">Назад</button>
-      </a> 
     </section>`;
   }
 

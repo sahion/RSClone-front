@@ -511,60 +511,60 @@
 
 //user-page
 
-.my-requests {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  text-align: center;
-  background: url(./components/assets/img/BG4.png) 50%/cover no-repeat;
+// .my-requests {
+//   display: flex;
+//   position: relative;
+//   flex-direction: column;
+//   justify-content: center;
+//   width: 100%;
+//   text-align: center;
+//   background: url(./components/assets/img/BG4.png) 50%/cover no-repeat;
 
-  &__title {
-    font-family: "Roboto Flex";
-    letter-spacing: 1px;
-    font-size: 50px;
-    margin: 40px;
-    font-weight: 900;
+//   &__title {
+//     font-family: "Roboto Flex";
+//     letter-spacing: 1px;
+//     font-size: 50px;
+//     margin: 40px;
+//     font-weight: 900;
 
-    @media (max-width: 768px) {
-      font-size: 40px;
-    }
+//     @media (max-width: 768px) {
+//       font-size: 40px;
+//     }
 
-    @media (max-width: 566px) {
-      font-size: 35px;
-    }
-  }
+//     @media (max-width: 566px) {
+//       font-size: 35px;
+//     }
+//   }
 
-  &__btn {
-    min-width: 49px;
-    min-height: 49px;
-    border-radius: 50%;
-  }
+//   &__btn {
+//     min-width: 49px;
+//     min-height: 49px;
+//     border-radius: 50%;
+//   }
 
-  &__frame6 {
-    position: absolute;
-    top: 20px;
-    left: 10%;
-    width: 197px;
-    height: 148px;
-    background: url(./components/assets/img/Frame6.png) 50%/contain no-repeat;
+//   &__frame6 {
+//     position: absolute;
+//     top: 20px;
+//     left: 10%;
+//     width: 197px;
+//     height: 148px;
+//     background: url(./components/assets/img/Frame6.png) 50%/contain no-repeat;
 
-    @media (max-width: 1199px) {
-      max-width: 10rem;
-      max-height: 11rem;
-    }
+//     @media (max-width: 1199px) {
+//       max-width: 10rem;
+//       max-height: 11rem;
+//     }
 
-    @media (max-width: 1024px) {
-      max-width: 8rem;
-      max-height: 9rem;
-    }
+//     @media (max-width: 1024px) {
+//       max-width: 8rem;
+//       max-height: 9rem;
+//     }
 
-    @media (max-width: 566px) {
-      max-width: 6rem;
-    }
-  }
-}
+//     @media (max-width: 566px) {
+//       max-width: 6rem;
+//     }
+//   }
+// }
 
 .card-requests {
   margin: 20px;
@@ -684,6 +684,15 @@
     font-size: 15px;
     background-color: white;
     cursor: pointer
+  }
+
+  &__btn-back {
+    min-width: 49px;
+    min-height: 49px;
+    max-height: 49px;
+    border-radius: 50%;
+    margin: 0px;
+    align-self: center;
   }
 
   &__btn:hover {
@@ -834,7 +843,7 @@
   display: flex;
   justify-content: space-between;
   max-width: 1200px;
-  height: 70vh;
+  min-height: 700px;
   margin: 20px auto 0px;
   padding-top: 30px;
   gap: 4rem;
@@ -843,7 +852,7 @@
 
 .users-main-section {  
   display: flex;  
-
+  flex-direction: column;
   &__content {
     width: 60rem;
   }
@@ -897,4 +906,34 @@
     border: 1px solid #9a6bff;
     color: white;
   }
+}
+.my-requests {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  &__title {
+    font-family: "Roboto Flex";
+    letter-spacing: 1px;
+    font-size: 40px;    
+    font-weight: 900;
+
+    @media (max-width: 768px) {
+      font-size: 40px;
+    }
+
+    @media (max-width: 566px) {
+      font-size: 35px;
+    }
+  }
+  &__btn {
+    min-width: 49px;
+    min-height: 49px;
+    max-height: 49px;
+    border-radius: 50%;
+    margin: 10px;
+  }
+
 }

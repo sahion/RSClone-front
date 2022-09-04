@@ -4,6 +4,12 @@ export default function createDivItemCard(data: ApplyWithUser[], index: number, 
   if (typeof data[index] === 'undefined') return;
   const div: HTMLDivElement = document.createElement('div');
   const location = data[index].location ? data[index].location : '-';
+  let dateinfo = '-';
+  if (data[index].date) {
+    const date = String(data[index].date).split('T');
+    console.log(date);    
+    dateinfo = date[0];    
+  } 
   div.id = `${data[index].name}`;
   
   if (page === 'main') div.className = 'card';
@@ -23,6 +29,7 @@ export default function createDivItemCard(data: ApplyWithUser[], index: number, 
                           <li><span class="card__span">Формат:</span> ${data[index].format}</li>
                           <li><span class="card__span">Страна:</span> ${data[index].country}</li>
                           <li><span class="card__span">Адрес:</span> ${location}</li>
+                          <li><span class="card__span">Дата:</span> ${dateinfo}</li>
                         </ul>
                       </div>
                       <div class="card__btn">
