@@ -672,6 +672,11 @@
     flex-direction: column;
     gap: 2rem;
     transition: all .5s ease;
+    overflow-y: auto;
+    
+    @media (max-width: 768px) {
+      max-height: 30rem;
+    }
   }
 
   &__btn {

@@ -63,7 +63,7 @@ export default class Header {
             <li class="header__nav-item header__avatar">
               <img class="header__avatar" src=${user.avatar} alt="Avatar">
               <ul class="header__submenu">
-                <li class="header__submenu-item"><a href="">Редактировать</a></li>
+                <li class="header__submenu-item submenu-profile"><a href="">Редактировать</a></li>
                 <li class="header__submenu-item header__logout">
                   <a class='logout' href="">Выйти</a>          
                 </li>
