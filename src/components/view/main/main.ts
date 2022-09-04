@@ -138,7 +138,7 @@ export default class Main {
           <div class="filters-section__format">
             <h5 class="filters-section__title format__title">Выбрать формат</h5>
             <div class="filters-section__body">
-              <button class="filters-section__btn ofline">Офлайн</button>
+              <button class="filters-section__btn offline">Офлайн</button>
               <button class="filters-section__btn online">Онлайн</button>
             </div>
           </div>

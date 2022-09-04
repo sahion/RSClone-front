@@ -5,7 +5,6 @@ import getRequestFormData from '../dataHandlers/getRequestFormData';
 import { AuthorizeElements } from '../../model/interfaces/AuthorizeElements';
 import { authorizeRequest, logout } from '../../model/api/authorization';
 import { pagination } from '../../utils/pagination';
-import getArrayWithAllFilters from '../../utils/createPageWithFilters';
 import Main from '../../view/main/main';
 import getFilter from '../../utils/filters';
 import Modal from '../../view/modal/modal';
@@ -15,12 +14,13 @@ import { showFiltersMenu, hideFiltersMenu, innerTextClosed } from '../../utils/f
 import { closeApply, createApply } from '../../model/api/applies';
 import getPageMyRequests from '../../utils/renderMyRequestCard';
 import getPageMyParticipates from '../../utils/renderMyParticipateCard';
-import { allApplies, getMyCreatedApplies, getOpenApplies, getMyParticipateApplies } from '../dataHandlers/applyFilters';
+import { allApplies, getMyCreatedApplies, getOpenApplies, 
+  getNotMyApplies, getMyParticipateApplies } from '../dataHandlers/applyFilters';
 
 const openApplies =  getOpenApplies(allApplies);
 const myApplies =  getMyCreatedApplies(openApplies);
 const myParticipates =  getMyParticipateApplies(openApplies);
-
+const NotMyApplies = getNotMyApplies(openApplies);
 
 function hideModal(): void {
   const registerModal: NodeListOf<Element> = document.querySelectorAll('.modal');
@@ -64,8 +64,7 @@ function userPageRequests(): void {
   main.innerHTML = '';
   main.innerHTML += newMain.getWrapper();
   main.innerHTML += newMain.getUserPaginationBtnsSection();
-  const arrayWithAllFilters = getArrayWithAllFilters();
-  pagination(arrayWithAllFilters);
+  pagination(NotMyApplies);
   const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn');
   [...filtersBtns].map(item => item.addEventListener('click', getFilter));
 
@@ -130,7 +129,6 @@ function showCloseRequest(): void {
     if (applyId)
       closeApply(+applyId);
     hideModal();
-    location.reload();
 
   });
   function showCloseRequestBtns() {
@@ -379,6 +377,7 @@ export function addUserListeners(): void {
   // openUserRequestListener();
   closeModalWindowListener();
   globalCloseModal();
+  renderMyRequests();
   //openUserCloseRequestListener();
   logoutListener();
   createRequestListener();

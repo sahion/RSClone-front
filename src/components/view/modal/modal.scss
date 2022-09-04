@@ -63,6 +63,33 @@
     font-size: 15px;
     font-weight: 600;
     background-color: white;
+
+
+   &[type=file]{
+    display: none;
+    }
+
+    &.file-style{
+    width: 10rem;
+    align-self: center;
+    background-color: #793CFB;
+    color: #FFFFFF;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &::before{
+    display: block;
+    content: '';
+    background-image: url('./components/assets/svg/file-avatar.svg');
+    background-repeat:no-repeat;
+    background-position: center;
+    width: 35px;
+    height:35px;
+    }
+    }
   }
 
   &__btns {
