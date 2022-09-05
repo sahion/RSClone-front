@@ -37,7 +37,7 @@ export default class Modal {
                   <label for="register__avatar" class="modal__input file-style">Загрузите аватар</label>
                   <input type="file" class = "modal__input" id="register__avatar" name = "avatar">
                   <div class="modal-register__btns">
-                    <button class="btn modal__btn register__btn color-btn" type="submit">Зарегистрироваться</button>
+                    <button class="btn modal__btn register__btn color-btn" type="submit">Регистрация</button>
                     <button class="btn modal__btn register__btn-to-login">Войти</button>
                   </div>
                 </form>
@@ -59,7 +59,7 @@ export default class Modal {
                     placeholder="Введите ваш Пароль">
                   <div class="modal__btns">
                     <button class="btn modal__btn login__btn color-btn" type="submit">Войти</button>
-                    <button class="btn modal__btn login__btn-to-register">Зарегистрироваться</button>
+                    <button class="btn modal__btn login__btn-to-register">Регистрация</button>
                   </div>
                 </form>
               </div>
