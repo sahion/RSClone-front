@@ -368,6 +368,17 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+
+
+    &-ava{
+      width:63px;
+      height: 63px;
+
+      & img{
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
   }
 
   &__main:last-child {

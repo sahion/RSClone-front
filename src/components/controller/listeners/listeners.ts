@@ -36,7 +36,7 @@ export function sideMenuListener(): void {
   sideMenu.onclick = (): void => {
     if ((sideMenu.querySelector('.side-menu__span') as HTMLElement).innerText === innerTextClosed) {
       showFiltersMenu();
-    } else hideFiltersMenu();
+    } //else hideFiltersMenu();
   };
 
   document.onmousedown = (event: Event): void => {
@@ -50,7 +50,7 @@ export function sideMenuListener(): void {
     if (!(event.target as HTMLElement).closest('.filters-section__filters') && 
     !(event.target as HTMLElement).closest('.side-menu') && isOverlay) {
       isOverlay = false;
-      hideFiltersMenu();
+      //hideFiltersMenu();
     }
   };
 }

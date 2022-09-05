@@ -33,3 +33,4 @@ export async function  createThanks(apply: Thanks) {
   }
 }
 
+export const allThanks = getThanks();

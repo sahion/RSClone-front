@@ -4,6 +4,13 @@ import svetlanaAva from '../../assets/img/Светлана.png';
 import magicMan from '../../assets/img/magic-man.png';
 // import { rating } from '../../model/fakeDatabase/rating';
 import { Rating } from '../../model/type/type';
+import { allUsers } from '../../model/api/users';
+import { UserVisualData } from '../../model/type/User';
+import { getUsersRating } from '../../controller/dataHandlers/userFilters';
+
+
+const sortedUsers = getUsersRating(allUsers);
+
 
 export default class Modal {
   wrapper: HTMLDivElement;
@@ -151,7 +158,8 @@ export default class Modal {
             </div>`;
   }
 
-  getCloseRequestWithHelp(): string {
+  getCloseRequestWithHelp(users:UserVisualData[]): string {
+    console.log(users);
     return `
     <div class="modal close-request modal--hidden">
       <div class="modal__content close-request__content">
@@ -222,7 +230,7 @@ export default class Modal {
     `;
   }
 
-  getRating(arr: Rating): string {
+  getRating(arr: UserVisualData[]): string {
     return `
     <div class="modal modal-rating modal--hidden">  
       <div class="modal__content modal-rating__content">
@@ -235,7 +243,7 @@ export default class Modal {
           <h6 class="modal-rating__score-subtitle">Дела</h6>
         </div>
         <div class="modal-rating__body">
-          ${arr.map(item => this.renderRatingTable(item.ava, item.name, item.score)).join('')}
+          ${arr.map(item => this.renderRatingTable(item.avatar, item.name, item.goodThings)).join('')}
         </div>
       </div>
     </div>
@@ -309,13 +317,14 @@ export default class Modal {
   }
 
   render(arr: Rating): HTMLDivElement {
+    console.log(arr);
     this.wrapper.innerHTML += this.getRegister();
     this.wrapper.innerHTML += this.getLogin();
     this.wrapper.innerHTML += this.getRequest();
     this.wrapper.innerHTML += this.getCloseRequest();
     this.wrapper.innerHTML += this.getMessageEmail();
-    this.wrapper.innerHTML += this.getCloseRequestWithHelp();
-    this.wrapper.innerHTML += this.getRating(arr);
+    this.wrapper.innerHTML += this.getCloseRequestWithHelp(allUsers);
+    this.wrapper.innerHTML += this.getRating(sortedUsers);
     this.wrapper.innerHTML += this.getUserProfile();
     this.wrapper.classList.add('modal-wrapper');
     return this.wrapper;
