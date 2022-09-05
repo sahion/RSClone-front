@@ -7,17 +7,20 @@ import { authorizeRequest, logout } from '../../model/api/authorization';
 import { pagination } from '../../utils/pagination';
 import Main from '../../view/main/main';
 import getFilter from '../../utils/filters';
-//import Modal from '../../view/modal/modal';
-import { Thanks } from '../../model/type/type';
+import Modal from '../../view/modal/modal';
+import { rating } from '../../model/fakeDatabase/rating';
+import { Apply, Rating, Thanks, ThanksCollection } from '../../model/type/type';
 import { showFiltersMenu, innerTextClosed, hideFiltersMenu } from '../../utils/filtersMenuToggle';
-import { closeApply, createApply } from '../../model/api/applies';
+import { closeApply, createApply, getApply } from '../../model/api/applies';
 import getPageMyRequests from '../../utils/renderMyRequestCard';
 import getPageMyParticipates from '../../utils/renderMyParticipateCard';
 import { allApplies, getMyCreatedApplies, getOpenApplies, 
   getNotMyApplies, getMyParticipateApplies } from '../dataHandlers/applyFilters';
-import {  getParticipantsInThanks, getUsersRating } from '../dataHandlers/userFilters';
+import {  getParticipantsInApply, getUsersRating  } from '../dataHandlers/userFilters';
 import { allUsers } from '../../model/api/users';
-import { getThank, allThanks } from '../../model/api/thanks';
+import { allThanks, createThanks } from '../../model/api/thanks';
+import { showMessage } from '../../utils/showMessage';
+import { getAllThanksWithDescription } from '../dataHandlers/thanksFilters';
 
 const openApplies =  getOpenApplies(allApplies);
 const myApplies =  getMyCreatedApplies(openApplies);
@@ -120,7 +123,7 @@ export function showLogin(event: Event): void {
 
 function showCloseRequest(): void {
   const applyId = (event?.target as HTMLElement).getAttribute('applyId');
-  // const modal: Modal = new Modal();
+
   if (applyId)
     localStorage.setItem('applyId', applyId);
   const requestModal = document.querySelector('.modal-close-request') as HTMLElement;
@@ -137,16 +140,24 @@ function showCloseRequest(): void {
   });
   async function showCloseRequestBtns() {
     hideModal();
-    // const participantsBlock = document.querySelector('.close-request__checkboxes') as HTMLElement;
-    let applyInfo: Thanks[];
+    const participantsBlock = document.querySelector('.close-request__checkboxes') as HTMLElement;
+    let applyInfo: Apply[];
     if (applyId) {
-      applyInfo =  await getThank(+applyId);
-      const participants = getParticipantsInThanks(allUsers, applyInfo[0]);
+      applyInfo =  await getApply(+applyId);
+      const participants = getParticipantsInApply(allUsers, applyInfo[0]);
       if (participants.length === 0) {
         closeApply(+applyId, 'Мы рады что вам помогли, хоть и не с нашего сайта');
-        return setTimeout(() => location.reload(), 4000);
-        
-      } 
+        setTimeout(() => location.reload(), 4000); 
+        return;
+      }
+      participantsBlock.innerHTML = participants.reduce( (sum, part) =>
+        sum +=  `<label for="userId${part.id}" class="close-request__label">
+      <input type="checkbox" class="close-request__checkbox" value = "${part.id}" id="userId${part.id}">
+      <div class="close-request__volunteers">
+        <img src=${part.avatar} class="avatar" alt="Avatar">
+        ${part.name}
+      </div></label>`, '');
+
     }
     const requestModalHelp = document.querySelector('.close-request') as HTMLElement;
     document.body.classList.add('modal--open');
@@ -164,7 +175,6 @@ function showRating(): void {
 
   document.body.classList.add('modal--open');
 }
-
 
 
 function enableInputs(): void {
@@ -252,6 +262,25 @@ export function authSubmitListener() {
       pwd: elements.pwd.value,
     };
     authorizeRequest(user);
+  });
+}
+
+export function giveThanksListener() {
+  const thanksForm = document.querySelector('.close-request__form') as HTMLFormElement;
+  thanksForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = thanksForm.elements as ThanksCollection;
+    const participants: number[] = [];
+    const checkboxes = thanksForm.querySelectorAll('input[type=checkbox]:checked') ;
+    checkboxes.forEach(cb => participants.push(+(cb as HTMLInputElement).value));
+    if (participants.length === 0) 
+      return showMessage('Вы должны выбрать тех кто вам помог, или закрыть форму', true);
+    const thank: Thanks = {
+      description: data.description.value,
+      participants: participants,
+      applyId: +(localStorage.getItem('applyId') as string),
+    };
+    createThanks(thank);
   });
 }
 
@@ -343,29 +372,30 @@ export function openRatingWindow(): void {
   ratingbtn.addEventListener('click', showRating);
 }
 
-// export function sortRating(): void {
-//   const sortBtn = document.querySelector('.modal-rating__score-subtitle') as HTMLElement;
-//   const modal: Modal = new Modal();
+export function sortRating(): void {
+  const sortBtn = document.querySelector('.modal-rating__score-subtitle') as HTMLElement;
+  const modal: Modal = new Modal();
 
-//   sortBtn.addEventListener('click', () => {
-//     const ratingContent = document.querySelector('.modal-rating') as HTMLElement;
-//     const sortBy = sessionStorage.getItem('sortBy') as string;
+  sortBtn.addEventListener('click', () => {
+    const ratingContent = document.querySelector('.modal-rating') as HTMLElement;
+    const sortBy = sessionStorage.getItem('sortBy') as string;
     
-//     if (sortBy === 'desc') {
-//       const arr: Rating = rating.sort((a, b) => b.score - a.score);
-//       ratingContent.innerHTML = '';
-//       ratingContent.innerHTML = modal.getSortedRating(arr);
-//       sessionStorage.setItem('sortBy', 'asc');    
-//     } else {
-//       const arr: Rating = rating.sort((a, b) => a.score - b.score);
-//       ratingContent.innerHTML = '';
-//       ratingContent.innerHTML = modal.getSortedRating(arr);
-//       sessionStorage.setItem('sortBy', 'desc');
-//     }    
-//     closeModalWindowListener();
-//     sortRating();
-//   });
-// }
+    if (sortBy === 'desc') {
+      const arr: Rating = rating.sort((a, b) => b.score - a.score);
+      ratingContent.innerHTML = '';
+      ratingContent.innerHTML = modal.getSortedRating(arr);
+      sessionStorage.setItem('sortBy', 'asc');    
+    } else {
+      const arr: Rating = rating.sort((a, b) => a.score - b.score);
+      ratingContent.innerHTML = '';
+      ratingContent.innerHTML = modal.getSortedRating(arr);
+      sessionStorage.setItem('sortBy', 'desc');
+    }
+    
+    closeModalWindowListener();
+    sortRating();
+  });
+}
 
 export function logoutListener(): void {
   const logoutBtn =  document.querySelector('.logout');
@@ -391,7 +421,7 @@ function myThanksPage(): void {
   const usersMainSection = document.querySelector('.users-main-section') as HTMLElement;
   const newMain: Main = new Main();
   usersMainSection.innerHTML = '';
-  usersMainSection.innerHTML += newMain.getUserThanksSection(allThanks);
+  usersMainSection.innerHTML += newMain.getUserThanksSection(getAllThanksWithDescription(allThanks));
 }
 
 export function renderMyThanks(): void {
@@ -423,6 +453,7 @@ export function addUserListeners(): void {
   renderMyRequests();
   renderMyParticipates();
   renderMyThanks();
+  giveThanksListener();
   //sortRating();
   renderUserRating();
 }

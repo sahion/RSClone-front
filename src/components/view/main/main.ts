@@ -3,6 +3,7 @@ import { getParticipantsInThanks } from '../../controller/dataHandlers/userFilte
 import { Thanks } from '../../model/type/type';
 import { allUsers } from '../../model/api/users';
 import { allThanks } from '../../model/api/thanks';
+import { getAllThanksWithDescription } from '../../controller/dataHandlers/thanksFilters';
 import { UserVisualData } from '../../model/type/User';
 
 export default class Main {
@@ -50,12 +51,13 @@ export default class Main {
   renderThanksCard(item: Thanks): string {
     const participants = getParticipantsInThanks(allUsers, item);
     const user = allUsers.find(u => u.id === item.userId);
-
+    console.log(participants);
     return `
     <div class="card thanks-card">
       <div class="card__header thanks-card__header">              
         <div class="card__avatar thanks-card-to__avatar">
-          ${participants.forEach(p => `<img src=${p.avatar} alt="Avatar">`)}
+          ${participants.reduce( (sum, p)=> sum += `<img src=${p.avatar} alt="Avatar" 
+          class="avatar avatar_participant"><span class='username'>${p.name}</span>`, '')}
         </div>
         <p><span class="card__name thanks-card-to__name"></span>спасибо за</p>
       </div>
@@ -63,7 +65,7 @@ export default class Main {
       <div class="card__footer thanks-card__footer">
         <div class="thanks-card-from__name">${user?.name}</div>
         <div class="thanks-card-from__avatar">
-          <img src=${user?.avatar} alt="Avatar">
+          <img src=${user?.avatar} alt="Avatar" class='avatar'>
         </div>
       </div>        
     </div>`;
@@ -84,6 +86,7 @@ export default class Main {
   }
 
   getUserThanksSection(arr: Thanks[]): string {
+    console.log(arr);
     return `
     <section class="thanks-section" id="thanks">
       <h2 class="thanks-section__title">Копилка добрых дел </h2>
@@ -300,7 +303,7 @@ export default class Main {
       case ('main'): {
         this.wrapper.innerHTML += this.getWelcomeSection();
         this.wrapper.innerHTML += this.getRequestSection();
-        this.wrapper.innerHTML += this.getThanksSection(allThanks);
+        this.wrapper.innerHTML += this.getThanksSection(getAllThanksWithDescription(allThanks));
         this.wrapper.innerHTML += this.getInfoSection();
         break;
       }

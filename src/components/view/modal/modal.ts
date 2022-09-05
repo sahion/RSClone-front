@@ -161,7 +161,7 @@ export default class Modal {
     <div class="modal close-request modal--hidden">
       <div class="modal__content close-request__content">
         <div class="modal__header">
-          <span class="modal__title">Выберите волонтера:</span>
+          <span class="modal__title">Выберите волонтеров:</span>
           <span class="modal__close">&times;</span>
         </div>
         <form action="" class="close-request__form">
@@ -189,7 +189,7 @@ export default class Modal {
             </label>
           </div>
           <h4 class="close-request__ta-title">Оставьте благодарность:</h4>
-          <textarea name="crTa" class="close-request__textarea" id="crTa"></textarea>
+          <textarea name="description" class="close-request__textarea" id="crTa"></textarea>
           <button class="btn close-request__form-btn" type="submit">Оставить благодарность</button>
         </form>
       </div>

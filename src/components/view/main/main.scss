@@ -305,8 +305,6 @@
   }
 
   &__avatar {
-    width: 63px;
-    height: 63px;
 
     img {
       border-radius: 50%;
@@ -429,6 +427,8 @@
   font-size: 18px;
   margin: 0 10px;
 
+
+
   &__header {
     justify-content: space-around;
     padding: 0px 10px;
@@ -442,6 +442,13 @@
 
   &__title {
     font-size: 14px;
+  }
+
+  &-to__avatar{
+
+    &:first-child{
+      margin-left:20px;
+    }
   }
 }
 
@@ -1024,6 +1031,7 @@
   position: relative;
   gap: 4rem;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 
   &__title {

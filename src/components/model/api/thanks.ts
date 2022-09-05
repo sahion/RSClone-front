@@ -15,7 +15,7 @@ export async function  getThanks() {
 
 export async function  getThank(applyId: number) : Promise<Thanks[]> {
   try {
-    const response = await fetch(`${SERVER}/apply/${applyId}`);
+    const response = await fetch(`${SERVER}/thanks/${applyId}`);
     const result : Thanks = await response.json();
     return [ { ...result } ];
   } catch (err) {
@@ -26,16 +26,16 @@ export async function  getThank(applyId: number) : Promise<Thanks[]> {
 }
 
 
-export async function  createThanks(apply: Thanks) {
+export async function  createThanks(thanks: Thanks) {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch(`${SERVER}/apply`, {
+    const response = await fetch(`${SERVER}/thanks`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'authorization': `Bearer ${token}`,
       },
-      body: JSON.stringify(apply),
+      body: JSON.stringify(thanks),
     });
     if (response.status === 200) {
       showMessage('Благодарность успешно создана');
