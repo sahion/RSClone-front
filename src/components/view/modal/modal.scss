@@ -373,8 +373,8 @@
 
 
     &-ava{
-      width:63px;
-      height: 63px;
+      width:53px;
+      height: 53px;
 
       & img{
         object-fit: cover;
@@ -391,10 +391,6 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
-  }
-
-  &__score-subtitle {
-    cursor: pointer;
   }
 
   &__name-body {

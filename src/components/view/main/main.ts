@@ -85,7 +85,7 @@ export default class Main {
 
   getUserThanksSection(arr: Thanks[]): string {
     return `
-    <section class="thanks-section user-thanks-section" id="thanks">
+    <section class="thanks-section" id="thanks">
       <h2 class="thanks-section__title">Копилка добрых дел </h2>
       <div class="thanks-section__cards">
         ${arr.map(item =>
@@ -248,8 +248,9 @@ export default class Main {
   renderRatingTable(num: number, ava: string, name: string, score: number): string {
     return `
     <div class="user-rating__main">
-      <div class="user-rating__header">${num}</div> 
+     
         <div class="user-rating__name-body">
+          <div>${num}</div>
           <div class="user-rating__main-ava">
             <img src="${ava}" alt="Avatar">
           </div>
@@ -266,22 +267,18 @@ export default class Main {
     return `
     <div class="user-rating">  
       <div class="user-rating__content">
-        <div class="user-rating__header">
-          <span class="user-rating__title">Таблица рейтинга волонтёров</span>          
-        </div> 
         <div class="user-rating__table">
-          <h6 class="user-rating__name-subtitle">Имя</h6>
-          <h6 class="user-rating__score-subtitle">Дела</h6>
+          <h6 class="user-rating__name-subtitle">№</h6>
+          <h6 class="user-rating__score-subtitle">Добрые<br>дела</h6>
         </div>
         <div class="user-rating__body">
   ${arr.map((item, index) => {
-    console.log(index);
-    const num = index + 1;
-    this.renderRatingTable(num, item.avatar, item.name, item.goodThings);
+    return this.renderRatingTable(index + 1, item.avatar, item.name, item.goodThings);
   }).join('')}
         </div>
-      </div>
+      </div>     
     </div>
+    <div class="user-rating__frame11"></div>
     `;
   }
 

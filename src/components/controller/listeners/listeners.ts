@@ -7,7 +7,7 @@ import { authorizeRequest, logout } from '../../model/api/authorization';
 import { pagination } from '../../utils/pagination';
 import Main from '../../view/main/main';
 import getFilter from '../../utils/filters';
-import Modal from '../../view/modal/modal';
+//import Modal from '../../view/modal/modal';
 import { Thanks } from '../../model/type/type';
 import { showFiltersMenu, innerTextClosed, hideFiltersMenu } from '../../utils/filtersMenuToggle';
 import { closeApply, createApply } from '../../model/api/applies';
