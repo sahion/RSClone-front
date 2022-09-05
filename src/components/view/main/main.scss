@@ -137,6 +137,10 @@
       left: -93%;
     }
 
+    @media (max-width: 1024px) {
+      left: -108%;
+    }
+
     @media (max-width: 768px) {
       left: -50%;
     }
@@ -198,19 +202,43 @@
   animation-duration: 2s;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
   @keyframes move-right {
-    from { left: -7%; }
-    to { left: -93%; }
+    from { left: 0%; }
+    to { left: -100%; }
   }
 
   @keyframes move-left {
-    from { left: -93%; }
-    to { left: 7%; }
+    from { left: -100%; }
+    to { left: 0%; }
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  @keyframes move-right {
+    from { left: -93%; }
+    to { left: 7%; }
+  }
+
+  @keyframes move-left {
+    from { left: 0%; }
+    to { left: -93%; }
+  }
+}
+
+@media (max-width: 1024px) {
+  @keyframes move-right {
+    from { left: -102%; }
+    to { left: -4%; }
+  }
+
+  @keyframes move-left {
+    from { left: -102%; }
+    to { left: 0%; }
+  }
+}
+
+@media (max-width: 767px) {
   @keyframes move-right {
     from { left: 0%; }
     to { left: -100%; }
