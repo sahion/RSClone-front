@@ -20,6 +20,7 @@ import {  getParticipantsInApply } from '../dataHandlers/userFilters';
 import { allUsers } from '../../model/api/users';
 import { allThanks, createThanks } from '../../model/api/thanks';
 import { showMessage } from '../../utils/showMessage';
+import { getAllThanksWithDescription } from '../dataHandlers/thanksFilters';
 
 const openApplies =  getOpenApplies(allApplies);
 const myApplies =  getMyCreatedApplies(openApplies);
@@ -410,7 +411,7 @@ function myThanksPage(): void {
   const usersMainSection = document.querySelector('.users-main-section') as HTMLElement;
   const newMain: Main = new Main();
   usersMainSection.innerHTML = '';
-  usersMainSection.innerHTML += newMain.getUserThanksSection(allThanks);
+  usersMainSection.innerHTML += newMain.getUserThanksSection(getAllThanksWithDescription(allThanks));
 }
 
 export function renderMyThanks(): void {

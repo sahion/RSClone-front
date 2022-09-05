@@ -619,8 +619,31 @@
   }
 }
 .avatar{
-  width: 63px;
   height: 63px;
   border-radius: 50%;
   object-fit: cover;
+
+  
+  &_participant{
+    margin-left:-40px;
+    position:relative;
+  
+    &:hover{
+      z-index:1000;
+      display:hidden;
+
+      &+.username{
+        display:inline;
+      }
+    }
+  }
+}
+
+.username{
+  display:none;
+  position:absolute;
+  z-index:1000;
+  margin-top: 50px;
+  margin-left: -35px;
+  font-weight: bold;
 }
