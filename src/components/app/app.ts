@@ -1,11 +1,9 @@
 import { addListeners, addUserListeners } from '../controller/listeners/listeners';
-import { rating } from '../model/fakeDatabase/rating';
 import { isAuthorized } from '../model/api/authorization';
 import Footer from '../view/footer/footer';
 import Header from '../view/header/header';
 import Main from '../view/main/main';
 import Modal from '../view/modal/modal';
-import { sortedArr } from '../utils/getSortedRatingArr';
 
 export default class App {
   body: HTMLElement;
@@ -26,9 +24,9 @@ export default class App {
   async init(page = 'main'): Promise<HTMLElement> {
 
     const isAuth = await isAuthorized();
-    if (page === 'main' && isAuth) window.location.href = document.location.origin + '/user';
+    if (page === 'main' && isAuth) window.location.href = document.location.origin + '/user.html';
     else if (page === 'user' && !isAuth) window.location.href = document.location.origin;
-    const modals: HTMLDivElement = new Modal().render(sortedArr(rating));
+    const modals: HTMLDivElement = new Modal().render();
 
     this.body.append(modals);
     this.body.append(this.header.render(page));

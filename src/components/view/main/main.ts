@@ -31,7 +31,7 @@ export default class Main {
     <section class="requests-section main-request-section" id="requests">
       <div class="container">
         <div class="slider">
-          <button class="btn slider__btn prev">←</button>
+          <button class="btn slider__btn slider-prev prev">←</button>
           <div class="slider__wrapper">
             <div class="slider__items">
               <div class="slider__item-left"></div>
@@ -39,7 +39,7 @@ export default class Main {
               <div class="slider__item-right"></div>
             </div>
           </div> 
-          <button class="btn slider__btn next">→</button>
+          <button class="btn slider__btn slider-next next">→</button>
         </div>
         <p>... успей им помочь</p>
         <div class="slider__frame3"></div>
@@ -145,12 +145,12 @@ export default class Main {
   getUserFiltersSection(): string {
     return ` 
     <section class="filters-section">
+      <a href="user.html">
+        <button class="btn filters-section__btn-back color-btn">
+          <img src=${back} alt="back">
+        </button>
+      </a> 
         <div class="filters-section__filters">
-        <a href="user.html">
-          <button class="btn filters-section__btn-back color-btn">
-            <img src=${back} alt="back">
-          </button>
-        </a> 
           <div class="filters-section__format">
             <h5 class="filters-section__title format__title">Выбрать формат</h5>
             <div class="filters-section__body">
