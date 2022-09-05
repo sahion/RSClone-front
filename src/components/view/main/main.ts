@@ -117,9 +117,6 @@ export default class Main {
   getUserWrapper(): string {
     return `
       <div class="user-section-main__wrapper">        
-        <div class="side-menu">
-          <span class="side-menu__span">Меню</span>
-        </div>
         ${this.getUserMenuSection()}
         ${this.getUsersMain()}        
       </div>
