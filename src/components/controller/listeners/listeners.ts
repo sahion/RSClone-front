@@ -16,6 +16,7 @@ import getPageMyRequests from '../../utils/renderMyRequestCard';
 import getPageMyParticipates from '../../utils/renderMyParticipateCard';
 import { allApplies, getMyCreatedApplies, getOpenApplies, 
   getNotMyApplies, getMyParticipateApplies } from '../dataHandlers/applyFilters';
+import { allThanks } from '../../model/api/thanks';
 
 const openApplies =  getOpenApplies(allApplies);
 const myApplies =  getMyCreatedApplies(openApplies);
@@ -39,7 +40,7 @@ export function sideMenuListener(): void {
   sideMenu.onclick = (): void => {
     if ((sideMenu.querySelector('.side-menu__span') as HTMLElement).innerText === innerTextClosed) {
       showFiltersMenu();
-    } //else hideFiltersMenu();
+    } else hideFiltersMenu();
   };
 
   document.onmousedown = (event: Event): void => {
@@ -53,7 +54,7 @@ export function sideMenuListener(): void {
     if (!(event.target as HTMLElement).closest('.filters-section__filters') && 
     !(event.target as HTMLElement).closest('.side-menu') && isOverlay) {
       isOverlay = false;
-      //hideFiltersMenu();
+      hideFiltersMenu();
     }
   };
 }
@@ -360,6 +361,19 @@ export function openUserProfile(): void {
   };
 } 
 
+function myThanksPage(): void {
+  const usersMainSection = document.querySelector('.users-main-section') as HTMLElement;
+  const newMain: Main = new Main();
+  usersMainSection.innerHTML = '';
+  usersMainSection.innerHTML += newMain.getUserThanksSection(allThanks);
+}
+
+export function renderMyThanks(): void {
+  const myThanksBtn = document.querySelector('.my-thanks-btn') as HTMLButtonElement;
+
+  myThanksBtn.addEventListener('click', myThanksPage);
+}
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
@@ -374,14 +388,13 @@ export function addListeners(): void {
 
 export function addUserListeners(): void {
   renderUserPageRequests();
-  // openUserRequestListener();
   closeModalWindowListener();
   globalCloseModal();
   renderMyRequests();
-  //openUserCloseRequestListener();
   logoutListener();
   createRequestListener();
   openUserProfile();
   renderMyRequests();
   renderMyParticipates();
+  renderMyThanks();
 }

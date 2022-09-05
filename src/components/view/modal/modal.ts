@@ -268,7 +268,7 @@ export default class Modal {
 
   getUserProfile(): string {
     const user = getAuthUserData();
-    if (!user) return '</h1>you are not authorized</>';
+    if (!user) return '';
 
     return `
     <div class="modal profile modal--hidden">
