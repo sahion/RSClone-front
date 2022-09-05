@@ -287,8 +287,7 @@ function myPageRequests(): void {
   openRequestBtn.addEventListener('click', showRequest);
 }
 export function renderMyRequests(): void {
-  const myRequestsBtn = document.querySelector('.my-requests-btn') as HTMLButtonElement;
-  
+  const myRequestsBtn = document.querySelector('.my-requests-btn') as HTMLButtonElement;  
   myRequestsBtn.addEventListener('click', myPageRequests);
 }
 
@@ -305,9 +304,26 @@ function myPageParticipates(): void {
   //openRequestBtn.addEventListener('click', showRequest);
 }
 export function renderMyParticipates(): void {
-  const myParticipatesBtn = document.querySelector('.my-participates-btn') as HTMLButtonElement;
-  
+  const myParticipatesBtn = document.querySelector('.my-participates-btn') as HTMLButtonElement;  
   myParticipatesBtn.addEventListener('click', myPageParticipates);
+}
+
+function UserRating(): void {
+  const usersMainSection = document.querySelector('.users-main-section') as HTMLElement;
+  const newMain: Main = new Main();
+  const arr: Rating = rating.sort((a, b) => b.score - a.score);
+  usersMainSection.innerHTML = '';
+  usersMainSection.innerHTML += newMain.getSortedRating(arr);
+  //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection();
+  console.log(myParticipates);
+  getPageMyParticipates(myParticipates);
+  openUserCloseRequestListener();
+  //const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
+  //openRequestBtn.addEventListener('click', showRequest);
+}
+export function renderUserRating(): void {
+  const myParticipatesBtn = document.querySelector('.my-participates-btn') as HTMLButtonElement;  
+  myParticipatesBtn.addEventListener('click', UserRating);
 }
 
 export function openRatingWindow(): void {
@@ -334,8 +350,7 @@ export function sortRating(): void {
       ratingContent.innerHTML = '';
       ratingContent.innerHTML = modal.getSortedRating(arr);
       sessionStorage.setItem('sortBy', 'desc');
-    }
-    
+    }    
     closeModalWindowListener();
     sortRating();
   });
@@ -397,4 +412,5 @@ export function addUserListeners(): void {
   renderMyRequests();
   renderMyParticipates();
   renderMyThanks();
+  sortRating();
 }
