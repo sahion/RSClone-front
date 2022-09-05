@@ -120,7 +120,7 @@ export function showLogin(event: Event): void {
 
 function showCloseRequest(): void {
   const applyId = (event?.target as HTMLElement).getAttribute('applyId');
-  const modal: Modal = new Modal();
+  // const modal: Modal = new Modal();
   if (applyId)
     localStorage.setItem('applyId', applyId);
   const requestModal = document.querySelector('.modal-close-request') as HTMLElement;
@@ -137,7 +137,7 @@ function showCloseRequest(): void {
   });
   async function showCloseRequestBtns() {
     hideModal();
-    const participantsBlock = document.querySelector('.close-request__checkboxes') as HTMLElement;
+    // const participantsBlock = document.querySelector('.close-request__checkboxes') as HTMLElement;
     let applyInfo: Thanks[];
     if (applyId) {
       applyInfo =  await getThank(+applyId);
