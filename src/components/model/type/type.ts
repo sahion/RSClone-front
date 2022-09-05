@@ -20,9 +20,9 @@ export interface ApplyWithUser extends Apply {
 }
 
 export interface Thanks {
-  id: number,
+  id?: number,
   applyId : number,
-  userId: number,
+  userId?: number,
   participants: number[]
   description?: string
 }
@@ -30,6 +30,10 @@ export interface Thanks {
 export interface ThanksWithUser extends Thanks {
   name: string,
   avatar: string,
+}
+
+export interface ThanksCollection extends HTMLFormControlsCollection {
+  description: HTMLInputElement
 }
 
 export type UserThanks = {
