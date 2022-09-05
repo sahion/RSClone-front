@@ -280,9 +280,11 @@ function myPageRequests(): void {
   const newMain: Main = new Main();
   usersMainSection.innerHTML = '';
   usersMainSection.innerHTML += newMain.getMyRequests();
-  //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection();
   getPageMyRequests(myApplies); 
   openUserCloseRequestListener();
+
+  const wrapper = document.querySelector('.user-section-main__wrapper') as HTMLElement;
+  wrapper.classList.add('my-requests-section-wrapper');
   const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
   openRequestBtn.addEventListener('click', showRequest);
 }
