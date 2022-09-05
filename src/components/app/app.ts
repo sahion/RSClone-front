@@ -24,7 +24,7 @@ export default class App {
   async init(page = 'main'): Promise<HTMLElement> {
 
     const isAuth = await isAuthorized();
-    if (page === 'main' && isAuth) window.location.href = document.location.origin + '/user';
+    if (page === 'main' && isAuth) window.location.href = document.location.origin + '/user.html';
     else if (page === 'user' && !isAuth) window.location.href = document.location.origin;
     const modals: HTMLDivElement = new Modal().render();
 

@@ -17,7 +17,7 @@ export async function authorizeRequest(user: UserAuth) {
     if (response.status === 200) {
       localStorage.setItem('token', token );
       showMessage('Вы успешно авторизованы');
-      setTimeout( () => window.location.href = document.location.origin + '/user', 2500);
+      setTimeout( () => window.location.href = document.location.origin + '/user.html', 2500);
     } else return (showMessage('Ошибка авторизации', true));
   } catch (err) {
     if (err instanceof Error)
