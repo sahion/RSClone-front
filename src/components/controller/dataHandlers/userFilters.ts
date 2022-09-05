@@ -6,5 +6,6 @@ export const getUsersRating = (users: UserVisualData[]) => users.sort((a, b) => 
 export const getParticipantsInApply =  (users: UserVisualData[], apply:Apply)  =>
   users.filter(user => apply.participants.some(part => part === user.id));
 
-export const getParticipantsInThanks =  (users: UserVisualData[], thanks:Thanks)  =>
+export const getParticipantsInThanks =  (users: UserVisualData[], thanks:Thanks)  => 
   users.filter(user => thanks.participants.some(thank => thank === user.id));
+
