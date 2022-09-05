@@ -16,9 +16,9 @@ import getPageMyRequests from '../../utils/renderMyRequestCard';
 import getPageMyParticipates from '../../utils/renderMyParticipateCard';
 import { allApplies, getMyCreatedApplies, getOpenApplies, 
   getNotMyApplies, getMyParticipateApplies } from '../dataHandlers/applyFilters';
-import {  getParticipantsInApply, getParticipantsInThanks } from '../dataHandlers/userFilters';
+import {  getParticipantsInApply } from '../dataHandlers/userFilters';
 import { allUsers } from '../../model/api/users';
-import { getThank, allThanks, createThanks } from '../../model/api/thanks';
+import { allThanks, createThanks } from '../../model/api/thanks';
 import { showMessage } from '../../utils/showMessage';
 
 const openApplies =  getOpenApplies(allApplies);
@@ -121,6 +121,7 @@ export function showLogin(event: Event): void {
 
 function showCloseRequest(): void {
   const applyId = (event?.target as HTMLElement).getAttribute('applyId');
+
   if (applyId)
     localStorage.setItem('applyId', applyId);
   const requestModal = document.querySelector('.modal-close-request') as HTMLElement;
@@ -322,9 +323,11 @@ function myPageRequests(): void {
   const newMain: Main = new Main();
   usersMainSection.innerHTML = '';
   usersMainSection.innerHTML += newMain.getMyRequests();
-  //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection();
   getPageMyRequests(myApplies); 
   openUserCloseRequestListener();
+
+  const wrapper = document.querySelector('.user-section-main__wrapper') as HTMLElement;
+  wrapper.classList.add('my-requests-section-wrapper');
   const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
   openRequestBtn.addEventListener('click', showRequest);
 }

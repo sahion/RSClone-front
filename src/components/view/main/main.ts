@@ -84,7 +84,7 @@ export default class Main {
 
   getUserThanksSection(arr: Thanks[]): string {
     return `
-    <section class="thanks-section" id="thanks">
+    <section class="thanks-section user-thanks-section" id="thanks">
       <h2 class="thanks-section__title">Копилка добрых дел </h2>
       <div class="thanks-section__cards">
         ${arr.map(item =>
