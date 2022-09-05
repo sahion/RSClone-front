@@ -1,5 +1,5 @@
-import { showMessage } from "../../utils/showMessage";
-import { Thanks } from "../type/type";
+import { showMessage } from '../../utils/showMessage';
+import { Thanks } from '../type/type';
 
 const SERVER = process.env.SERVER;
 
@@ -9,7 +9,7 @@ export async function  getThanks() {
     const result : Thanks[] = await response.json();
     return result;
   } catch (err) {
-      return [];   
+    return [];   
   }
 }
 
@@ -33,4 +33,4 @@ export async function  createThanks(apply: Thanks) {
   }
 }
 
-export const allThanks = getThanks();
+export const allThanks = await getThanks();
