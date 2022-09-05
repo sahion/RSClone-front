@@ -3,7 +3,7 @@ import { getParticipantsInThanks } from '../../controller/dataHandlers/userFilte
 import { Thanks } from '../../model/type/type';
 import { allUsers } from '../../model/api/users';
 import { allThanks } from '../../model/api/thanks';
-import { Rating } from '../../model/type/type';
+import { UserVisualData } from '../../model/type/User';
 
 export default class Main {
   wrapper: HTMLElement;
@@ -245,37 +245,43 @@ export default class Main {
     `;
   }
 
-  renderRatingTable(ava: string, name: string, score: number): string {
+  renderRatingTable(num: number, ava: string, name: string, score: number): string {
     return `
-    <div class="modal__main modal-rating__main">   
-        <div class="modal-rating__name-body">
-          <div class="modal-rating__main-ava">
+    <div class="user-rating__main">
+      <div class="user-rating__header">${num}</div> 
+        <div class="user-rating__name-body">
+          <div class="user-rating__main-ava">
             <img src="${ava}" alt="Avatar">
           </div>
-          <span class="modal-rating__name-name">${name}</span>
+          <span class="user-rating__name-name">${name}</span>
         </div>
-        <div class="modal-rating__score">      
-          <span class="modal-rating__score-score">${score}</span>
+        <div class="user-rating__score">      
+          <span class="user-rating__score-score">${score}</span>
         </div>
       </div> 
     `;
   }
 
-  getSortedRating(arr: Rating): string {
+  getRating(arr: UserVisualData[]): string {
     return `
-      <div class="modal__content modal-rating__content">
-        <div class="modal__header modal-rating__header">
-          <span class="modal__title modal-rating__title">Таблица рейтинга волонтёров</span>
-          <span class="modal__close modal-rating__close">&times;</span>
+    <div class="user-rating">  
+      <div class="user-rating__content">
+        <div class="user-rating__header">
+          <span class="user-rating__title">Таблица рейтинга волонтёров</span>          
         </div> 
-        <div class="modal-rating__table">
-          <h6 class="modal-rating__name-subtitle">Имя</h6>
-          <h6 class="modal-rating__score-subtitle">Дела</h6>
+        <div class="user-rating__table">
+          <h6 class="user-rating__name-subtitle">Имя</h6>
+          <h6 class="user-rating__score-subtitle">Дела</h6>
         </div>
-        <div class="modal-rating__body">
-          ${arr.map(item => this.renderRatingTable(item.ava, item.name, item.score)).join('')}
+        <div class="user-rating__body">
+  ${arr.map((item, index) => {
+    console.log(index);
+    const num = index + 1;
+    this.renderRatingTable(num, item.avatar, item.name, item.goodThings);
+  }).join('')}
         </div>
       </div>
+    </div>
     `;
   }
 

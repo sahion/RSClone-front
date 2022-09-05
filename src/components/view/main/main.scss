@@ -1038,3 +1038,43 @@
   }
 
 }
+.user-rating {
+
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+
+    &-ava{
+      width:63px;
+      height: 63px;
+
+      & img{
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__main:last-child {
+    margin-bottom: 0;
+  }
+
+  &__table {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &__score-subtitle {
+    cursor: pointer;
+  }
+
+  &__name-body {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}

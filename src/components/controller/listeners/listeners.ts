@@ -8,15 +8,14 @@ import { pagination } from '../../utils/pagination';
 import Main from '../../view/main/main';
 import getFilter from '../../utils/filters';
 import Modal from '../../view/modal/modal';
-import { rating } from '../../model/fakeDatabase/rating';
-import { Rating, Thanks } from '../../model/type/type';
+import { Thanks } from '../../model/type/type';
 import { showFiltersMenu, innerTextClosed, hideFiltersMenu } from '../../utils/filtersMenuToggle';
 import { closeApply, createApply } from '../../model/api/applies';
 import getPageMyRequests from '../../utils/renderMyRequestCard';
 import getPageMyParticipates from '../../utils/renderMyParticipateCard';
 import { allApplies, getMyCreatedApplies, getOpenApplies, 
   getNotMyApplies, getMyParticipateApplies } from '../dataHandlers/applyFilters';
-import {  getParticipantsInThanks } from '../dataHandlers/userFilters';
+import {  getParticipantsInThanks, getUsersRating } from '../dataHandlers/userFilters';
 import { allUsers } from '../../model/api/users';
 import { getThank, allThanks } from '../../model/api/thanks';
 
@@ -24,6 +23,7 @@ const openApplies =  getOpenApplies(allApplies);
 const myApplies =  getMyCreatedApplies(openApplies);
 const myParticipates =  getMyParticipateApplies(openApplies);
 const NotMyApplies = getNotMyApplies(openApplies);
+const sortedUsers = getUsersRating(allUsers);
 
 function hideModal(): void {
   const registerModal: NodeListOf<Element> = document.querySelectorAll('.modal');
@@ -312,8 +312,7 @@ function myPageParticipates(): void {
   const newMain: Main = new Main();
   usersMainSection.innerHTML = '';
   usersMainSection.innerHTML += newMain.getMyParticipates();
-  //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection();
-  console.log(myParticipates);
+  //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection(); 
   getPageMyParticipates(myParticipates);
   openUserCloseRequestListener();
   //const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
@@ -326,20 +325,14 @@ export function renderMyParticipates(): void {
 
 function UserRating(): void {
   const usersMainSection = document.querySelector('.users-main-section') as HTMLElement;
-  const newMain: Main = new Main();
-  const arr: Rating = rating.sort((a, b) => b.score - a.score);
+  const newMain: Main = new Main();  
   usersMainSection.innerHTML = '';
-  usersMainSection.innerHTML += newMain.getSortedRating(arr);
-  //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection();
-  console.log(myParticipates);
-  getPageMyParticipates(myParticipates);
+  usersMainSection.innerHTML += newMain.getRating(sortedUsers);    
   openUserCloseRequestListener();
-  //const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
-  //openRequestBtn.addEventListener('click', showRequest);
 }
 export function renderUserRating(): void {
-  const myParticipatesBtn = document.querySelector('.my-participates-btn') as HTMLButtonElement;  
-  myParticipatesBtn.addEventListener('click', UserRating);
+  const thanksSectionBtn = document.querySelector('.thanks-section-btn') as HTMLButtonElement;  
+  thanksSectionBtn.addEventListener('click', UserRating);
 }
 
 export function openRatingWindow(): void {
@@ -348,29 +341,29 @@ export function openRatingWindow(): void {
   ratingbtn.addEventListener('click', showRating);
 }
 
-export function sortRating(): void {
-  const sortBtn = document.querySelector('.modal-rating__score-subtitle') as HTMLElement;
-  const modal: Modal = new Modal();
+// export function sortRating(): void {
+//   const sortBtn = document.querySelector('.modal-rating__score-subtitle') as HTMLElement;
+//   const modal: Modal = new Modal();
 
-  sortBtn.addEventListener('click', () => {
-    const ratingContent = document.querySelector('.modal-rating') as HTMLElement;
-    const sortBy = sessionStorage.getItem('sortBy') as string;
+//   sortBtn.addEventListener('click', () => {
+//     const ratingContent = document.querySelector('.modal-rating') as HTMLElement;
+//     const sortBy = sessionStorage.getItem('sortBy') as string;
     
-    if (sortBy === 'desc') {
-      const arr: Rating = rating.sort((a, b) => b.score - a.score);
-      ratingContent.innerHTML = '';
-      ratingContent.innerHTML = modal.getSortedRating(arr);
-      sessionStorage.setItem('sortBy', 'asc');    
-    } else {
-      const arr: Rating = rating.sort((a, b) => a.score - b.score);
-      ratingContent.innerHTML = '';
-      ratingContent.innerHTML = modal.getSortedRating(arr);
-      sessionStorage.setItem('sortBy', 'desc');
-    }    
-    closeModalWindowListener();
-    sortRating();
-  });
-}
+//     if (sortBy === 'desc') {
+//       const arr: Rating = rating.sort((a, b) => b.score - a.score);
+//       ratingContent.innerHTML = '';
+//       ratingContent.innerHTML = modal.getSortedRating(arr);
+//       sessionStorage.setItem('sortBy', 'asc');    
+//     } else {
+//       const arr: Rating = rating.sort((a, b) => a.score - b.score);
+//       ratingContent.innerHTML = '';
+//       ratingContent.innerHTML = modal.getSortedRating(arr);
+//       sessionStorage.setItem('sortBy', 'desc');
+//     }    
+//     closeModalWindowListener();
+//     sortRating();
+//   });
+// }
 
 export function logoutListener(): void {
   const logoutBtn =  document.querySelector('.logout');
@@ -414,7 +407,7 @@ export function addListeners(): void {
   authSubmitListener();
   radioBtnListener();
   globalCloseModal();
-  sortRating();
+  //sortRating();
 }
 
 export function addUserListeners(): void {
@@ -428,5 +421,6 @@ export function addUserListeners(): void {
   renderMyRequests();
   renderMyParticipates();
   renderMyThanks();
-  sortRating();
+  //sortRating();
+  renderUserRating();
 }
