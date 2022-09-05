@@ -13,6 +13,19 @@ export async function  getThanks() {
   }
 }
 
+export async function  getThank(applyId: number) : Promise<Thanks[]> {
+  try {
+    const response = await fetch(`${SERVER}/apply/${applyId}`);
+    const result : Thanks = await response.json();
+    return [ { ...result } ];
+  } catch (err) {
+    if (err instanceof Error)
+      return [];   
+  }
+  return [];
+}
+
+
 export async function  createThanks(apply: Thanks) {
   try {
     const token = localStorage.getItem('token');

@@ -156,8 +156,7 @@ export default class Modal {
             </div>`;
   }
 
-  getCloseRequestWithHelp(users:UserVisualData[]): string {
-    console.log(users);
+  getCloseRequestWithHelp(): string {
     return `
     <div class="modal close-request modal--hidden">
       <div class="modal__content close-request__content">
@@ -311,14 +310,13 @@ export default class Modal {
   </div>`;
   }
 
-  render(arr: Rating): HTMLDivElement {
-    console.log(arr);
+  render(): HTMLDivElement {
     this.wrapper.innerHTML += this.getRegister();
     this.wrapper.innerHTML += this.getLogin();
     this.wrapper.innerHTML += this.getRequest();
+    this.wrapper.innerHTML += this.getCloseRequestWithHelp();
     this.wrapper.innerHTML += this.getCloseRequest();
     this.wrapper.innerHTML += this.getMessageEmail();
-    this.wrapper.innerHTML += this.getCloseRequestWithHelp(allUsers);
     this.wrapper.innerHTML += this.getRating(sortedUsers);
     this.wrapper.innerHTML += this.getUserProfile();
     this.wrapper.classList.add('modal-wrapper');
