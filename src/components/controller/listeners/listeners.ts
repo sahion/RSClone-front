@@ -14,7 +14,7 @@ import { closeApply, createApply, getApply } from '../../model/api/applies';
 import getPageMyRequests from '../../utils/renderMyRequestCard';
 import getPageMyParticipates from '../../utils/renderMyParticipateCard';
 import { allApplies, getMyCreatedApplies, getOpenApplies, 
-  getNotMyApplies, getMyParticipateApplies } from '../dataHandlers/applyFilters';
+  getNotMyApplies, getMyParticipateApplies, getNotMyParticipateApplies } from '../dataHandlers/applyFilters';
 import {  getParticipantsInApply, getUsersRating  } from '../dataHandlers/userFilters';
 import { allUsers } from '../../model/api/users';
 import { allThanks, createThanks } from '../../model/api/thanks';
@@ -25,7 +25,10 @@ const openApplies =  getOpenApplies(allApplies);
 const myApplies =  getMyCreatedApplies(openApplies);
 const myParticipates =  getMyParticipateApplies(openApplies);
 const NotMyApplies = getNotMyApplies(openApplies);
+const appliesForPagination = getNotMyParticipateApplies(NotMyApplies);
+
 const sortedUsers = getUsersRating(allUsers);
+
 
 function hideModal(): void {
   const registerModal: NodeListOf<Element> = document.querySelectorAll('.modal');
@@ -69,7 +72,7 @@ function userPageRequests(): void {
   main.innerHTML = '';
   main.innerHTML += newMain.getWrapper();
   main.innerHTML += newMain.getUserPaginationBtnsSection();
-  pagination(NotMyApplies);
+  pagination(appliesForPagination);
   const filtersBtns: NodeListOf<Element> = document.querySelectorAll('.filters-section__btn');
   [...filtersBtns].map(item => item.addEventListener('click', getFilter));
 
@@ -325,6 +328,19 @@ function myPageRequests(): void {
   usersMainSection.innerHTML = '';
   usersMainSection.innerHTML += newMain.getMyRequests();
   getPageMyRequests(myApplies); 
+  const avatars = usersMainSection.querySelectorAll('.avatar_participant');
+  [...avatars].map((avatar) => (avatar as HTMLInputElement).addEventListener('click', (event) =>{
+    const img = event.target as HTMLImageElement;
+    const userId = img.getAttribute('userId');
+    if (!userId) return;
+    const currentUser = allUsers.find(user => user.id === +userId);
+    console.log(currentUser);
+    const email = document.querySelector('.modal__user-info') as HTMLElement;
+    console.log(email);
+    email.innerHTML = `Почта пользователя : ${currentUser?.email}`;
+    showMessageEmail();
+
+  }));
   openUserCloseRequestListener();
 
   const wrapper = document.querySelector('.user-section-main__wrapper') as HTMLElement;
