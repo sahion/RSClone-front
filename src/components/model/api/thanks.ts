@@ -37,7 +37,7 @@ export async function  createThanks(thanks: Thanks) {
       },
       body: JSON.stringify(thanks),
     });
-    if (response.status === 200) {
+    if (response.status === 201) {
       showMessage('Благодарность успешно создана');
     } else showMessage(`Ошибка ${response.status}`, true);
   } catch (err) {

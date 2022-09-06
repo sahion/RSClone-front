@@ -19,7 +19,7 @@ export async function  getApply(applyId: number) : Promise<Apply[]> {
   try {
     const response = await fetch(`${SERVER}/apply/${applyId}`);
     const result : Apply = await response.json();
-    return [{ ...result }];
+    return [ { ...result }];
   } catch (err) {
     if (err instanceof Error)
       return [];   
