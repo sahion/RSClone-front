@@ -27,4 +27,11 @@ export const getMyParticipateApplies = (applies: ApplyWithUser[]) => {
   
 };
 
+export const getNotMyParticipateApplies = (applies: ApplyWithUser[]) => {
+  const user = getAuthUserData() as UserVisualData;
+  if (!user) return [];
+  return applies.filter(apply => !apply.participants.some(p => p === user.id));
+  
+};
+
 export const allApplies = await allAppliesWithUsers();

@@ -1,8 +1,10 @@
+import { getParticipantsInApply } from '../controller/dataHandlers/userFilters';
 import { dateFormatter, timeFormatter } from '../model/type/dateFormatter';
 import { ApplyWithUser } from '../model/type/type';
-
+import { allUsers } from '../model/api/users';
 function createDivMyRequestCard(data: ApplyWithUser) {
-  const div: HTMLDivElement = document.createElement('div'); 
+  const div: HTMLDivElement = document.createElement('div');
+  const participants = getParticipantsInApply(allUsers, data);
   div.className = 'card';
   div.setAttribute('applyId', '' + data.id);
   div.innerHTML = `                  
@@ -21,8 +23,13 @@ function createDivMyRequestCard(data: ApplyWithUser) {
           </ul>
         </div>
         <div class="card__btn">
+        
           <button class="btn color-btn my-requests__close" applyId = "${data.id}">Закрыть заявку</button>
-        </div>                
+        </div>    
+        <div class="card__avatar avatar__participants">
+          ${participants.reduce( (sum, p)=> sum += `<img src=${p.avatar} alt="Avatar" 
+          class="avatar avatar_participant" userId='${p.id}'><span class='username'>${p.name}</span>`, '')}
+        </div>            
       `;
   return div;
 } 
