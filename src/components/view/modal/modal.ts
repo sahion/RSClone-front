@@ -1,7 +1,6 @@
 import vladimirAva from '../../assets/img/Владимир.png'; 
 import elenaAva from '../../assets/img/Елена.png'; 
 import svetlanaAva from '../../assets/img/Светлана.png'; 
-import { Rating } from '../../model/type/type';
 import { allUsers } from '../../model/api/users';
 import { UserVisualData } from '../../model/type/User';
 import { getUsersRating } from '../../controller/dataHandlers/userFilters';
@@ -247,7 +246,7 @@ export default class Modal {
     `;
   }
 
-  getSortedRating(arr: Rating): string {
+  getSortedRating(arr: UserVisualData[]): string {
     return `
       <div class="modal__content modal-rating__content">
         <div class="modal__header modal-rating__header">
@@ -259,7 +258,7 @@ export default class Modal {
           <h6 class="modal-rating__score-subtitle">Дела</h6>
         </div>
         <div class="modal-rating__body">
-          ${arr.map(item => this.renderRatingTable(item.ava, item.name, item.score)).join('')}
+          ${arr.map(item => this.renderRatingTable(item.avatar, item.name, item.goodThings)).join('')}
         </div>
       </div>
     `;

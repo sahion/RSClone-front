@@ -8,8 +8,7 @@ import { pagination } from '../../utils/pagination';
 import Main from '../../view/main/main';
 import getFilter from '../../utils/filters';
 import Modal from '../../view/modal/modal';
-import { rating } from '../../model/fakeDatabase/rating';
-import { Apply, Rating, Thanks, ThanksCollection } from '../../model/type/type';
+import { Apply, Thanks, ThanksCollection } from '../../model/type/type';
 import { showFiltersMenu, innerTextClosed, hideFiltersMenu } from '../../utils/filtersMenuToggle';
 import { closeApply, createApply, getApply } from '../../model/api/applies';
 import getPageMyRequests from '../../utils/renderMyRequestCard';
@@ -369,14 +368,14 @@ export function sortRating(): void {
   sortBtn.addEventListener('click', () => {
     const ratingContent = document.querySelector('.modal-rating') as HTMLElement;
     const sortBy = sessionStorage.getItem('sortBy') as string;
-    
+
     if (sortBy === 'desc') {
-      const arr: Rating = rating.sort((a, b) => b.score - a.score);
+      const arr = allUsers.sort((a, b) => b.goodThings - a.goodThings);
       ratingContent.innerHTML = '';
       ratingContent.innerHTML = modal.getSortedRating(arr);
       sessionStorage.setItem('sortBy', 'asc');    
     } else {
-      const arr: Rating = rating.sort((a, b) => a.score - b.score);
+      const arr = allUsers.sort((a, b) => a.goodThings - b.goodThings);
       ratingContent.innerHTML = '';
       ratingContent.innerHTML = modal.getSortedRating(arr);
       sessionStorage.setItem('sortBy', 'desc');
