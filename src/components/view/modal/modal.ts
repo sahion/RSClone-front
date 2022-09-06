@@ -195,7 +195,7 @@ export default class Modal {
     </div>`;
   }
 
-  getMessageEmail(): string {
+  getMessageEmail(email:string): string {
     return `<div class="modal modal-message-email modal--hidden">
               <div class="modal__content modal-login__content">
                 <div class="modal__header modal-login__header message-email">                  
@@ -203,8 +203,7 @@ export default class Modal {
                   <span class="modal__close modal-login__close">&times;</span> 
                 </div>
               <div class="modal__header modal-login__header" style="color: #793CFB;">                
-                <span class="modal__title">Письмо с предложением <br> 
-                помощи отправлено!</span>
+                <span class="modal__title modal__user-info">Почта пользователя : ${email}</span>
               </div>                                  
               </div>
             </div>`;
@@ -315,7 +314,7 @@ export default class Modal {
     this.wrapper.innerHTML += this.getRequest();
     this.wrapper.innerHTML += this.getCloseRequestWithHelp();
     this.wrapper.innerHTML += this.getCloseRequest();
-    this.wrapper.innerHTML += this.getMessageEmail();
+    this.wrapper.innerHTML += this.getMessageEmail('');
     this.wrapper.innerHTML += this.getRating(sortedUsers);
     this.wrapper.innerHTML += this.getUserProfile();
     this.wrapper.classList.add('modal-wrapper');

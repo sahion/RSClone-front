@@ -27,11 +27,9 @@ export async function registerRequest(user: FormData) {
     });
     if (response.status === 201) {
       showMessage('Пользователь успешно зарегистрирован');
-    } 
-    else if (response.status === 409) {
+    } else if (response.status === 409) {
       showMessage('Такой пользователь уже существует', true);
-    }  
-    else showMessage(`Ошибка ${response.status}`, true);
+    } else showMessage(`Ошибка ${response.status}`, true);
   } catch (err) {
     if (err instanceof Error)
       showMessage('Проблемы с подключением к серверу', true);

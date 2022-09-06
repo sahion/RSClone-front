@@ -623,10 +623,26 @@
   border-radius: 50%;
   object-fit: cover;
 
+  &__participants{
+    position:relative;
+
+    &>.avatar_participant{
+      &:first-of-type{
+        margin-left:20px;
+      }
+    }
+    
+    .username{
+      margin-top:45px;
+    }
+
+  }
   
   &_participant{
     margin-left:-40px;
     position:relative;
+
+
   
     &:hover{
       z-index:1000;
