@@ -15,7 +15,7 @@ import getPageMyRequests from '../../utils/renderMyRequestCard';
 import getPageMyParticipates from '../../utils/renderMyParticipateCard';
 import { allApplies, getMyCreatedApplies, getOpenApplies, 
   getNotMyApplies, getMyParticipateApplies, getNotMyParticipateApplies } from '../dataHandlers/applyFilters';
-import {  getParticipantsInApply } from '../dataHandlers/userFilters';
+import {  getParticipantsInApply, getUsersRating  } from '../dataHandlers/userFilters';
 import { allUsers } from '../../model/api/users';
 import { allThanks, createThanks } from '../../model/api/thanks';
 import { showMessage } from '../../utils/showMessage';
@@ -26,6 +26,9 @@ const myApplies =  getMyCreatedApplies(openApplies);
 const myParticipates =  getMyParticipateApplies(openApplies);
 const NotMyApplies = getNotMyApplies(openApplies);
 const appliesForPagination = getNotMyParticipateApplies(NotMyApplies);
+
+const sortedUsers = getUsersRating(allUsers);
+
 
 function hideModal(): void {
   const registerModal: NodeListOf<Element> = document.querySelectorAll('.modal');
@@ -346,8 +349,7 @@ function myPageRequests(): void {
   openRequestBtn.addEventListener('click', showRequest);
 }
 export function renderMyRequests(): void {
-  const myRequestsBtn = document.querySelector('.my-requests-btn') as HTMLButtonElement;
-  
+  const myRequestsBtn = document.querySelector('.my-requests-btn') as HTMLButtonElement;  
   myRequestsBtn.addEventListener('click', myPageRequests);
 }
 
@@ -356,17 +358,27 @@ function myPageParticipates(): void {
   const newMain: Main = new Main();
   usersMainSection.innerHTML = '';
   usersMainSection.innerHTML += newMain.getMyParticipates();
-  //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection();
-  console.log(myParticipates);
+  //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection(); 
   getPageMyParticipates(myParticipates);
   openUserCloseRequestListener();
   //const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
   //openRequestBtn.addEventListener('click', showRequest);
 }
 export function renderMyParticipates(): void {
-  const myParticipatesBtn = document.querySelector('.my-participates-btn') as HTMLButtonElement;
-  
+  const myParticipatesBtn = document.querySelector('.my-participates-btn') as HTMLButtonElement;  
   myParticipatesBtn.addEventListener('click', myPageParticipates);
+}
+
+function UserRating(): void {
+  const usersMainSection = document.querySelector('.users-main-section') as HTMLElement;
+  const newMain: Main = new Main();  
+  usersMainSection.innerHTML = '';
+  usersMainSection.innerHTML += newMain.getRating(sortedUsers);    
+  openUserCloseRequestListener();
+}
+export function renderUserRating(): void {
+  const thanksSectionBtn = document.querySelector('.thanks-section-btn') as HTMLButtonElement;  
+  thanksSectionBtn.addEventListener('click', UserRating);
 }
 
 export function openRatingWindow(): void {
@@ -442,7 +454,7 @@ export function addListeners(): void {
   authSubmitListener();
   radioBtnListener();
   globalCloseModal();
-  sortRating();
+  //sortRating();
 }
 
 export function addUserListeners(): void {
@@ -457,4 +469,6 @@ export function addUserListeners(): void {
   renderMyParticipates();
   renderMyThanks();
   giveThanksListener();
+  //sortRating();
+  renderUserRating();
 }
