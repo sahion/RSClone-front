@@ -41,6 +41,7 @@ export async function  createApply(apply: Apply) {
       body: JSON.stringify(apply),
     });
     if (response.status === 200) {
+      setTimeout( () => window.location.href = process.env.USER_PAGE as string, 2500);
       return showMessage('Заявка успешно создана');
     } else return  showMessage(`Ошибка ${response.status}`, true);
   } catch (err) {
