@@ -51,7 +51,6 @@ export default class Main {
   renderThanksCard(item: Thanks): string {
     const participants = getParticipantsInThanks(allUsers, item);
     const user = allUsers.find(u => u.id === item.userId);
-    console.log(participants);
     return `
     <div class="card thanks-card">
       <div class="card__header thanks-card__header">              
@@ -86,7 +85,6 @@ export default class Main {
   }
 
   getUserThanksSection(arr: Thanks[]): string {
-    console.log(arr);
     return `
     <section class="thanks-section" id="thanks">
       <h2 class="thanks-section__title">Копилка добрых дел </h2>
